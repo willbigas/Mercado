@@ -30,6 +30,7 @@ id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
 codBarras varchar(11) NOT NULL,
 valor decimal(10,2) NOT NULL,
+quantidade integer(11) NOT NULL,
 fk_categoria int NOT NULL,
 fk_fornecedor int NOT NULL,
 PRIMARY KEY (id),
@@ -93,13 +94,8 @@ PRIMARY KEY (id),
 foreign key(fk_tipoDespesa) references tipoDespesa(id));
 
 
+select * from categorias;
 
+select * from produtos;
 
-
-
-
-
-
-
-
-
+select * from fornecedores;
