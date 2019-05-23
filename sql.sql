@@ -67,6 +67,27 @@ foreign key(fk_cliente) references clientes(id),
 foreign key(fk_funcionario) references funcionarios(id));
 
 
+
+CREATE TABLE entradas(
+id INT(11) not null auto_increment,
+fk_fornecedor int NOT NULL,
+dataEntrada datetime NOT NULL,
+PRIMARY KEY (id),
+foreign key(fk_fornecedor) references fornecedores(id));
+
+
+CREATE TABLE itemEntrada(
+id INT(11) not null auto_increment,
+valorProduto decimal(10,2),
+quantidade int(11),
+numeroLote int(11),
+fk_entrada int NOT NULL,
+fk_produto int NOT NULL,
+PRIMARY KEY (id),
+foreign key(fk_entrada) references entradas(id),
+foreign key(fk_produto) references produtos(id));
+
+
 CREATE TABLE receitas(
 id INT(11) not null auto_increment,
 dataCadastro datetime NOT NULL,

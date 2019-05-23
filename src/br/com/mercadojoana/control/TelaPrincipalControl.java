@@ -1,9 +1,5 @@
 package br.com.mercadojoana.control;
 
-import br.com.mercadojoana.control.funcionario.TelaGerenciarFuncionarioControl;
-import br.com.mercadojoana.control.produto.TelaEntradaControl;
-import br.com.mercadojoana.control.produto.TelaGerenciarProdutoControl;
-
 /**
  *
  * @author William

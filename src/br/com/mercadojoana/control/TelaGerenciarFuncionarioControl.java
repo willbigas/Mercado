@@ -1,7 +1,7 @@
-package br.com.mercadojoana.control.funcionario;
+package br.com.mercadojoana.control;
 
 import br.com.mercadojoana.view.TelaPrincipal;
-import br.com.mercadojoana.view.funcionario.TelaGerenciarFuncionario;
+import br.com.mercadojoana.view.TelaFuncionarioGerenciar;
 
 /**
  *
@@ -9,10 +9,10 @@ import br.com.mercadojoana.view.funcionario.TelaGerenciarFuncionario;
  */
 public class TelaGerenciarFuncionarioControl {
 
-    TelaGerenciarFuncionario frameGerenciarFuncionario;
+    TelaFuncionarioGerenciar frameGerenciarFuncionario;
     
     public TelaGerenciarFuncionarioControl() {
-        frameGerenciarFuncionario = new TelaGerenciarFuncionario();
+        frameGerenciarFuncionario = new TelaFuncionarioGerenciar();
         TelaPrincipal.desktopPane.add(frameGerenciarFuncionario);
         frameGerenciarFuncionario.setVisible(true);
         

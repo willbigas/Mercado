@@ -1,7 +1,7 @@
-package br.com.mercadojoana.control.produto;
+package br.com.mercadojoana.control;
 
 import br.com.mercadojoana.view.TelaPrincipal;
-import br.com.mercadojoana.view.produto.TelaGerenciarProduto;
+import br.com.mercadojoana.view.TelaProdutoGerenciar;
 
 /**
  *
@@ -9,10 +9,10 @@ import br.com.mercadojoana.view.produto.TelaGerenciarProduto;
  */
 public class TelaGerenciarProdutoControl {
     
-    TelaGerenciarProduto  frameGerenciarProduto;
+    TelaProdutoGerenciar  frameGerenciarProduto;
 
     public TelaGerenciarProdutoControl() {
-        frameGerenciarProduto = new TelaGerenciarProduto();
+        frameGerenciarProduto = new TelaProdutoGerenciar();
         TelaPrincipal.desktopPane.add(frameGerenciarProduto);
         frameGerenciarProduto.setVisible(true);
     }
