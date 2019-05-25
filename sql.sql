@@ -19,6 +19,7 @@ id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
 telefone varchar(11) NOT NULL,
 email varchar(50) NOT NULL,
+ativo boolean,
 fk_endereco int NOT NULL,
 FOREIGN KEY (fk_endereco) references enderecos(id),
 PRIMARY KEY (id));
@@ -28,6 +29,7 @@ CREATE TABLE fornecedores(
 id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
 telefone varchar(11) NOT NULL,
+ativo boolean,
 fk_endereco int NOT NULL,
 FOREIGN KEY (fk_endereco) references enderecos(id),
 PRIMARY KEY (id));
@@ -35,6 +37,7 @@ PRIMARY KEY (id));
 CREATE TABLE categorias(
 id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
+ativo boolean,
 PRIMARY KEY (id));
 
 CREATE TABLE produtos(
@@ -43,6 +46,7 @@ nome varchar(50) NOT NULL,
 codigoBarras integer(13) NOT NULL,
 valor decimal(10,2) NOT NULL,
 quantidade integer(11) NOT NULL,
+ativo boolean,
 fk_categoria int NOT NULL,
 fk_fornecedor int NOT NULL,
 PRIMARY KEY (id),
@@ -52,6 +56,7 @@ foreign key(fk_fornecedor) references fornecedores(id));
 CREATE TABLE tipoUsuario(
 id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
+ativo boolean,
 PRIMARY KEY (id));
 
 CREATE TABLE funcionarios(
@@ -62,6 +67,7 @@ salario decimal(10,2) NOT NULL,
 telefone varchar(11) NOT NULL,
 email varchar(50) NOT NULL,
 senha varchar(25) NOT NULL,
+ativo boolean,
 fk_endereco int NOT NULL,
 fk_tipoUsuario int NOT NULL,
 fk_fornecedor int NOT NULL,

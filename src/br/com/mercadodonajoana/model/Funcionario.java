@@ -21,6 +21,7 @@ public class Funcionario {
     private TipoUsuario tipoUsuario;
     private Fornecedor fornecedor;
     private Endereco endereco;
+    private Boolean ativo;
 
     public Integer getId() {
         return id;
@@ -100,6 +101,14 @@ public class Funcionario {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override

@@ -8,6 +8,7 @@ public class Categoria {
 
     private Integer id;
     private String nome;
+    private Boolean ativo;
 
     public Integer getId() {
         return id;
@@ -23,6 +24,14 @@ public class Categoria {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override

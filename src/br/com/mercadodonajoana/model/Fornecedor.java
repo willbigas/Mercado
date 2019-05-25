@@ -10,6 +10,7 @@ public class Fornecedor {
     private String nome;
     private String telefone;
     private Endereco Endereco;
+    private Boolean ativo;
 
     public Integer getId() {
         return id;
@@ -41,6 +42,14 @@ public class Fornecedor {
 
     public void setEndereco(Endereco Endereco) {
         this.Endereco = Endereco;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override

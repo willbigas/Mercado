@@ -13,6 +13,7 @@ public class TipoUsuario {
 
     private Integer id;
     private String nome;
+    private Boolean ativo;
 
     public Integer getId() {
         return id;
@@ -28,6 +29,14 @@ public class TipoUsuario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override

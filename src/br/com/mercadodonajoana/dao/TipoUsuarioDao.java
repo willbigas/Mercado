@@ -11,4 +11,5 @@ package br.com.mercadodonajoana.dao;
  */
 public class TipoUsuarioDao {
     
+    
 }

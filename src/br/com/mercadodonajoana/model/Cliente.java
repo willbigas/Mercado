@@ -11,6 +11,7 @@ public class Cliente {
     private String telefone;
     private String email;
     private Endereco endereco;
+    private Boolean ativo;
 
     public Integer getId() {
         return id;
@@ -50,6 +51,14 @@ public class Cliente {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override

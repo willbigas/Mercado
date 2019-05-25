@@ -13,6 +13,7 @@ public class Produto {
     private Integer quantidade;
     private Categoria categoria;
     private Fornecedor fornecedor;
+    private Boolean ativo;
 
     public Integer getId() {
         return id;
@@ -68,6 +69,14 @@ public class Produto {
 
     public void setFornecedor(Fornecedor fornecedor) {
         this.fornecedor = fornecedor;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override
