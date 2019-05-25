@@ -91,12 +91,12 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
             ResultSet result = stmt.executeQuery();
             List<Cliente> lista = new ArrayList<>();
             while (result.next()) {
-                Cliente endereco = new Cliente();
-                endereco.setId(result.getInt("id"));
-                endereco.setNome(result.getString("nome"));
-                endereco.setEmail(result.getString("email"));
-                endereco.setTelefone(result.getString("telefone"));
-                lista.add(endereco);
+                Cliente cliente = new Cliente();
+                cliente.setId(result.getInt("id"));
+                cliente.setNome(result.getString("nome"));
+                cliente.setEmail(result.getString("email"));
+                cliente.setTelefone(result.getString("telefone"));
+                lista.add(cliente);
             }
             return lista;
         } catch (SQLException ex) {
