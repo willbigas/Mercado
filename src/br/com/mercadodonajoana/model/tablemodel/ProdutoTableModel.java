@@ -15,15 +15,17 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author William
  */
-public class ProdutoTableModel extends AbstractTableModel implements AcoesTableModel<Produto>{
+public class ProdutoTableModel extends AbstractTableModel implements AcoesTableModel<Produto> {
 
     private static final int CODIGO = 0;
     private static final int NOME = 1;
     private static final int EAN13 = 2;
-    private static final int VALOR = 3;
+    private static final int QUANTIDADE = 3;
+    private static final int VALOR = 4;
+    private static final int CATEGORIA = 5;
 
     private List<Produto> linhas;
-    private String[] COLUNAS = {"Código", "Nome", "Ean13", "Valor"};
+    private String[] COLUNAS = {"Código", "Nome", "Ean13", "Quantidade", "Valor", "Categoria"};
 
     public ProdutoTableModel() {
         linhas = new ArrayList<>();
@@ -55,8 +57,14 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
                 return Integer.class;
             case NOME:
                 return String.class;
+            case EAN13:
+                return String.class;
+            case QUANTIDADE:
+                return Integer.class;
             case VALOR:
                 return Double.class;
+            case CATEGORIA:
+                return String.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -70,8 +78,14 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
                 return produto.getId();
             case NOME:
                 return produto.getNome();
+            case EAN13:
+                return produto.getCodBarras();
+            case QUANTIDADE:
+                return produto.getQuantidade();
             case VALOR:
                 return produto.getValor();
+            case CATEGORIA:
+                return produto.getCategoria().getNome();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -87,8 +101,17 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
             case NOME:
                 produto.setNome((String) valor);
                 break;
+            case EAN13:
+                produto.setCodBarras((Integer) valor);
+                break;
+            case QUANTIDADE:
+                produto.setQuantidade((Integer) valor);
+                break;
             case VALOR:
                 produto.setValor(Double.valueOf((String) valor));
+                break;
+            case CATEGORIA:
+                produto.getCategoria().setNome((String) valor);
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -98,16 +121,19 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
 
     }
 
+    @Override
     public Produto pegaObjeto(int indiceLinha) {
         return linhas.get(indiceLinha);
     }
 
+    @Override
     public void adicionar(Produto produto) {
         linhas.add(produto);
         int ultimoIndice = getRowCount() - 1; // linhas -1
         fireTableRowsInserted(ultimoIndice, ultimoIndice); // atualiza insert
     }
 
+    @Override
     public void adicionar(List<Produto> produtos) {
         int indice = getRowCount();
         linhas.addAll(produtos);
@@ -115,11 +141,13 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
         fireTableDataChanged();
     }
 
+    @Override
     public void remover(int indiceLinha) {
         linhas.remove(indiceLinha);
         fireTableRowsDeleted(indiceLinha, indiceLinha); // atualiza delete
     }
 
+    @Override
     public void remover(int linhaInicio, int linhaFim) {
 
         for (int i = linhaInicio; i <= linhaFim; i++) {
@@ -129,11 +157,13 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
 
     }
 
+    @Override
     public void atualizar(int indiceLinha, Produto p) {
         linhas.set(indiceLinha, p);
         fireTableRowsUpdated(indiceLinha, indiceLinha); // atualiza delete
     }
 
+    @Override
     public void limpar() {
         linhas.clear();
         fireTableDataChanged(); // atualiza toda tabela.

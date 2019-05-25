@@ -40,7 +40,7 @@ PRIMARY KEY (id));
 CREATE TABLE produtos(
 id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
-codigoBarras varchar(11) NOT NULL,
+codigoBarras integer(13) NOT NULL,
 valor decimal(10,2) NOT NULL,
 quantidade integer(11) NOT NULL,
 fk_categoria int NOT NULL,
