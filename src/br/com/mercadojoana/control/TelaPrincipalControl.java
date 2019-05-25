@@ -5,22 +5,32 @@ package br.com.mercadojoana.control;
  * @author William
  */
 public class TelaPrincipalControl {
-    TelaGerenciarFuncionarioControl telaGerenciarFuncionarioControl;
+
+    TelaFuncionarioGerenciarControl telaFuncionarioGerenciarControl = null;
     TelaGerenciarProdutoControl telaGerenciarProdutoControl;
-    TelaEntradaControl telaEntradaProdutoControl;
-    
-    
+    TelaEntradaGerenciarControl entradaGerenciarControl = null;
+
     public void chamarTelaGerenciarFuncionarioAction() {
-        telaGerenciarFuncionarioControl = new TelaGerenciarFuncionarioControl();
+        if (telaFuncionarioGerenciarControl != null) {
+            telaFuncionarioGerenciarControl.chamarTelaFuncionarioGerenciar();
+        } else {
+            telaFuncionarioGerenciarControl = new TelaFuncionarioGerenciarControl();
+            telaFuncionarioGerenciarControl.chamarTelaFuncionarioGerenciar();
+        }
     }
+
     public void chamarTelaGerenciarProdutoAction() {
         telaGerenciarProdutoControl = new TelaGerenciarProdutoControl();
     }
-    public void chamarTelaEntradaProdutoAction() {
-        telaEntradaProdutoControl = new TelaEntradaControl();
+
+    public void chamarTelaEntradaProdutoGerenciarAction() {
+        if (entradaGerenciarControl != null) {
+            entradaGerenciarControl.chamarTelaEntradaGerenciar();
+        } else {
+            entradaGerenciarControl = new TelaEntradaGerenciarControl();
+            entradaGerenciarControl.chamarTelaEntradaGerenciar();
+        }
+
     }
-    
-    
-    
-    
+
 }

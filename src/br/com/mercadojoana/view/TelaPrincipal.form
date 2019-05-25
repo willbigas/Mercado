@@ -61,13 +61,18 @@
             <Property name="text" type="java.lang.String" value="Funcionarios"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuItemGerenciarFuncionarios">
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemGerenciarFuncionario">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Gerenciar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemGerenciarFuncionariosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemGerenciarFuncionarioActionPerformed"/>
               </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemGerenciarTipoUsuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tipo de Usu&#xe1;rio"/>
+              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
