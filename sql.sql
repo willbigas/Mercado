@@ -4,12 +4,23 @@ use mercadodonajoana;
 
 /** Criando Tabelas **/
 
+CREATE TABLE enderecos(
+id INT(11) NOT NULL auto_increment,
+cep int(8) NOT NULL,
+estado varchar(2) NOT NULL,
+cidade varchar(50) NOT NULL,
+bairro varchar(100) NOT NULL,
+rua varchar(120) NOT NULL,
+complemento varchar(120),
+PRIMARY KEY (id));
+
 CREATE TABLE clientes(
 id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
 telefone varchar(11) NOT NULL,
 email varchar(50) NOT NULL,
-endereco varchar(50) NOT NULL,
+fk_endereco int NOT NULL,
+FOREIGN KEY (fk_endereco) references enderecos(id),
 PRIMARY KEY (id));
 
 
@@ -17,7 +28,8 @@ CREATE TABLE fornecedores(
 id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
 telefone varchar(11) NOT NULL,
-endereco varchar(50) NOT NULL,
+fk_endereco int NOT NULL,
+FOREIGN KEY (fk_endereco) references enderecos(id),
 PRIMARY KEY (id));
 
 CREATE TABLE categorias(
@@ -28,7 +40,7 @@ PRIMARY KEY (id));
 CREATE TABLE produtos(
 id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
-codBarras varchar(11) NOT NULL,
+codigoBarras varchar(11) NOT NULL,
 valor decimal(10,2) NOT NULL,
 quantidade integer(11) NOT NULL,
 fk_categoria int NOT NULL,
@@ -47,14 +59,16 @@ id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
 pis INT(11) NOT NULL,
 salario decimal(10,2) NOT NULL,
-endereco varchar(50) NOT NULL,
 telefone varchar(11) NOT NULL,
 email varchar(50) NOT NULL,
 senha varchar(25) NOT NULL,
+fk_endereco int NOT NULL,
 fk_tipoUsuario int NOT NULL,
 fk_fornecedor int NOT NULL,
 PRIMARY KEY (id),
-foreign key(fk_tipoUsuario) references tipoUsuario(id));
+FOREIGN KEY (fk_endereco) references enderecos(id),
+FOREIGN KEY (fk_fornecedor) references fornecedores(id),
+FOREIGN KEY(fk_tipoUsuario) references tipoUsuario(id));
 
 
 CREATE TABLE vendas(
@@ -66,12 +80,10 @@ PRIMARY KEY (id),
 foreign key(fk_cliente) references clientes(id),
 foreign key(fk_funcionario) references funcionarios(id));
 
-
-
 CREATE TABLE entradas(
 id INT(11) not null auto_increment,
-fk_fornecedor int NOT NULL,
 dataEntrada datetime NOT NULL,
+fk_fornecedor int NOT NULL,
 PRIMARY KEY (id),
 foreign key(fk_fornecedor) references fornecedores(id));
 
@@ -113,7 +125,6 @@ codEntrada int(9),
 fk_tipoDespesa int,
 PRIMARY KEY (id),
 foreign key(fk_tipoDespesa) references tipoDespesa(id));
-
 
 select * from categorias;
 
