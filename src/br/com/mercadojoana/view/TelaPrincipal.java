@@ -43,7 +43,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         menuItemGerenciarFornecedor = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        menuItemGerenciarFuncionarios = new javax.swing.JMenuItem();
+        menuItemGerenciarFuncionario = new javax.swing.JMenuItem();
+        menuItemGerenciarTipoUsuario = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuItemReceita = new javax.swing.JMenuItem();
         menuItemDespesa = new javax.swing.JMenuItem();
@@ -104,13 +105,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Funcionarios");
 
-        menuItemGerenciarFuncionarios.setText("Gerenciar");
-        menuItemGerenciarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+        menuItemGerenciarFuncionario.setText("Gerenciar");
+        menuItemGerenciarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemGerenciarFuncionariosActionPerformed(evt);
+                menuItemGerenciarFuncionarioActionPerformed(evt);
             }
         });
-        jMenu2.add(menuItemGerenciarFuncionarios);
+        jMenu2.add(menuItemGerenciarFuncionario);
+
+        menuItemGerenciarTipoUsuario.setText("Tipo de Usuário");
+        jMenu2.add(menuItemGerenciarTipoUsuario);
 
         jMenuBar1.add(jMenu2);
 
@@ -148,10 +152,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuItemGerenciarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarFuncionariosActionPerformed
+    private void menuItemGerenciarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarFuncionarioActionPerformed
         // TODO add your handling code here:
        telaPrincipalControl.chamarTelaGerenciarFuncionarioAction();
-    }//GEN-LAST:event_menuItemGerenciarFuncionariosActionPerformed
+    }//GEN-LAST:event_menuItemGerenciarFuncionarioActionPerformed
 
     private void menuItemGerenciarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarProdutoActionPerformed
         // TODO add your handling code here:
@@ -212,8 +216,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemGerenciarCategoria;
     private javax.swing.JMenuItem menuItemGerenciarCliente;
     private javax.swing.JMenuItem menuItemGerenciarFornecedor;
-    private javax.swing.JMenuItem menuItemGerenciarFuncionarios;
+    private javax.swing.JMenuItem menuItemGerenciarFuncionario;
     private javax.swing.JMenuItem menuItemGerenciarProduto;
+    private javax.swing.JMenuItem menuItemGerenciarTipoUsuario;
     private javax.swing.JMenuItem menuItemReceita;
     // End of variables declaration//GEN-END:variables
 }
