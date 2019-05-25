@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.mercadojoana.view;
+
+import br.com.mercadojoana.control.TelaEntradaGerenciarControl;
 
 /**
  *
  * @author William
  */
 public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
+    
+    TelaEntradaGerenciarControl entradaGerenciarControl;
 
     /**
      * Creates new form TelaEntradaProduto
@@ -17,6 +16,13 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
     public TelaEntradaGerenciar() {
         initComponents();
     }
+    
+    public TelaEntradaGerenciar(TelaEntradaGerenciarControl control) {
+        initComponents();
+        entradaGerenciarControl = control;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -83,6 +89,11 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
         jButton1.setText("+");
 
         jButton2.setText("Gravar Entrada");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("VALOR");
 
@@ -195,6 +206,10 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

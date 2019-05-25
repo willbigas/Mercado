@@ -164,7 +164,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menuItemEntradaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEntradaProdutoActionPerformed
         // TODO add your handling code here:
-        telaPrincipalControl.chamarTelaEntradaProdutoAction();
+        telaPrincipalControl.chamarTelaEntradaProdutoGerenciarAction();
     }//GEN-LAST:event_menuItemEntradaProdutoActionPerformed
 
     /**
