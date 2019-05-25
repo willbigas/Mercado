@@ -70,7 +70,23 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public List<TipoUsuario> pesquisar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String querySelect = "SELECT * FROM TIPOUSUARIO";
+        try {
+            PreparedStatement stmt;
+            stmt = conexao.prepareStatement(querySelect);
+            ResultSet result = stmt.executeQuery();
+            List<TipoUsuario> lista = new ArrayList<>();
+            while (result.next()) {
+                TipoUsuario tipoUsuario = new TipoUsuario();
+                tipoUsuario.setId(result.getInt("id"));
+                tipoUsuario.setNome(result.getString("nome"));
+                lista.add(tipoUsuario);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override

@@ -19,7 +19,6 @@ public class Funcionario {
     private String senha;
     private String email;
     private TipoUsuario tipoUsuario;
-    private Fornecedor fornecedor;
     private Endereco endereco;
     private Boolean ativo;
 
@@ -87,14 +86,6 @@ public class Funcionario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public Fornecedor getFornecedor() {
-        return fornecedor;
-    }
-
-    public void setFornecedor(Fornecedor fornecedor) {
-        this.fornecedor = fornecedor;
-    }
-
     public Endereco getEndereco() {
         return endereco;
     }
@@ -113,7 +104,7 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "Funcionario{" + "id=" + id + ", nome=" + nome + ", pis=" + pis + ", salario=" + salario + ", telefone=" + telefone + ", senha=" + senha + ", email=" + email + ", tipoUsuario=" + tipoUsuario + ", fornecedor=" + fornecedor + ", endereco=" + endereco + '}';
+        return "Funcionario{" + "id=" + id + ", nome=" + nome + ", pis=" + pis + ", salario=" + salario + ", telefone=" + telefone + ", senha=" + senha + ", email=" + email + ", tipoUsuario=" + tipoUsuario + ", endereco=" + endereco + ", ativo=" + ativo + '}';
     }
 
 }

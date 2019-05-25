@@ -6,6 +6,7 @@
 package br.com.mercadodonajoana.dao;
 
 import br.com.mercadodonajoana.model.Cliente;
+import br.com.mercadodonajoana.model.Endereco;
 import br.com.mercadojoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,9 +55,9 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getTelefone());
-            stmt.setString(2, cliente.getEmail());
-            stmt.setInt(3, cliente.getEndereco().getId());
-            stmt.setInt(4, cliente.getId());
+            stmt.setString(3, cliente.getEmail());
+            stmt.setInt(4, cliente.getEndereco().getId());
+            stmt.setInt(5, cliente.getId());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
@@ -77,7 +78,27 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
 
     @Override
     public List<Cliente> pesquisar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String querySelect = "SELECT * FROM CLIENTES";
+        try {
+            PreparedStatement stmt;
+            stmt = conexao.prepareStatement(querySelect);
+            ResultSet result = stmt.executeQuery();
+            List<Cliente> lista = new ArrayList<>();
+            while (result.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setId(result.getInt("id"));
+                cliente.setNome(result.getString("nome"));
+                cliente.setEmail(result.getString("email"));
+                cliente.setTelefone(result.getString("telefone"));
+                Endereco endereco = new Endereco();
+                endereco.setId(result.getInt("fk_endereco"));
+                lista.add(cliente);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override

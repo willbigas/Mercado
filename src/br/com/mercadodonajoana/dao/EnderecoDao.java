@@ -108,7 +108,28 @@ public class EnderecoDao extends Dao implements DaoI<Endereco> {
 
     @Override
     public List<Endereco> pesquisar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String querySelect = "SELECT * FROM ENDERECOS";
+        try {
+            PreparedStatement stmt;
+            stmt = conexao.prepareStatement(querySelect);
+            ResultSet result = stmt.executeQuery();
+            List<Endereco> lista = new ArrayList<>();
+            while (result.next()) {
+                Endereco endereco = new Endereco();
+                endereco.setId(result.getInt("id"));
+                endereco.setCep(result.getInt("cep"));
+                endereco.setCidade(result.getString("cidade"));
+                endereco.setComplemento(result.getString("complemento"));
+                endereco.setEstado(result.getString("estado"));
+                endereco.setNumero(result.getString("numero"));
+                endereco.setRua(result.getString("rua"));
+                lista.add(endereco);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
     @Override
