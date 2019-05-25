@@ -18,6 +18,7 @@ public class Endereco {
     private String bairro;
     private String rua;
     private String complemento;
+    private String numero;
 
     public Integer getId() {
         return id;
@@ -67,6 +68,14 @@ public class Endereco {
         this.rua = rua;
     }
 
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
     public String getComplemento() {
         return complemento;
     }
@@ -77,7 +86,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereco{" + "id=" + id + ", cep=" + cep + ", estado=" + estado + ", cidade=" + cidade + ", bairro=" + bairro + ", rua=" + rua + ", complemento=" + complemento + '}';
+        return "Endereco{" + "id=" + id + ", cep=" + cep + ", estado=" + estado + ", cidade=" + cidade + ", bairro=" + bairro + ", rua=" + rua + ", complemento=" + complemento + ", numero=" + numero + '}';
     }
 
 }

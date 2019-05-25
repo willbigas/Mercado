@@ -13,8 +13,12 @@ public interface DaoI<E> {
     public boolean alterar(E obj);
 
     public boolean deletar(E obj);
-    
+
     public boolean deletar(int id);
+
+    public boolean desativar(E obj);
+
+    public boolean desativar(int id);
 
     public List<E> pesquisar();
 

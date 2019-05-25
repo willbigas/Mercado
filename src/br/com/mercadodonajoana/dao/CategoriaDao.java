@@ -13,7 +13,7 @@ import java.util.List;
  * @author William
  */
 public class CategoriaDao extends Dao implements DaoI<Categoria> {
-    
+
     public CategoriaDao() {
         // Faz a conexão.
         super();
@@ -42,7 +42,7 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
 
     @Override
     public int inserir(Categoria categoria) {
-            String queryInsert = "INSERT INTO CATEGORIAS(NOME) VALUES(?)";
+        String queryInsert = "INSERT INTO CATEGORIAS(NOME) VALUES(?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -87,7 +87,7 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
             return false;
         }
     }
-    
+
     @Override
     public boolean deletar(int id) {
         String queryDelete = "DELETE FROM CATEGORIAS WHERE ID = ?";
@@ -107,7 +107,7 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");
-            ResultSet result = stmt.executeQuery();     
+            ResultSet result = stmt.executeQuery();
             List<Categoria> lista = new ArrayList<>();
             while (result.next()) {
                 Categoria categoria = new Categoria();
@@ -125,7 +125,7 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
 
     @Override
     public Categoria pesquisar(int id) {
-        String querySelectPorId ="SELECT * FROM CATEGORIAS WHERE ID = ?";
+        String querySelectPorId = "SELECT * FROM CATEGORIAS WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectPorId);
             stmt.setInt(1, id);
@@ -142,6 +142,16 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
             System.out.println(ex.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public boolean desativar(Categoria obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean desativar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

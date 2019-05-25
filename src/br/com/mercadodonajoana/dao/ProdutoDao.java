@@ -13,7 +13,7 @@ import java.util.List;
  * @author William
  */
 public class ProdutoDao extends Dao implements DaoI<Produto> {
-    
+
     public ProdutoDao() {
         // Faz a conexão.
         super();
@@ -47,7 +47,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public int inserir(Produto produto) {
-            String queryInsert = "INSERT INTO PRODUTOS(NOME, CODBARRAS, VALOR, QUANTIDADE, FK_CATEGORIA, FK_FORNECEDOR) VALUES(?, ?, ?, ?, ?, ?)";
+        String queryInsert = "INSERT INTO PRODUTOS(NOME, CODBARRAS, VALOR, QUANTIDADE, FK_CATEGORIA, FK_FORNECEDOR) VALUES(?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -104,7 +104,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
             return false;
         }
     }
-    
+
     @Override
     public boolean deletar(int id) {
         String queryDelete = "DELETE FROM PRODUTOS WHERE ID = ?";
@@ -147,7 +147,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public Produto pesquisar(int id) {
-        String querySelectPorId ="SELECT * FROM PRODUTOS WHERE ID = ?";
+        String querySelectPorId = "SELECT * FROM PRODUTOS WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectPorId);
             stmt.setInt(1, id);
@@ -169,6 +169,16 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
             System.out.println(ex.getMessage());
             return null;
         }
+    }
+
+    @Override
+    public boolean desativar(Produto obj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean desativar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
