@@ -10,7 +10,7 @@ public class Cliente {
     private String nome;
     private String telefone;
     private String email;
-    private String endereco;
+    private Endereco endereco;
 
     public Integer getId() {
         return id;
@@ -44,11 +44,11 @@ public class Cliente {
         this.email = email;
     }
 
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(String endereco) {
+    public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 

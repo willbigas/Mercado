@@ -9,7 +9,7 @@ public class Fornecedor {
     private Integer id;
     private String nome;
     private String telefone;
-    private String Endereco;
+    private Endereco Endereco;
 
     public Integer getId() {
         return id;
@@ -35,11 +35,11 @@ public class Fornecedor {
         this.telefone = telefone;
     }
 
-    public String getEndereco() {
+    public Endereco getEndereco() {
         return Endereco;
     }
 
-    public void setEndereco(String Endereco) {
+    public void setEndereco(Endereco Endereco) {
         this.Endereco = Endereco;
     }
 
