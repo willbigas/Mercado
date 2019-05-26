@@ -201,12 +201,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemGerenciarFornecedorActionPerformed
 
     private void menuItemGerenciarTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarTipoUsuarioActionPerformed
-        // TODO add your handling code here:
         telaPrincipalControl.chamarTelaTipoUsuarioGerenciarAction();
     }//GEN-LAST:event_menuItemGerenciarTipoUsuarioActionPerformed
 
     private void menuItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVendaActionPerformed
-        // TODO add your handling code here:
         telaPrincipalControl.chamarTelaVendaAction();
     }//GEN-LAST:event_menuItemVendaActionPerformed
 
