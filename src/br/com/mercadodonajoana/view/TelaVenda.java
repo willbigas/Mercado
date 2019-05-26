@@ -29,6 +29,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
     public TelaVenda(TelaVendaControl control) {
         initComponents();
         vendaControl = control;
+        
     }
 
     /**
@@ -55,6 +56,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
+        setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Tela de Venda");
@@ -78,11 +80,24 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblVenda);
 
-        btAdicionarProduto.setText("+");
+        btAdicionarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/adicionar_24x24.png"))); // NOI18N
+        btAdicionarProduto.setToolTipText("Adicionar Produto na lista...");
+        btAdicionarProduto.setBorder(null);
+        btAdicionarProduto.setBorderPainted(false);
+        btAdicionarProduto.setContentAreaFilled(false);
 
-        btRemoverProduto.setText("-");
+        btRemoverProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/remover_24x24.png"))); // NOI18N
+        btRemoverProduto.setToolTipText("Remover produto da lista...");
+        btRemoverProduto.setBorder(null);
+        btRemoverProduto.setBorderPainted(false);
+        btRemoverProduto.setContentAreaFilled(false);
 
+        btGravarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/save_32x32.png"))); // NOI18N
         btGravarVenda.setText("Gravar");
+        btGravarVenda.setToolTipText("Gravar venda...");
+        btGravarVenda.setBorder(null);
+        btGravarVenda.setBorderPainted(false);
+        btGravarVenda.setContentAreaFilled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,20 +124,18 @@ public class TelaVenda extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(tfPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(32, 32, 32)
+                                .addGap(38, 38, 38)
                                 .addComponent(btAdicionarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btRemoverProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btRemoverProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(135, 135, 135))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btGravarVenda)
-                        .addGap(18, 18, 18))))
+                .addComponent(btGravarVenda)
+                .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,16 +150,18 @@ public class TelaVenda extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(cbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(tfPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAdicionarProduto)
-                    .addComponent(btRemoverProduto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btRemoverProduto)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btAdicionarProduto)
+                        .addGap(8, 8, 8))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(tfPesquisarProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btGravarVenda)
-                .addContainerGap())
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
