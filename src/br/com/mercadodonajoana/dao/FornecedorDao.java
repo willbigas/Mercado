@@ -7,7 +7,7 @@ package br.com.mercadodonajoana.dao;
 
 import br.com.mercadodonajoana.model.Endereco;
 import br.com.mercadodonajoana.model.Fornecedor;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,13 +26,14 @@ public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
 
     @Override
     public int inserir(Fornecedor fornecedor) {
-        String queryInsert = "INSERT INTO fornecedores (NOME, TELEFONE, FK_ENDERECO) VALUES(?, ?, ?)";
+        String queryInsert = "INSERT INTO fornecedores (NOME, TELEFONE, FK_ENDERECO, ATIVO) VALUES(?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, fornecedor.getNome());
             stmt.setString(2, fornecedor.getTelefone());
             stmt.setInt(3, fornecedor.getEndereco().getId());
+            stmt.setBoolean(4, fornecedor.getAtivo());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
                 res = stmt.getGeneratedKeys();
@@ -49,14 +50,14 @@ public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
 
     @Override
     public boolean alterar(Fornecedor fornecedor) {
-        String queryUpdate = "UPDATE fornecedores SET nome = ?, telefone = ?, fk_endereco = ? WHERE ID = ?";
+        String queryUpdate = "UPDATE fornecedores SET nome = ?, telefone = ?, fk_endereco = ?, ativo = ? WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setString(1, fornecedor.getNome());
             stmt.setString(2, fornecedor.getTelefone());
             stmt.setInt(3, fornecedor.getEndereco().getId());
             stmt.setInt(4, fornecedor.getId());
-
+            stmt.setBoolean(5, fornecedor.getAtivo());
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -113,6 +114,7 @@ public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
                 fornecedor.setId(result.getInt("id"));
                 fornecedor.setTelefone(result.getString("telefone"));
                 fornecedor.setNome(result.getString("nome"));
+                fornecedor.setAtivo(result.getBoolean("ativo"));
                 Endereco endereco = new Endereco();
                 endereco.setId(result.getInt("fk_endereco"));
                 lista.add(fornecedor);

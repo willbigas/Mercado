@@ -6,7 +6,7 @@
 package br.com.mercadodonajoana.dao;
 
 import br.com.mercadodonajoana.model.TipoUsuario;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,12 +25,13 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public int inserir(TipoUsuario tipoUsuario) {
-        String queryInsert = "INSERT INTO tipoUsuario (NOME, TIPOPERMISSAO) VALUES(?, ?)";
+        String queryInsert = "INSERT INTO tipoUsuario (NOME, TIPOPERMISSAO, ATIVO) VALUES(?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, tipoUsuario.getNome());
-            stmt.setInt(1, tipoUsuario.getTipoPermissao());
+            stmt.setInt(2, tipoUsuario.getTipoPermissao());
+            stmt.setBoolean(3, tipoUsuario.getAtivo());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
                 res = stmt.getGeneratedKeys();
@@ -47,12 +48,14 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public boolean alterar(TipoUsuario tipoUsuario) {
-        String queryUpdate = "UPDATE tipoUsuario SET NOME = ?, SET TIPOPERMISSAO = ? WHERE ID = ?";
+        String queryUpdate = "UPDATE tipoUsuario SET NOME = ?, TIPOPERMISSAO = ?, ATIVO = ? WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setString(1, tipoUsuario.getNome());
             stmt.setInt(2, tipoUsuario.getTipoPermissao());
             stmt.setInt(3, tipoUsuario.getId());
+            stmt.setBoolean(4, tipoUsuario.getAtivo());
+
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -83,6 +86,7 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
                 tipoUsuario.setId(result.getInt("id"));
                 tipoUsuario.setNome(result.getString("nome"));
                 tipoUsuario.setTipoPermissao(result.getInt("tipoPermissao"));
+                tipoUsuario.setAtivo(result.getBoolean("ativo"));
                 lista.add(tipoUsuario);
             }
             return lista;

@@ -8,7 +8,7 @@ package br.com.mercadodonajoana.dao;
 import br.com.mercadodonajoana.model.Cliente;
 import br.com.mercadodonajoana.model.Funcionario;
 import br.com.mercadodonajoana.model.Venda;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

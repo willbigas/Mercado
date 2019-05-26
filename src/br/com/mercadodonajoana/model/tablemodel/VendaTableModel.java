@@ -1,7 +1,7 @@
 package br.com.mercadodonajoana.model.tablemodel;
 
 import br.com.mercadodonajoana.model.Venda;
-import br.com.mercadojoana.interfaces.AcoesTableModel;
+import br.com.mercadodonajoana.interfaces.AcoesTableModel;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

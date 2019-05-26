@@ -1,7 +1,7 @@
 package br.com.mercadodonajoana.dao;
 
 import br.com.mercadodonajoana.model.Categoria;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
 
     @Override
     public List<Categoria> pesquisar() {
-        String querySelect = "SELECT * FROM CATEGORIAS";
+        String querySelect = "SELECT * FROM CATEGORIAS WHERE ATIVO = TRUE";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(querySelect);
@@ -30,6 +30,7 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
                 Categoria categoria = new Categoria();
                 categoria.setId(result.getInt("id"));
                 categoria.setNome(result.getString("nome"));
+                categoria.setAtivo(result.getBoolean("ativo"));
                 lista.add(categoria);
             }
             return lista;
@@ -41,11 +42,12 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
 
     @Override
     public int inserir(Categoria categoria) {
-        String queryInsert = "INSERT INTO CATEGORIAS(NOME) VALUES(?)";
+        String queryInsert = "INSERT INTO CATEGORIAS(NOME, ATIVO) VALUES(?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, categoria.getNome());
+            stmt.setBoolean(2, categoria.getAtivo());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
                 res = stmt.getGeneratedKeys();
@@ -62,11 +64,12 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
 
     @Override
     public boolean alterar(Categoria categoria) {
-        String queryUpdate = "UPDATE CATEGORIAS SET NOME = ? WHERE ID = ?";
+        String queryUpdate = "UPDATE CATEGORIAS SET NOME = ?, ATIVO = ? WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setString(1, categoria.getNome());
-            stmt.setInt(2, categoria.getId());
+            stmt.setBoolean(2, categoria.getAtivo());
+            stmt.setInt(3, categoria.getId());
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -117,6 +120,7 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
                 Categoria categoria = new Categoria();
                 categoria.setId(result.getInt("id"));
                 categoria.setNome(result.getString("nome"));
+                categoria.setAtivo(result.getBoolean("ativo"));
                 return categoria;
             } else {
                 return null;

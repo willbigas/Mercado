@@ -8,7 +8,7 @@ package br.com.mercadodonajoana.dao;
 import br.com.mercadodonajoana.model.Endereco;
 import br.com.mercadodonajoana.model.Funcionario;
 import br.com.mercadodonajoana.model.TipoUsuario;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +27,7 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
 
     @Override
     public int inserir(Funcionario funcionario) {
-        String queryInsert = "INSERT INTO funcionarios (NOME, PIS, SALARIO, TELEFONE, SENHA, EMAIL, FK_TIPOUSUARIO, FK_ENDERECO) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        String queryInsert = "INSERT INTO funcionarios (NOME, PIS, SALARIO, TELEFONE, SENHA, EMAIL, FK_TIPOUSUARIO, FK_ENDERECO, ATIVO) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -39,6 +39,7 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
             stmt.setString(6, funcionario.getEmail());
             stmt.setInt(7, funcionario.getTipoUsuario().getId());
             stmt.setInt(8, funcionario.getEndereco().getId());
+            stmt.setBoolean(9, funcionario.getAtivo());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
                 res = stmt.getGeneratedKeys();
@@ -55,7 +56,7 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
 
     @Override
     public boolean alterar(Funcionario funcionario) {
-        String queryUpdate = "UPDATE funcionarios SET nome = ?, pis = ?, salario = ?, telefone = ?, senha = ?, email = ?, fk_tipoUsuario = ?, fk_endereco = ?  WHERE ID = ?";
+        String queryUpdate = "UPDATE funcionarios SET nome = ?, PIS = ?, SALARIO = ?, TELEFONE = ?, SENHA = ?, EMAIL = ?, FK_TIPOUSUARIO = ?,  FK_USUARIO = ?, ATIVO = ?  WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setString(1, funcionario.getNome());
@@ -67,6 +68,7 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
             stmt.setInt(7, funcionario.getTipoUsuario().getId());
             stmt.setInt(8, funcionario.getEndereco().getId());
             stmt.setInt(9, funcionario.getId());
+            stmt.setBoolean(10, funcionario.getAtivo());
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -127,6 +129,7 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
                 funcionario.setPis(result.getInt("pis"));
                 funcionario.setSalario(result.getDouble("salario"));
                 funcionario.setSenha(result.getString("senha"));
+                funcionario.setAtivo(result.getBoolean("ativo"));
                 Endereco endereco = new Endereco();
                 endereco.setId(result.getInt("fk_endereco"));
                 TipoUsuario tipoUsuario = new TipoUsuario();

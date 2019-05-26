@@ -6,7 +6,7 @@
 package br.com.mercadodonajoana.dao;
 
 import br.com.mercadodonajoana.model.Endereco;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -52,7 +52,7 @@ public class EnderecoDao extends Dao implements DaoI<Endereco> {
 
     @Override
     public boolean alterar(Endereco endereco) {
-        String queryUpdate = "UPDATE enderecos SET CEP = ?, SET ESTADO = ?, SET CIDADE =?, SET BAIRRO = ?, SET RUA = ?, SET COMPLEMENTO = ?, SET NUMERO = ? WHERE ID = ?";
+        String queryUpdate = "UPDATE enderecos SET CEP = ?, ESTADO = ?, CIDADE =?,BAIRRO = ?, RUA = ?,  COMPLEMENTO = ?, NUMERO = ? WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setInt(1, endereco.getCep());

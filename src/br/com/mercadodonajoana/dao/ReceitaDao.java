@@ -6,7 +6,7 @@
 package br.com.mercadodonajoana.dao;
 
 import br.com.mercadodonajoana.model.Receita;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

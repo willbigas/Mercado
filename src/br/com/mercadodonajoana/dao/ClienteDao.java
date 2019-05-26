@@ -7,7 +7,7 @@ package br.com.mercadodonajoana.dao;
 
 import br.com.mercadodonajoana.model.Cliente;
 import br.com.mercadodonajoana.model.Endereco;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +26,7 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
 
     @Override
     public int inserir(Cliente cliente) {
-        String queryInsert = "INSERT INTO CLIENTES (NOME, TELEFONE, EMAIL, FK_ENDERECO) VALUES(?, ?, ?, ?)";
+        String queryInsert = "INSERT INTO CLIENTES (NOME, TELEFONE, EMAIL, FK_ENDERECO, ATIVO) VALUES(?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -34,6 +34,7 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
             stmt.setString(2, cliente.getTelefone());
             stmt.setString(3, cliente.getEmail());
             stmt.setInt(4, cliente.getEndereco().getId());
+            stmt.setBoolean(5, cliente.getAtivo());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
                 res = stmt.getGeneratedKeys();
@@ -90,6 +91,7 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
                 cliente.setNome(result.getString("nome"));
                 cliente.setEmail(result.getString("email"));
                 cliente.setTelefone(result.getString("telefone"));
+                cliente.setAtivo(result.getBoolean("ativo"));
                 Endereco endereco = new Endereco();
                 endereco.setId(result.getInt("fk_endereco"));
                 lista.add(cliente);

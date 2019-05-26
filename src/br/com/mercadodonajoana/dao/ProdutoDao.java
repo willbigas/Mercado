@@ -3,7 +3,7 @@ package br.com.mercadodonajoana.dao;
 import br.com.mercadodonajoana.model.Categoria;
 import br.com.mercadodonajoana.model.Fornecedor;
 import br.com.mercadodonajoana.model.Produto;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,6 +35,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
                 produto.setCodBarras(result.getInt("CODBARRAS"));
                 produto.setValor(result.getDouble("valor"));
                 produto.setQuantidade(result.getInt("quantidade"));
+                produto.setAtivo(result.getBoolean("ativo"));
                 Categoria categoria = new Categoria();
                 categoria.setId(result.getInt("fk_categoria"));
                 Fornecedor fornecedor = new Fornecedor();
@@ -50,7 +51,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public int inserir(Produto produto) {
-        String queryInsert = "INSERT INTO PRODUTOS (NOME, CODBARRAS, VALOR, QUANTIDADE, FK_CATEGORIA, FK_FORNECEDOR) VALUES(?, ?, ?, ?, ?, ?)";
+        String queryInsert = "INSERT INTO PRODUTOS (NOME, CODBARRAS, VALOR, QUANTIDADE, FK_CATEGORIA, FK_FORNECEDOR, ATIVO) VALUES(?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -60,6 +61,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
             stmt.setInt(4, produto.getQuantidade());
             stmt.setInt(5, produto.getCategoria().getId());
             stmt.setInt(6, produto.getFornecedor().getId());
+            stmt.setBoolean(7, produto.getAtivo());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
                 res = stmt.getGeneratedKeys();
@@ -77,7 +79,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
     @Override
     public boolean alterar(Produto produto) {
         String queryUpdate = "UPDATE PRODUTOS SET NOME = ?, CODBARRAS = ?, VALOR = ?, "
-                + "QUANTIDADE = ?, FK_CATEGORIA = ?, FK_FORNECEDOR = ? "
+                + "QUANTIDADE = ?, FK_CATEGORIA = ?, FK_FORNECEDOR = ?, ATIVO = ? "
                 + "WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
@@ -88,6 +90,8 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
             stmt.setInt(5, produto.getCategoria().getId());
             stmt.setInt(6, produto.getFornecedor().getId());
             stmt.setInt(7, produto.getId());
+            stmt.setBoolean(8, produto.getAtivo());
+
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
