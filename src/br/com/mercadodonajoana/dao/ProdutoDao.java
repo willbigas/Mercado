@@ -3,7 +3,7 @@ package br.com.mercadodonajoana.dao;
 import br.com.mercadodonajoana.model.Categoria;
 import br.com.mercadodonajoana.model.Fornecedor;
 import br.com.mercadodonajoana.model.Produto;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

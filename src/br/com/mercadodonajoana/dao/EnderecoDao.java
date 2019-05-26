@@ -6,7 +6,7 @@
 package br.com.mercadodonajoana.dao;
 
 import br.com.mercadodonajoana.model.Endereco;
-import br.com.mercadojoana.interfaces.DaoI;
+import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

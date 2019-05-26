@@ -1,6 +1,6 @@
 
-import br.com.mercadojoana.control.TelaLoginControl;
-import br.com.mercadojoana.uteis.InterfaceJanela;
+import br.com.mercadodonajoana.control.TelaLoginControl;
+import br.com.mercadodonajoana.uteis.InterfaceJanela;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

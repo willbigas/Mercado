@@ -1,6 +1,6 @@
 package br.com.mercadodonajoana.dao;
 
-import br.com.mercadojoana.factory.Conexao;
+import br.com.mercadodonajoana.factory.Conexao;
 import java.sql.Connection;
 
 /**
