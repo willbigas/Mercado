@@ -6,14 +6,26 @@ package br.com.mercadodonajoana.control;
  */
 public class TelaPrincipalControl {
 
-    TelaFuncionarioGerenciarControl telaFuncionarioGerenciarControl = null;
-    TelaProdutoGerenciarControl telaProdutoGerenciarControl = null;
-    TelaEntradaGerenciarControl telaEntradaGerenciarControl = null;
-    TelaCategoriaGerenciarControl telaCategoriaGerenciarControl = null;
-    TelaClienteGerenciarControl telaClienteGerenciarControl = null;
-    TelaFornecedorGerenciarControl telaFornecedorGerenciarControl = null;
-    TelaTipoUsuarioGerenciarControl telaTipoUsuarioGerenciarControl = null;
-    TelaVendaControl telaVendaControl = null;
+    TelaPrincipal telaPrincipal;
+
+    private TelaFuncionarioGerenciarControl telaFuncionarioGerenciarControl = null;
+    private TelaProdutoGerenciarControl telaProdutoGerenciarControl = null;
+    private TelaEntradaGerenciarControl telaEntradaGerenciarControl = null;
+    private TelaCategoriaGerenciarControl telaCategoriaGerenciarControl = null;
+    private TelaClienteGerenciarControl telaClienteGerenciarControl = null;
+    private TelaFornecedorGerenciarControl telaFornecedorGerenciarControl = null;
+    private TelaTipoUsuarioGerenciarControl telaTipoUsuarioGerenciarControl = null;
+    private TelaVendaControl telaVendaControl = null;
+
+    public TelaPrincipalControl() {
+    }
+
+    public void chamarTelaPrincipal() {
+        telaPrincipal = new TelaPrincipal();
+        telaPrincipal.setLocationRelativeTo(null);
+        telaPrincipal.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        telaPrincipal.setVisible(true);
+    }
 
     public void chamarTelaGerenciarFuncionarioAction() {
         if (telaFuncionarioGerenciarControl != null) {
@@ -79,6 +91,7 @@ public class TelaPrincipalControl {
             telaTipoUsuarioGerenciarControl.chamarTelaTipoUsuarioGerenciar();
         }
     }
+
     public void chamarTelaVendaAction() {
         if (telaVendaControl != null) {
             telaVendaControl.chamarTelaVenda();

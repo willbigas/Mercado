@@ -44,8 +44,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu5 = new javax.swing.JMenu();
         menuItemReceita = new javax.swing.JMenuItem();
         menuItemDespesa = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
@@ -55,15 +57,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 233, Short.MAX_VALUE)
+            .addGap(0, 217, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Mercado Dona Joana");
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/clientes_32x32.png"))); // NOI18N
         jMenu1.setText("Clientes");
 
+        menuItemGerenciarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/gerenciar_32x32.png"))); // NOI18N
         menuItemGerenciarCliente.setText("Gerenciar");
         menuItemGerenciarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +76,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(menuItemGerenciarCliente);
 
+        menuItemVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/venda_32x32.png"))); // NOI18N
         menuItemVenda.setText("Venda");
         menuItemVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,8 +87,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/produto_32x32.png"))); // NOI18N
         jMenu4.setText("Produtos");
 
+        menuItemGerenciarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/gerenciar_32x32.png"))); // NOI18N
         menuItemGerenciarProduto.setText("Gerenciar");
         menuItemGerenciarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +99,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(menuItemGerenciarProduto);
 
+        menuItemGerenciarCategoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/categoria_32x32.png"))); // NOI18N
         menuItemGerenciarCategoria.setText("Categoria");
         menuItemGerenciarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,8 +118,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/truck_32x32.png"))); // NOI18N
         jMenu3.setText("Fornecedores");
 
+        menuItemGerenciarFornecedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/gerenciar_32x32.png"))); // NOI18N
         menuItemGerenciarFornecedor.setText("Gerenciar");
         menuItemGerenciarFornecedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,8 +132,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/people_32x32.png"))); // NOI18N
         jMenu2.setText("Funcionarios");
 
+        menuItemGerenciarFuncionario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/gerenciar_32x32.png"))); // NOI18N
         menuItemGerenciarFuncionario.setText("Gerenciar");
         menuItemGerenciarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,6 +154,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/money_32x32.png"))); // NOI18N
         jMenu5.setText("Financeiro");
 
         menuItemReceita.setText("Receitas");
@@ -152,6 +165,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/info_32x32.png"))); // NOI18N
+        jMenu7.setText("Ajuda");
+        jMenuBar1.add(jMenu7);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,8 +178,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(139, 139, 139)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(141, 141, 141))
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+                .addGap(160, 160, 160))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,6 +268,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem menuItemDespesa;
     private javax.swing.JMenuItem menuItemEntradaProduto;

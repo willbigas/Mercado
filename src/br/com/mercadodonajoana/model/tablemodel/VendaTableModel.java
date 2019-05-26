@@ -4,6 +4,7 @@ import br.com.mercadodonajoana.model.Venda;
 import br.com.mercadodonajoana.interfaces.AcoesTableModel;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -54,7 +55,7 @@ public class VendaTableModel extends AbstractTableModel implements AcoesTableMod
             case FUNCIONARIO:
                 return String.class;
             case DATA_VENDA:
-                return Integer.class;
+                return Date.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
