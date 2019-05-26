@@ -1,13 +1,15 @@
 package br.com.mercadojoana.view;
 
+import br.com.mercadodonajoana.model.Fornecedor;
 import br.com.mercadojoana.control.TelaEntradaGerenciarControl;
+import javax.swing.JComboBox;
 
 /**
  *
  * @author William
  */
 public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
-    
+
     TelaEntradaGerenciarControl entradaGerenciarControl;
 
     /**
@@ -16,13 +18,11 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
     public TelaEntradaGerenciar() {
         initComponents();
     }
-    
+
     public TelaEntradaGerenciar(TelaEntradaGerenciarControl control) {
         initComponents();
         entradaGerenciarControl = control;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,7 +45,7 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbFornecedor = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -148,7 +148,7 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel9)
                             .addComponent(jLabel11))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -173,7 +173,7 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(13, 13, 13)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -213,9 +213,9 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<Fornecedor> cbFornecedor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -237,4 +237,13 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+    public JComboBox<Fornecedor> getCbFornecedor() {
+        return cbFornecedor;
+    }
+
+    public void setCbFornecedor(JComboBox<Fornecedor> cbFornecedor) {
+        this.cbFornecedor = cbFornecedor;
+    }
+
 }

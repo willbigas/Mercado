@@ -14,6 +14,8 @@ public class TipoUsuario {
     private Integer id;
     private String nome;
     private Boolean ativo;
+    private Integer tipoPermissao;
+    
 
     public Integer getId() {
         return id;
@@ -37,6 +39,14 @@ public class TipoUsuario {
 
     public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public Integer getTipoPermissao() {
+        return tipoPermissao;
+    }
+
+    public void setTipoPermissao(Integer tipoPermissao) {
+        this.tipoPermissao = tipoPermissao;
     }
 
     @Override

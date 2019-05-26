@@ -1,13 +1,15 @@
 package br.com.mercadojoana.view;
 
+import br.com.mercadodonajoana.model.TipoUsuario;
 import br.com.mercadojoana.control.TelaFuncionarioGerenciarControl;
+import javax.swing.JComboBox;
 
 /**
  *
  * @author William
  */
 public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
-    
+
     TelaFuncionarioGerenciarControl funcionarioControl;
 
     /**
@@ -16,9 +18,8 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
     public TelaFuncionarioGerenciar() {
         initComponents();
     }
-    
-    
-     public TelaFuncionarioGerenciar(TelaFuncionarioGerenciarControl control) {
+
+    public TelaFuncionarioGerenciar(TelaFuncionarioGerenciarControl control) {
         initComponents();
         funcionarioControl = control;
     }
@@ -56,7 +57,7 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbTipoUsuario = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
 
@@ -126,8 +127,6 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel4.setText("TIPO");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButton4.setText("Buscar");
 
         jCheckBox1.setText("Ativo");
@@ -158,7 +157,7 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, 0, 140, Short.MAX_VALUE))))
+                                    .addComponent(cbTipoUsuario, 0, 140, Short.MAX_VALUE))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
@@ -211,7 +210,7 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -265,12 +264,12 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<TipoUsuario> cbTipoUsuario;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -293,4 +292,13 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+    public JComboBox<TipoUsuario> getCbTipoUsuario() {
+        return cbTipoUsuario;
+    }
+
+    public void setCbTipoUsuario(JComboBox<TipoUsuario> cbTipoUsuario) {
+        this.cbTipoUsuario = cbTipoUsuario;
+    }
+
 }

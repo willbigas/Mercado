@@ -25,11 +25,12 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public int inserir(TipoUsuario tipoUsuario) {
-        String queryInsert = "INSERT INTO tipoUsuario (NOME) VALUES(?)";
+        String queryInsert = "INSERT INTO tipoUsuario (NOME, TIPOPERMISSAO) VALUES(?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, tipoUsuario.getNome());
+            stmt.setInt(1, tipoUsuario.getTipoPermissao());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
                 res = stmt.getGeneratedKeys();
@@ -46,11 +47,12 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public boolean alterar(TipoUsuario tipoUsuario) {
-        String queryUpdate = "UPDATE tipoUsuario SET NOME = ? WHERE ID = ?";
+        String queryUpdate = "UPDATE tipoUsuario SET NOME = ?, SET TIPOPERMISSAO = ? WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setString(1, tipoUsuario.getNome());
-            stmt.setInt(2, tipoUsuario.getId());
+            stmt.setInt(2, tipoUsuario.getTipoPermissao());
+            stmt.setInt(3, tipoUsuario.getId());
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -80,6 +82,7 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
                 TipoUsuario tipoUsuario = new TipoUsuario();
                 tipoUsuario.setId(result.getInt("id"));
                 tipoUsuario.setNome(result.getString("nome"));
+                tipoUsuario.setTipoPermissao(result.getInt("tipoPermissao"));
                 lista.add(tipoUsuario);
             }
             return lista;
@@ -91,16 +94,18 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public List<TipoUsuario> pesquisar(String termo) {
-        String querySelectComTermo = "SELECT * FROM TIPOUSUARIO WHERE (NOME like ?)";
+        String querySelectComTermo = "SELECT * FROM TIPOUSUARIO WHERE (NOME like ?, TIPOPERMISSAO like ?)";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");
+            stmt.setString(2, "%" + termo + "%");
             ResultSet result = stmt.executeQuery();
             List<TipoUsuario> lista = new ArrayList<>();
             while (result.next()) {
                 TipoUsuario tipoUsuario = new TipoUsuario();
                 tipoUsuario.setId(result.getInt("id"));
                 tipoUsuario.setNome(result.getString("nome"));
+                tipoUsuario.setTipoPermissao(result.getInt("tipoPermissao"));
                 lista.add(tipoUsuario);
             }
             return lista;

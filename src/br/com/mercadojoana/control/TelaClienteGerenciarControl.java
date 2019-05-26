@@ -8,14 +8,13 @@ import br.com.mercadojoana.view.TelaPrincipal;
  * @author Will
  */
 public class TelaClienteGerenciarControl {
-    
-    TelaClienteGerenciar telaClienteGerenciar;
+
+    private TelaClienteGerenciar telaClienteGerenciar;
 
     public TelaClienteGerenciarControl() {
     }
-    
-    
-     public void chamarTelaClienteGerenciar() {
+
+    public void chamarTelaClienteGerenciar() {
         if (telaClienteGerenciar == null) { // se tiver nulo chama janela normalmente
             telaClienteGerenciar = new TelaClienteGerenciar(this);
             TelaPrincipal.desktopPane.add(telaClienteGerenciar);
@@ -29,5 +28,5 @@ public class TelaClienteGerenciarControl {
             }
         }
     }
-    
+
 }

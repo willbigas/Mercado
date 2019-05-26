@@ -1,13 +1,16 @@
 package br.com.mercadojoana.view;
 
+import br.com.mercadodonajoana.model.Categoria;
+import br.com.mercadodonajoana.model.Fornecedor;
 import br.com.mercadojoana.control.TelaProdutoGerenciarControl;
+import javax.swing.JComboBox;
 
 /**
  *
  * @author William
  */
 public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
-    
+
     TelaProdutoGerenciarControl telaProdutoGerenciarControl;
 
     /**
@@ -16,6 +19,7 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
     public TelaProdutoGerenciar() {
         initComponents();
     }
+
     /**
      * Creates new form TelaGerenciarProduto
      */
@@ -188,11 +192,12 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
                     .addComponent(cbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -228,8 +233,8 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
     private javax.swing.JButton btDesativar;
     private javax.swing.JButton btGravar;
     private javax.swing.JButton btVisualizar;
-    private javax.swing.JComboBox<String> cbCategoria;
-    private javax.swing.JComboBox<String> cbFornecedor;
+    private javax.swing.JComboBox<Categoria> cbCategoria;
+    private javax.swing.JComboBox<Fornecedor> cbFornecedor;
     private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -248,4 +253,21 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfQuantidade;
     private javax.swing.JTextField tfValor;
     // End of variables declaration//GEN-END:variables
+
+    public JComboBox<Categoria> getCbCategoria() {
+        return cbCategoria;
+    }
+
+    public void setCbCategoria(JComboBox<Categoria> cbCategoria) {
+        this.cbCategoria = cbCategoria;
+    }
+
+    public JComboBox<Fornecedor> getCbFornecedor() {
+        return cbFornecedor;
+    }
+
+    public void setCbFornecedor(JComboBox<Fornecedor> cbFornecedor) {
+        this.cbFornecedor = cbFornecedor;
+    }
+
 }

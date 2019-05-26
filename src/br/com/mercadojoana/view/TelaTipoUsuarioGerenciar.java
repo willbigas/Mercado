@@ -78,8 +78,6 @@ public class TelaTipoUsuarioGerenciar extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblTipoUsuario);
 
-        cbPermissao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel4.setText("Permissão:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
