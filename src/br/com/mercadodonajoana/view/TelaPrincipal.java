@@ -45,6 +45,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuItemReceita = new javax.swing.JMenuItem();
         menuItemDespesa = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -108,6 +110,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(menuItemGerenciarCategoria);
 
+        menuItemEntradaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/down_32x32.png"))); // NOI18N
         menuItemEntradaProduto.setText("Entrada");
         menuItemEntradaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,6 +147,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(menuItemGerenciarFuncionario);
 
+        menuItemGerenciarTipoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/cardUser_32x32.png"))); // NOI18N
         menuItemGerenciarTipoUsuario.setText("Tipo de Usuário");
         menuItemGerenciarTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,16 +161,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/money_32x32.png"))); // NOI18N
         jMenu5.setText("Financeiro");
 
+        menuItemReceita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/receita_32x32.png"))); // NOI18N
         menuItemReceita.setText("Receitas");
         jMenu5.add(menuItemReceita);
 
+        menuItemDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/despesa_32x32.png"))); // NOI18N
         menuItemDespesa.setText("Despesas");
         jMenu5.add(menuItemDespesa);
 
         jMenuBar1.add(jMenu5);
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/info_32x32.png"))); // NOI18N
-        jMenu7.setText("Ajuda");
+        jMenu7.setText("Sobre");
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/ajuda_32x32.png"))); // NOI18N
+        jMenuItem1.setText("Ajuda");
+        jMenu7.add(jMenuItem1);
+
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/developer_32x32.png"))); // NOI18N
+        jMenuItem2.setText("Sobre");
+        jMenu7.add(jMenuItem2);
+
         jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
@@ -273,6 +288,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem menuItemDespesa;
     private javax.swing.JMenuItem menuItemEntradaProduto;
     private javax.swing.JMenuItem menuItemGerenciarCategoria;
