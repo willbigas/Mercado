@@ -7,8 +7,13 @@ package br.com.mercadojoana.control;
 public class TelaPrincipalControl {
 
     TelaFuncionarioGerenciarControl telaFuncionarioGerenciarControl = null;
-    TelaGerenciarProdutoControl telaGerenciarProdutoControl;
-    TelaEntradaGerenciarControl entradaGerenciarControl = null;
+    TelaProdutoGerenciarControl telaProdutoGerenciarControl = null;
+    TelaEntradaGerenciarControl telaEntradaGerenciarControl = null;
+    TelaCategoriaGerenciarControl telaCategoriaGerenciarControl = null;
+    TelaClienteGerenciarControl telaClienteGerenciarControl = null;
+    TelaFornecedorGerenciarControl telaFornecedorGerenciarControl = null;
+    TelaTipoUsuarioGerenciarControl telaTipoUsuarioGerenciarControl = null;
+    TelaVendaControl telaVendaControl = null;
 
     public void chamarTelaGerenciarFuncionarioAction() {
         if (telaFuncionarioGerenciarControl != null) {
@@ -19,18 +24,68 @@ public class TelaPrincipalControl {
         }
     }
 
-    public void chamarTelaGerenciarProdutoAction() {
-        telaGerenciarProdutoControl = new TelaGerenciarProdutoControl();
+    public void chamarTelaProdutoGerenciarAction() {
+        if (telaProdutoGerenciarControl != null) {
+            telaProdutoGerenciarControl.chamarTelaProdutoGerenciar();
+        } else {
+            telaProdutoGerenciarControl = new TelaProdutoGerenciarControl();
+            telaProdutoGerenciarControl.chamarTelaProdutoGerenciar();
+        }
     }
 
     public void chamarTelaEntradaProdutoGerenciarAction() {
-        if (entradaGerenciarControl != null) {
-            entradaGerenciarControl.chamarTelaEntradaGerenciar();
+        if (telaEntradaGerenciarControl != null) {
+            telaEntradaGerenciarControl.chamarTelaEntradaGerenciar();
         } else {
-            entradaGerenciarControl = new TelaEntradaGerenciarControl();
-            entradaGerenciarControl.chamarTelaEntradaGerenciar();
+            telaEntradaGerenciarControl = new TelaEntradaGerenciarControl();
+            telaEntradaGerenciarControl.chamarTelaEntradaGerenciar();
         }
 
+    }
+
+    public void chamarTelaCategoriaGerenciarAction() {
+        if (telaCategoriaGerenciarControl != null) {
+            telaCategoriaGerenciarControl.chamarTelaCategoriaGerenciar();
+        } else {
+            telaCategoriaGerenciarControl = new TelaCategoriaGerenciarControl();
+            telaCategoriaGerenciarControl.chamarTelaCategoriaGerenciar();
+        }
+
+    }
+
+    public void chamarTelaClienteGerenciarAction() {
+        if (telaClienteGerenciarControl != null) {
+            telaClienteGerenciarControl.chamarTelaClienteGerenciar();
+        } else {
+            telaClienteGerenciarControl = new TelaClienteGerenciarControl();
+            telaClienteGerenciarControl.chamarTelaClienteGerenciar();
+        }
+    }
+
+    public void chamarTelaFornecedorGerenciarAction() {
+        if (telaFornecedorGerenciarControl != null) {
+            telaFornecedorGerenciarControl.chamarTelaFornecedorGerenciar();
+        } else {
+            telaFornecedorGerenciarControl = new TelaFornecedorGerenciarControl();
+            telaFornecedorGerenciarControl.chamarTelaFornecedorGerenciar();
+        }
+    }
+
+    public void chamarTelaTipoUsuarioGerenciarAction() {
+        if (telaTipoUsuarioGerenciarControl != null) {
+            telaTipoUsuarioGerenciarControl.chamarTelaTipoUsuarioGerenciar();
+        } else {
+            telaTipoUsuarioGerenciarControl = new TelaTipoUsuarioGerenciarControl();
+            telaTipoUsuarioGerenciarControl.chamarTelaTipoUsuarioGerenciar();
+        }
+    }
+    public void chamarTelaVendaAction() {
+        if (telaVendaControl != null) {
+            telaVendaControl.chamarTelaVenda();
+        } else {
+            telaVendaControl = new TelaVendaControl();
+            telaVendaControl.chamarTelaVenda();
+        }
     }
 
 }

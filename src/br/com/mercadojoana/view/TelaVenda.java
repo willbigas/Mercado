@@ -5,17 +5,25 @@
  */
 package br.com.mercadojoana.view;
 
+import br.com.mercadojoana.control.TelaVendaControl;
+
 /**
  *
  * @author william.mauro
  */
 public class TelaVenda extends javax.swing.JInternalFrame {
+    
+    TelaVendaControl vendaControl;
 
     /**
      * Creates new form TelaVenda
      */
     public TelaVenda() {
         initComponents();
+    }
+    public TelaVenda(TelaVendaControl control) {
+        initComponents();
+        vendaControl = control;
     }
 
     /**

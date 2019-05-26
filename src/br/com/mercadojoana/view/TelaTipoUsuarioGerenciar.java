@@ -5,17 +5,25 @@
  */
 package br.com.mercadojoana.view;
 
+import br.com.mercadojoana.control.TelaTipoUsuarioGerenciarControl;
+
 /**
  *
  * @author william.mauro
  */
 public class TelaTipoUsuarioGerenciar extends javax.swing.JInternalFrame {
+    
+    TelaTipoUsuarioGerenciarControl tipoUsuarioGerenciarControl;
 
     /**
      * Creates new form TelaTipoFuncionarioGerenciar
      */
     public TelaTipoUsuarioGerenciar() {
         initComponents();
+    }
+    public TelaTipoUsuarioGerenciar(TelaTipoUsuarioGerenciarControl control) {
+        initComponents();
+        tipoUsuarioGerenciarControl = control;
     }
 
     /**
@@ -40,6 +48,9 @@ public class TelaTipoUsuarioGerenciar extends javax.swing.JInternalFrame {
         tblTipoUsuario = new javax.swing.JTable();
         cbPermissao = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+
+        setClosable(true);
+        setIconifiable(true);
 
         jLabel3.setText("Pesquisar:");
 

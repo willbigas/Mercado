@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.mercadojoana.view;
 
 import br.com.mercadojoana.control.TelaPrincipalControl;
@@ -36,6 +31,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuItemGerenciarCliente = new javax.swing.JMenuItem();
+        menuItemVenda = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menuItemGerenciarProduto = new javax.swing.JMenuItem();
         menuItemGerenciarCategoria = new javax.swing.JMenuItem();
@@ -69,7 +65,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.setText("Clientes");
 
         menuItemGerenciarCliente.setText("Gerenciar");
+        menuItemGerenciarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemGerenciarClienteActionPerformed(evt);
+            }
+        });
         jMenu1.add(menuItemGerenciarCliente);
+
+        menuItemVenda.setText("Venda");
+        menuItemVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemVendaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemVenda);
 
         jMenuBar1.add(jMenu1);
 
@@ -84,6 +93,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu4.add(menuItemGerenciarProduto);
 
         menuItemGerenciarCategoria.setText("Categoria");
+        menuItemGerenciarCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemGerenciarCategoriaActionPerformed(evt);
+            }
+        });
         jMenu4.add(menuItemGerenciarCategoria);
 
         menuItemEntradaProduto.setText("Entrada");
@@ -99,6 +113,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.setText("Fornecedores");
 
         menuItemGerenciarFornecedor.setText("Gerenciar");
+        menuItemGerenciarFornecedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemGerenciarFornecedorActionPerformed(evt);
+            }
+        });
         jMenu3.add(menuItemGerenciarFornecedor);
 
         jMenuBar1.add(jMenu3);
@@ -114,6 +133,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu2.add(menuItemGerenciarFuncionario);
 
         menuItemGerenciarTipoUsuario.setText("Tipo de Usuário");
+        menuItemGerenciarTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemGerenciarTipoUsuarioActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuItemGerenciarTipoUsuario);
 
         jMenuBar1.add(jMenu2);
@@ -153,19 +177,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemGerenciarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarFuncionarioActionPerformed
-        // TODO add your handling code here:
        telaPrincipalControl.chamarTelaGerenciarFuncionarioAction();
     }//GEN-LAST:event_menuItemGerenciarFuncionarioActionPerformed
 
     private void menuItemGerenciarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarProdutoActionPerformed
-        // TODO add your handling code here:
-        telaPrincipalControl.chamarTelaGerenciarProdutoAction();
+        telaPrincipalControl.chamarTelaProdutoGerenciarAction();
     }//GEN-LAST:event_menuItemGerenciarProdutoActionPerformed
 
     private void menuItemEntradaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEntradaProdutoActionPerformed
-        // TODO add your handling code here:
         telaPrincipalControl.chamarTelaEntradaProdutoGerenciarAction();
     }//GEN-LAST:event_menuItemEntradaProdutoActionPerformed
+
+    private void menuItemGerenciarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarCategoriaActionPerformed
+        telaPrincipalControl.chamarTelaCategoriaGerenciarAction();
+    }//GEN-LAST:event_menuItemGerenciarCategoriaActionPerformed
+
+    private void menuItemGerenciarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarClienteActionPerformed
+        telaPrincipalControl.chamarTelaClienteGerenciarAction();
+    }//GEN-LAST:event_menuItemGerenciarClienteActionPerformed
+
+    private void menuItemGerenciarFornecedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarFornecedorActionPerformed
+        telaPrincipalControl.chamarTelaFornecedorGerenciarAction();
+    }//GEN-LAST:event_menuItemGerenciarFornecedorActionPerformed
+
+    private void menuItemGerenciarTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarTipoUsuarioActionPerformed
+        telaPrincipalControl.chamarTelaTipoUsuarioGerenciarAction();
+    }//GEN-LAST:event_menuItemGerenciarTipoUsuarioActionPerformed
+
+    private void menuItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVendaActionPerformed
+        telaPrincipalControl.chamarTelaVendaAction();
+    }//GEN-LAST:event_menuItemVendaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,5 +261,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemGerenciarProduto;
     private javax.swing.JMenuItem menuItemGerenciarTipoUsuario;
     private javax.swing.JMenuItem menuItemReceita;
+    private javax.swing.JMenuItem menuItemVenda;
     // End of variables declaration//GEN-END:variables
 }
