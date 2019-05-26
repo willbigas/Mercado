@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.mercadodonajoana.model.tablemodel;
 
-import br.com.mercadodonajoana.model.Fornecedor;
+import br.com.mercadodonajoana.model.Categoria;
 import br.com.mercadojoana.interfaces.AcoesTableModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,25 +8,23 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author william.mauro
+ * @author Will
  */
-public class FornecedorTableModel extends AbstractTableModel implements AcoesTableModel<Fornecedor> {
-
+public class CategoriaTableModel extends AbstractTableModel implements AcoesTableModel<Categoria>{
+    
     private static final int CODIGO = 0;
     private static final int NOME = 1;
-    private static final int TELEFONE = 2;
-    private static final int ENDERECO = 3;
-    private static final int ATIVO = 4;
+    private static final int ATIVO = 2;
 
-    private List<Fornecedor> linhas;
-    private String[] COLUNAS = {"Código", "Nome", "Telefone","Endereco", "Ativo"};
+    private List<Categoria> linhas;
+    private String[] COLUNAS = {"Código", "Nome", "Ativo"};
 
-    public FornecedorTableModel() {
+    public CategoriaTableModel() {
         linhas = new ArrayList<>();
     }
 
-    public FornecedorTableModel(List<Fornecedor> listFornecedores) {
-        linhas = new ArrayList<>(listFornecedores);
+    public CategoriaTableModel(List<Categoria> listCategorias) {
+        linhas = new ArrayList<>(listCategorias);
     }
 
     @Override
@@ -56,10 +49,6 @@ public class FornecedorTableModel extends AbstractTableModel implements AcoesTab
                 return Integer.class;
             case NOME:
                 return String.class;
-            case TELEFONE:
-                return String.class;
-            case ENDERECO:
-                return String.class;
             case ATIVO:
                 return String.class;
             default:
@@ -69,18 +58,14 @@ public class FornecedorTableModel extends AbstractTableModel implements AcoesTab
 
     @Override
     public Object getValueAt(int linha, int coluna) {
-        Fornecedor fornecedor = linhas.get(linha);
+        Categoria categoria = linhas.get(linha);
         switch (coluna) {
             case CODIGO:
-                return fornecedor.getId();
+                return categoria.getId();
             case NOME:
-                return fornecedor.getNome();
-            case TELEFONE:
-                return fornecedor.getTelefone();
-            case ENDERECO:
-                return fornecedor.getEndereco().getCidade();
+                return categoria.getNome();
             case ATIVO:
-                if (fornecedor.getAtivo() == true) {
+                if (categoria.getAtivo() == true) {
                     return "Ativado";
                 } else {
                     return "Desativado";
@@ -92,25 +77,19 @@ public class FornecedorTableModel extends AbstractTableModel implements AcoesTab
 
     @Override
     public void setValueAt(Object valor, int linha, int coluna) {
-        Fornecedor fornecedor = linhas.get(linha);
+        Categoria categoria = linhas.get(linha);
         switch (coluna) {
             case CODIGO:
-                fornecedor.setId(Integer.valueOf((String) valor));
+                categoria.setId(Integer.valueOf((String) valor));
                 break;
             case NOME:
-                fornecedor.setNome((String) valor);
-                break;
-            case TELEFONE:
-                fornecedor.setTelefone((String) valor);
-                break;
-            case ENDERECO:
-                fornecedor.getEndereco().setCidade((String) valor);
+                categoria.setNome((String) valor);
                 break;
             case ATIVO:
                 if (valor.equals("Ativado")) {
-                    fornecedor.setAtivo(true);
+                    categoria.setAtivo(true);
                 } else {
-                    fornecedor.setAtivo(false);
+                    categoria.setAtivo(false);
                 };
                 break;
             default:
@@ -122,22 +101,22 @@ public class FornecedorTableModel extends AbstractTableModel implements AcoesTab
     }
 
     @Override
-    public Fornecedor pegaObjeto(int indiceLinha) {
+    public Categoria pegaObjeto(int indiceLinha) {
         return linhas.get(indiceLinha);
     }
 
     @Override
-    public void adicionar(Fornecedor fornecedor) {
-        linhas.add(fornecedor);
+    public void adicionar(Categoria categoria) {
+        linhas.add(categoria);
         int ultimoIndice = getRowCount() - 1; // linhas -1
         fireTableRowsInserted(ultimoIndice, ultimoIndice); // atualiza insert
     }
 
     @Override
-    public void adicionar(List<Fornecedor> fornecedores) {
+    public void adicionar(List<Categoria> categorias) {
         int indice = getRowCount();
-        linhas.addAll(fornecedores);
-        fireTableRowsInserted(indice, indice + fornecedores.size());
+        linhas.addAll(categorias);
+        fireTableRowsInserted(indice, indice + categorias.size());
         fireTableDataChanged();
     }
 
@@ -156,8 +135,8 @@ public class FornecedorTableModel extends AbstractTableModel implements AcoesTab
     }
 
     @Override
-    public void atualizar(int indiceLinha, Fornecedor fornecedor) {
-        linhas.set(indiceLinha, fornecedor);
+    public void atualizar(int indiceLinha, Categoria categoria) {
+        linhas.set(indiceLinha, categoria);
         fireTableRowsUpdated(indiceLinha, indiceLinha); // atualiza delete
     }
 
@@ -166,5 +145,5 @@ public class FornecedorTableModel extends AbstractTableModel implements AcoesTab
         linhas.clear();
         fireTableDataChanged(); // atualiza toda tabela.
     }
-
+    
 }
