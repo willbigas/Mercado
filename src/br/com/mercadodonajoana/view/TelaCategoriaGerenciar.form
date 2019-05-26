@@ -48,10 +48,7 @@
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="checkAtivo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="103" pref="103" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="checkAtivo" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="tfNome" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -159,6 +156,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfPesquisar">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPesquisarKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btCarregar">
       <Properties>

@@ -8,6 +8,7 @@ import br.com.mercadodonajoana.uteis.Texto;
 import br.com.mercadodonajoana.view.TelaCategoriaGerenciar;
 import br.com.mercadodonajoana.view.TelaPrincipal;
 import java.beans.PropertyVetoException;
+import java.util.List;
 
 /**
  *
@@ -104,6 +105,18 @@ public class TelaCategoriaGerenciarControl {
         } else {
             alterarViagem();
         }
+    }
+
+    public void pesquisarCategoriaAction() {
+        List<Categoria> categoriasPesquisadas = categoriaDao.pesquisar(telaCategoriaGerenciar.getTfPesquisar().getText());
+        if (categoriasPesquisadas == null) {
+            tableModelCategoria.limpar();
+            categoriasPesquisadas = categoriaDao.pesquisar();
+        } else {
+            tableModelCategoria.limpar();
+            tableModelCategoria.adicionar(categoriasPesquisadas);
+        }
+
     }
 
     private void limparCampos() {

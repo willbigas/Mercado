@@ -20,8 +20,11 @@ import java.util.List;
  */
 public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
 
+    EnderecoDao enderecoDao;
+
     public FornecedorDao() {
         super();
+        enderecoDao = new EnderecoDao();
     }
 
     @Override
@@ -103,7 +106,7 @@ public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
 
     @Override
     public List<Fornecedor> pesquisar() {
-        String querySelect = "SELECT * FROM FORNECEDORES";
+        String querySelect = "SELECT * FROM FORNECEDORES WHERE ATIVO = TRUE";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(querySelect);
@@ -115,8 +118,7 @@ public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
                 fornecedor.setTelefone(result.getString("telefone"));
                 fornecedor.setNome(result.getString("nome"));
                 fornecedor.setAtivo(result.getBoolean("ativo"));
-                Endereco endereco = new Endereco();
-                endereco.setId(result.getInt("fk_endereco"));
+                fornecedor.setEndereco(enderecoDao.pesquisar(result.getInt("fk_endereco")));
                 lista.add(fornecedor);
             }
             return lista;

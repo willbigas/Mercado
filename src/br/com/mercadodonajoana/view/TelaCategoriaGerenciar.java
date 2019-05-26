@@ -86,6 +86,12 @@ public class TelaCategoriaGerenciar extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Pesquisar:");
 
+        tfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfPesquisarKeyReleased(evt);
+            }
+        });
+
         btCarregar.setText("Carregar");
         btCarregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,9 +124,7 @@ public class TelaCategoriaGerenciar extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(checkAtivo)
-                                .addGap(103, 103, 103))
+                            .addComponent(checkAtivo)
                             .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addComponent(btGravar)
@@ -171,6 +175,10 @@ public class TelaCategoriaGerenciar extends javax.swing.JInternalFrame {
             Logger.getLogger(TelaCategoriaGerenciar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btCarregarActionPerformed
+
+    private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
+        categoriaGerenciarControl.pesquisarCategoriaAction();
+    }//GEN-LAST:event_tfPesquisarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

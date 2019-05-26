@@ -52,7 +52,7 @@ public class EnderecoDao extends Dao implements DaoI<Endereco> {
 
     @Override
     public boolean alterar(Endereco endereco) {
-        String queryUpdate = "UPDATE enderecos SET CEP = ?, ESTADO = ?, CIDADE =?,BAIRRO = ?, RUA = ?,  COMPLEMENTO = ?, NUMERO = ? WHERE ID = ?";
+        String queryUpdate = "UPDATE enderecos SET CEP = ?, ESTADO = ?, CIDADE =?, BAIRRO = ?, RUA = ?, COMPLEMENTO = ?, NUMERO = ? WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setInt(1, endereco.getCep());
@@ -119,6 +119,7 @@ public class EnderecoDao extends Dao implements DaoI<Endereco> {
                 endereco.setId(result.getInt("id"));
                 endereco.setCep(result.getInt("cep"));
                 endereco.setCidade(result.getString("cidade"));
+                endereco.setBairro(result.getString("bairro"));
                 endereco.setComplemento(result.getString("complemento"));
                 endereco.setEstado(result.getString("estado"));
                 endereco.setNumero(result.getString("numero"));
@@ -163,7 +164,30 @@ public class EnderecoDao extends Dao implements DaoI<Endereco> {
 
     @Override
     public Endereco pesquisar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String querySelect = "SELECT * FROM ENDERECOS WHERE id = ?";
+        try {
+            PreparedStatement stmt;
+            stmt = conexao.prepareStatement(querySelect);
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            List<Endereco> lista = new ArrayList<>();
+            while (result.next()) {
+                Endereco endereco = new Endereco();
+                endereco.setId(result.getInt("id"));
+                endereco.setCep(result.getInt("cep"));
+                endereco.setCidade(result.getString("cidade"));
+                endereco.setBairro(result.getString("bairro"));
+                endereco.setComplemento(result.getString("complemento"));
+                endereco.setEstado(result.getString("estado"));
+                endereco.setNumero(result.getString("numero"));
+                endereco.setRua(result.getString("rua"));
+                return endereco;
+            }
+            return null;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
 }
