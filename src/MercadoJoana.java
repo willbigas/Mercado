@@ -13,10 +13,8 @@ import java.time.LocalDateTime;
 public class MercadoJoana {
 
     public static void main(String[] args) {
-//        TelaLoginControl telaLogin = new TelaLoginControl();
+//      
 
-        LocalDateTime localDateTime = LocalDateTime.now();
-        System.out.println(localDateTime);
 
     }
 

@@ -5,17 +5,26 @@
  */
 package br.com.mercadojoana.view;
 
+import br.com.mercadojoana.control.TelaCategoriaGerenciarControl;
+
 /**
  *
  * @author william.mauro
  */
 public class TelaCategoriaGerenciar extends javax.swing.JInternalFrame {
+    
+    TelaCategoriaGerenciarControl categoriaGerenciarControl;
 
     /**
      * Creates new form TelaCategoriaGerenciar
      */
     public TelaCategoriaGerenciar() {
         initComponents();
+    }
+   
+    public TelaCategoriaGerenciar(TelaCategoriaGerenciarControl control) {
+        initComponents();
+        categoriaGerenciarControl = control;
     }
 
     /**
@@ -38,6 +47,9 @@ public class TelaCategoriaGerenciar extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         tfPesquisar = new javax.swing.JTextField();
         btCarregar = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Gerenciar Categoria");

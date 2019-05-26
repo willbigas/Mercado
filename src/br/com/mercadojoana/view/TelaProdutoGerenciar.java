@@ -1,16 +1,27 @@
 package br.com.mercadojoana.view;
 
+import br.com.mercadojoana.control.TelaProdutoGerenciarControl;
+
 /**
  *
  * @author William
  */
 public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
+    
+    TelaProdutoGerenciarControl telaProdutoGerenciarControl;
 
     /**
      * Creates new form TelaGerenciarProduto
      */
     public TelaProdutoGerenciar() {
         initComponents();
+    }
+    /**
+     * Creates new form TelaGerenciarProduto
+     */
+    public TelaProdutoGerenciar(TelaProdutoGerenciarControl control) {
+        initComponents();
+        telaProdutoGerenciarControl = control;
     }
 
     /**
