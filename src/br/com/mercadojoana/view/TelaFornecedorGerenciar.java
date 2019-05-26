@@ -53,6 +53,9 @@ public class TelaFornecedorGerenciar extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
 
+        setClosable(true);
+        setIconifiable(true);
+
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setText("Pesquisar:");
 

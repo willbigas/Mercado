@@ -5,17 +5,25 @@
  */
 package br.com.mercadojoana.view;
 
+import br.com.mercadojoana.control.TelaLoginControl;
+
 /**
  *
  * @author William
  */
 public class TelaLogin extends javax.swing.JFrame {
+    
+    TelaLoginControl loginControl;
 
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
         initComponents();
+    }
+    public TelaLogin(TelaLoginControl control) {
+        initComponents();
+        loginControl = control;
     }
 
     /**
@@ -35,6 +43,8 @@ public class TelaLogin extends javax.swing.JFrame {
         btEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login no sistema");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("LOGIN");
@@ -104,6 +114,8 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         // TODO add your handling code here:
+        loginControl.chamarTelaPrincipalAction();
+        
     }//GEN-LAST:event_btEntrarActionPerformed
 
     /**

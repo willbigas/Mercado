@@ -35,6 +35,9 @@ public class TelaDespesaGerenciar extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+
         jButton4.setText("Buscar");
 
         jButton1.setText("Visualizar");

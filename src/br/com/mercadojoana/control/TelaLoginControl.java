@@ -7,14 +7,22 @@ import br.com.mercadojoana.view.TelaLogin;
  * @author William
  */
 public class TelaLoginControl {
-    
-    TelaLogin frameLogin;   
+
+    TelaLogin telaLogin;
+    TelaPrincipalControl telaPrincipalControl;
 
     public TelaLoginControl() {
-        frameLogin = new TelaLogin();
-        frameLogin.setLocationRelativeTo(null);
-        frameLogin.setVisible(true);
     }
-    
-    
+
+    public void chamarTelaLoginAction() {
+        telaLogin = new TelaLogin(this);
+        telaLogin.setLocationRelativeTo(null);
+        telaLogin.setVisible(true);
+    }
+
+    public void chamarTelaPrincipalAction() {
+        telaPrincipalControl = new TelaPrincipalControl();
+        telaPrincipalControl.chamarTelaPrincipal();
+    }
+
 }

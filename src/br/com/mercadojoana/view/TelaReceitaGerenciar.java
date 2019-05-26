@@ -35,6 +35,9 @@ public class TelaReceitaGerenciar extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
