@@ -26,7 +26,7 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
 
     @Override
     public int inserir(Cliente cliente) {
-        String queryInsert = "INSERT INTO clientes(NOME, TELEFONE, EMAIL, FK_ENDERECO) VALUES(?, ?, ?, ?)";
+        String queryInsert = "INSERT INTO CLIENTES (NOME, TELEFONE, EMAIL, FK_ENDERECO) VALUES(?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);

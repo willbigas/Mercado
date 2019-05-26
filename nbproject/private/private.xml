@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Users/ADJ-PC/Documents/GitHub/MercadoDonaJoana/src/br/com/mercadodonajoana/model/Receita.java</file>
             <file>file:/C:/Users/ADJ-PC/Documents/GitHub/MercadoDonaJoana/src/br/com/mercadodonajoana/dao/VendaDao.java</file>
+            <file>file:/C:/Users/ADJ-PC/Documents/GitHub/MercadoDonaJoana/src/br/com/mercadodonajoana/dao/ReceitaDao.java</file>
+            <file>file:/C:/Users/ADJ-PC/Documents/GitHub/MercadoDonaJoana/src/br/com/mercadodonajoana/dao/FuncionarioDao.java</file>
         </group>
     </open-files>
 </project-private>

@@ -25,7 +25,7 @@ public class TipoDespesaDao extends Dao implements DaoI<TipoDespesa> {
 
     @Override
     public int inserir(TipoDespesa tipoDespesa) {
-        String queryInsert = "INSERT INTO tipoDespesa(NOME) VALUES(?)";
+        String queryInsert = "INSERT INTO tipoDespesa (NOME) VALUES(?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);

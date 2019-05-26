@@ -27,7 +27,7 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
 
     @Override
     public int inserir(Funcionario funcionario) {
-        String queryInsert = "INSERT INTO funcionarios(NOME, PIS, SALARIO, TELEFONE, SENHA, EMAIL, FK_TIPOUSUARIO, FK_ENDERECO) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        String queryInsert = "INSERT INTO funcionarios (NOME, PIS, SALARIO, TELEFONE, SENHA, EMAIL, FK_TIPOUSUARIO, FK_ENDERECO) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);

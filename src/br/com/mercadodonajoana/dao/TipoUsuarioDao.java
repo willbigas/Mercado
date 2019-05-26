@@ -25,7 +25,7 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public int inserir(TipoUsuario tipoUsuario) {
-        String queryInsert = "INSERT INTO tipoUsuario(NOME) VALUES(?)";
+        String queryInsert = "INSERT INTO tipoUsuario (NOME) VALUES(?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -91,7 +91,7 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public List<TipoUsuario> pesquisar(String termo) {
-        String querySelectComTermo = "SELECT * FROM CATEGORIAS WHERE (NOME like ?)";
+        String querySelectComTermo = "SELECT * FROM TIPOUSUARIO WHERE (NOME like ?)";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");

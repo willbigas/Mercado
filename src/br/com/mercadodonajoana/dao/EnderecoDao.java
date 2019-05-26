@@ -25,7 +25,7 @@ public class EnderecoDao extends Dao implements DaoI<Endereco> {
 
     @Override
     public int inserir(Endereco endereco) {
-        String queryInsert = "INSERT INTO enderecos(cep, estado, cidade, bairro, rua, complemento, numero) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String queryInsert = "INSERT INTO enderecos (cep, estado, cidade, bairro, rua, complemento, numero) VALUES(?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -52,7 +52,7 @@ public class EnderecoDao extends Dao implements DaoI<Endereco> {
 
     @Override
     public boolean alterar(Endereco endereco) {
-        String queryUpdate = "UPDATE enderecos SET CEP, SET ESTADO, SET CIDADE, SET BAIRRO, SET RUA, SET COMPLEMENTO, SET NUMERO = ? WHERE ID = ?";
+        String queryUpdate = "UPDATE enderecos SET CEP = ?, SET ESTADO = ?, SET CIDADE =?, SET BAIRRO = ?, SET RUA = ?, SET COMPLEMENTO = ?, SET NUMERO = ? WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setInt(1, endereco.getCep());

@@ -26,7 +26,7 @@ public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
 
     @Override
     public int inserir(Fornecedor fornecedor) {
-        String queryInsert = "INSERT INTO fornecedores(NOME, TELEFONE, FK_ENDERECO) VALUES(?, ?, ?)";
+        String queryInsert = "INSERT INTO fornecedores (NOME, TELEFONE, FK_ENDERECO) VALUES(?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);

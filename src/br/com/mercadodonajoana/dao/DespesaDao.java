@@ -54,7 +54,7 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
 
     @Override
     public boolean alterar(Despesa despesa) {
-        String queryUpdate = "UPDATE despesas SET dataCadastro = ?, dataPagamento = ?, dataVencimento = ?, codEntrada = ?, fk_tipoDespesa WHERE ID = ?";
+        String queryUpdate = "UPDATE despesas SET dataCadastro = ?, dataPagamento = ?, dataVencimento = ?, codEntrada = ?, fk_tipoDespesa = ? WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setTimestamp(1, Timestamp.valueOf(despesa.getDataCadastro()));
@@ -137,7 +137,7 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
 
     @Override
     public List<Despesa> pesquisar(String termo) {
-        String querySelectComTermo = "SELECT * FROM clientes WHERE (codEntrada LIKE ?)";
+        String querySelectComTermo = "SELECT * FROM despesas WHERE (codEntrada LIKE ?)";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");

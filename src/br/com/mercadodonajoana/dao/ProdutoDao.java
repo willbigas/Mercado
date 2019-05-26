@@ -1,5 +1,7 @@
 package br.com.mercadodonajoana.dao;
 
+import br.com.mercadodonajoana.model.Categoria;
+import br.com.mercadodonajoana.model.Fornecedor;
 import br.com.mercadodonajoana.model.Produto;
 import br.com.mercadojoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
@@ -15,7 +17,6 @@ import java.util.List;
 public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     public ProdutoDao() {
-        // Faz a conexão.
         super();
     }
 
@@ -34,8 +35,10 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
                 produto.setCodBarras(result.getInt("CODBARRAS"));
                 produto.setValor(result.getDouble("valor"));
                 produto.setQuantidade(result.getInt("quantidade"));
-//                p.setCategoria(result.getInt("categoria"); // pesquisar categoria
-//                p.setFornecedor(result.getInt("fornecedor")); // pesquisar fornecedor
+                Categoria categoria = new Categoria();
+                categoria.setId(result.getInt("fk_categoria"));
+                Fornecedor fornecedor = new Fornecedor();
+                fornecedor.setId(result.getInt("fk_fornecedor"));
                 lista.add(produto);
             }
             return lista;
@@ -47,7 +50,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public int inserir(Produto produto) {
-        String queryInsert = "INSERT INTO PRODUTOS(NOME, CODBARRAS, VALOR, QUANTIDADE, FK_CATEGORIA, FK_FORNECEDOR) VALUES(?, ?, ?, ?, ?, ?)";
+        String queryInsert = "INSERT INTO PRODUTOS (NOME, CODBARRAS, VALOR, QUANTIDADE, FK_CATEGORIA, FK_FORNECEDOR) VALUES(?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -94,36 +97,21 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public boolean deletar(Produto obj) {
-        String queryDelete = "DELETE FROM PRODUTOS WHERE ID = ?";
-        try {
-            PreparedStatement stmt = conexao.prepareStatement(queryDelete);
-            stmt.setInt(1, obj.getId());
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean deletar(int id) {
-        String queryDelete = "DELETE FROM PRODUTOS WHERE ID = ?";
-        try {
-            PreparedStatement stmt = conexao.prepareStatement(queryDelete);
-            stmt.setInt(1, id);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<Produto> pesquisar(String termo) {
-        String querySelectComTermo = "SELECT * FROM PRODUTOS WHERE (NOME like ?)";
+        String querySelectComTermo = "SELECT * FROM PRODUTOS WHERE (NOME like ?, CODBARRAS like?)";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");
+            stmt.setString(2, "%" + termo + "%");
             ResultSet result = stmt.executeQuery();
             List<Produto> lista = new ArrayList<>();
             while (result.next()) {
@@ -131,10 +119,6 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
                 produto.setId(result.getInt("id"));
                 produto.setNome(result.getString("nome"));
                 produto.setCodBarras(result.getInt("CODBARRAS"));
-                produto.setValor(result.getDouble("valor"));
-                produto.setQuantidade(result.getInt("quantidade"));
-//                p.setCategoria(result.getInt("categoria"); // pesquisar categoria
-//                p.setFornecedor(result.getInt("fornecedor")); // pesquisar fornecedor
                 lista.add(produto);
             }
             return lista;
@@ -147,38 +131,33 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public Produto pesquisar(int id) {
-        String querySelectPorId = "SELECT * FROM PRODUTOS WHERE ID = ?";
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean desativar(Produto produto) {
+        String sql = "UPDATE PRODUTOS SET ativo = false WHERE id = ?";
         try {
-            PreparedStatement stmt = conexao.prepareStatement(querySelectPorId);
-            stmt.setInt(1, id);
-            ResultSet result = stmt.executeQuery();
-            if (result.next()) {
-                Produto produto = new Produto();
-                produto.setId(result.getInt("id"));
-                produto.setNome(result.getString("nome"));
-                produto.setCodBarras(result.getInt("codBarras"));
-                produto.setValor(result.getDouble("valor"));
-                produto.setQuantidade(result.getInt("quantidade"));
-//                p.setCategoria(result.getInt("categoria"); // pesquisar categoria
-//                p.setFornecedor(result.getInt("fornecedor")); // pesquisar fornecedor
-                return produto;
-            } else {
-                return null;
-            }
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, produto.getId());
+            return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            return null;
+            return false;
         }
     }
 
     @Override
-    public boolean desativar(Produto obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean desativar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "UPDATE PRODUTOS SET ativo = false WHERE id = ?";
+        try {
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
     }
 
 }

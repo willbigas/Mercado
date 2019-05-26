@@ -15,7 +15,6 @@ import java.util.List;
 public class CategoriaDao extends Dao implements DaoI<Categoria> {
 
     public CategoriaDao() {
-        // Faz a conexão.
         super();
     }
 
@@ -77,28 +76,12 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
 
     @Override
     public boolean deletar(Categoria categoria) {
-        String queryDelete = "DELETE FROM CATEGORIAS WHERE ID = ?";
-        try {
-            PreparedStatement stmt = conexao.prepareStatement(queryDelete);
-            stmt.setInt(1, categoria.getId());
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.  
     }
 
     @Override
     public boolean deletar(int id) {
-        String queryDelete = "DELETE FROM CATEGORIAS WHERE ID = ?";
-        try {
-            PreparedStatement stmt = conexao.prepareStatement(queryDelete);
-            stmt.setInt(1, id);
-            return stmt.executeUpdate() > 0;
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-            return false;
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -145,13 +128,29 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
     }
 
     @Override
-    public boolean desativar(Categoria obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean desativar(Categoria categoria) {
+        String sql = "UPDATE CATEGORIAS SET ativo = false WHERE id = ?";
+        try {
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, categoria.getId());
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
     }
 
     @Override
     public boolean desativar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "UPDATE CATEGORIAS SET ativo = false WHERE id = ?";
+        try {
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
     }
 
 }
