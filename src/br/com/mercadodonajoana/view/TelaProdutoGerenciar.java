@@ -3,7 +3,10 @@ package br.com.mercadodonajoana.view;
 import br.com.mercadodonajoana.model.Categoria;
 import br.com.mercadodonajoana.model.Fornecedor;
 import br.com.mercadodonajoana.control.TelaProdutoGerenciarControl;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -162,20 +165,6 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btGravar)
                         .addGap(21, 21, 21))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfPesquisar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btVisualizar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btDesativar)
-                        .addGap(13, 13, 13)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,6 +178,19 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
                     .addComponent(cbCategoria, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cbFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(230, 230, 230))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btVisualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btDesativar)
+                        .addContainerGap(414, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -228,12 +230,10 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
                             .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btVisualizar)
                             .addComponent(btDesativar)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btGravar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel5)))
+                    .addComponent(btGravar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -245,8 +245,8 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
     private javax.swing.JButton btDesativar;
     private javax.swing.JButton btGravar;
     private javax.swing.JButton btVisualizar;
-    private javax.swing.JComboBox<Categoria> cbCategoria;
-    private javax.swing.JComboBox<Fornecedor> cbFornecedor;
+    public static javax.swing.JComboBox<Categoria> cbCategoria;
+    public static javax.swing.JComboBox<Fornecedor> cbFornecedor;
     private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -282,4 +282,61 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
         this.cbFornecedor = cbFornecedor;
     }
 
+    public JCheckBox getCheckAtivo() {
+        return checkAtivo;
+    }
+
+    public void setCheckAtivo(JCheckBox checkAtivo) {
+        this.checkAtivo = checkAtivo;
+    }
+
+    public JTable getTblProduto() {
+        return tblProduto;
+    }
+
+    public void setTblProduto(JTable tblProduto) {
+        this.tblProduto = tblProduto;
+    }
+
+    public JTextField getTfCodigoBarras() {
+        return tfCodigoBarras;
+    }
+
+    public void setTfCodigoBarras(JTextField tfCodigoBarras) {
+        this.tfCodigoBarras = tfCodigoBarras;
+    }
+
+    public JTextField getTfNome() {
+        return tfNome;
+    }
+
+    public void setTfNome(JTextField tfNome) {
+        this.tfNome = tfNome;
+    }
+
+    public JTextField getTfPesquisar() {
+        return tfPesquisar;
+    }
+
+    public void setTfPesquisar(JTextField tfPesquisar) {
+        this.tfPesquisar = tfPesquisar;
+    }
+
+    public JTextField getTfQuantidade() {
+        return tfQuantidade;
+    }
+
+    public void setTfQuantidade(JTextField tfQuantidade) {
+        this.tfQuantidade = tfQuantidade;
+    }
+
+    public JTextField getTfValor() {
+        return tfValor;
+    }
+
+    public void setTfValor(JTextField tfValor) {
+        this.tfValor = tfValor;
+    }
+
+   
 }

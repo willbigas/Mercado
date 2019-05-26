@@ -7,8 +7,6 @@ package br.com.mercadodonajoana.view;
 
 import br.com.mercadodonajoana.control.TelaFornecedorGerenciarControl;
 import java.beans.PropertyVetoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -93,6 +91,11 @@ public class TelaFornecedorGerenciar extends javax.swing.JInternalFrame {
         tfNome.setColumns(15);
 
         btDesativar.setText("Desativar");
+        btDesativar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDesativarActionPerformed(evt);
+            }
+        });
 
         btGravar.setText("Gravar");
         btGravar.addActionListener(new java.awt.event.ActionListener() {
@@ -273,7 +276,7 @@ public class TelaFornecedorGerenciar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
-        fornecedorGerenciarControl.cadastrarFornecedor();
+        fornecedorGerenciarControl.gravarAction();
     }//GEN-LAST:event_btGravarActionPerformed
 
     private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
@@ -283,6 +286,10 @@ public class TelaFornecedorGerenciar extends javax.swing.JInternalFrame {
             System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_btVisualizarActionPerformed
+
+    private void btDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDesativarActionPerformed
+        fornecedorGerenciarControl.desativarFornecedor();
+    }//GEN-LAST:event_btDesativarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

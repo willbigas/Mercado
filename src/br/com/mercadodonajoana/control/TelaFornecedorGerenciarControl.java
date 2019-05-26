@@ -10,6 +10,7 @@ import br.com.mercadodonajoana.uteis.Texto;
 import br.com.mercadodonajoana.view.TelaFornecedorGerenciar;
 import br.com.mercadodonajoana.view.TelaPrincipal;
 import java.beans.PropertyVetoException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +23,7 @@ public class TelaFornecedorGerenciarControl {
     FornecedorDao fornecedorDao;
     FornecedorTableModel tableModelFornecedor;
     EnderecoDao enderecoDao;
+    Integer linhaSelecionada;
 
     public TelaFornecedorGerenciarControl() {
         fornecedorDao = new FornecedorDao();
@@ -46,12 +48,44 @@ public class TelaFornecedorGerenciarControl {
         telaFornecedorGerenciar.getTblFornecedor().setModel(tableModelFornecedor);
     }
 
-    public void cadastrarFornecedor() {
+    private void cadastrarFornecedor() {
         if (validarCampos()) {
-            Mensagem.erro(Texto.ERRO_CADASTRAR);
+            Mensagem.erro(Texto.VAZIO_CAMPOS);
             return;
         }
         fornecedor = new Fornecedor();
+        criandoFornecedor();
+        Integer idInserido = fornecedorDao.inserir(fornecedor);
+        if (idInserido != 0) {
+            fornecedor.setId(idInserido);
+            tableModelFornecedor.adicionar(fornecedor);
+            limparCampos();
+            Mensagem.info(Texto.SUCESSO_CADASTRAR);
+        } else {
+            Mensagem.info(Texto.ERRO_CADASTRAR);
+        }
+        fornecedor = null;
+    }
+
+    private void alterarFornecedor() {
+        if (validarCampos()) {
+            Mensagem.erro(Texto.VAZIO_CAMPOS);
+            return;
+        }
+        criandoFornecedor();
+        boolean alterado = fornecedorDao.alterar(fornecedor);
+        linhaSelecionada = telaFornecedorGerenciar.getTblFornecedor().getSelectedRow();
+        if (alterado) {
+            tableModelFornecedor.atualizar(linhaSelecionada, fornecedor);
+            Mensagem.info(Texto.SUCESSO_EDITAR);
+            limparCampos();
+        } else {
+            Mensagem.erro(Texto.ERRO_EDITAR);
+        }
+        fornecedor = null;
+    }
+
+    private void criandoFornecedor() throws NumberFormatException {
         fornecedor.setNome(telaFornecedorGerenciar.getTfNome().getText());
         fornecedor.setTelefone(telaFornecedorGerenciar.getTfTelefone().getText());
         Endereco endereco = new Endereco();
@@ -65,21 +99,36 @@ public class TelaFornecedorGerenciarControl {
         Integer idEndereco = enderecoDao.inserir(endereco);
         endereco.setId(idEndereco);
         fornecedor.setEndereco(endereco);
-
         if (telaFornecedorGerenciar.getCheckAtivo().isSelected()) {
             fornecedor.setAtivo(true);
         } else {
             fornecedor.setAtivo(false);
         }
+    }
 
-        Integer idInserido = fornecedorDao.inserir(fornecedor);
-        if (idInserido != 0) {
-            fornecedor.setId(idInserido);
-            tableModelFornecedor.adicionar(fornecedor);
-            limparCampos();
-            Mensagem.info(Texto.SUCESSO_CADASTRAR);
+    public void gravarAction() {
+        if (fornecedor == null) {
+            cadastrarFornecedor();
         } else {
-            Mensagem.info(Texto.ERRO_CADASTRAR);
+            alterarFornecedor();
+        }
+    }
+
+    public void desativarFornecedor() {
+        int retorno = Mensagem.confirmacao(Texto.PERGUNTA_DESATIVAR);
+        if (retorno == JOptionPane.NO_OPTION) {
+            return;
+        }
+        if (retorno == JOptionPane.YES_OPTION) {
+            fornecedor = tableModelFornecedor.pegaObjeto(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
+            boolean deletado = fornecedorDao.desativar(fornecedor.getId());
+            if (deletado) {
+                tableModelFornecedor.remover(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
+                telaFornecedorGerenciar.getTblFornecedor().clearSelection();
+                Mensagem.info(Texto.SUCESSO_DESATIVAR);
+            } else {
+                Mensagem.erro(Texto.ERRO_DESATIVAR);
+            }
         }
         fornecedor = null;
     }

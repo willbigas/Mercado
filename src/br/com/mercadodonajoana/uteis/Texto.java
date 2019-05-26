@@ -18,12 +18,16 @@ public class Texto {
 
     public static final String SUCESSO_DELETAR = "Excluido com Sucesso!";
 
+    public static final String SUCESSO_DESATIVAR = "Desativado com Sucesso!";
+
     // Mensagens de Erro Padrões
     public static final String ERRO_DELETAR = "Erro ao excluir";
 
     public static final String ERRO_CADASTRAR = "Erro ao Cadastrar!";
 
     public static final String ERRO_EDITAR = "Erro ao Editar!";
+
+    public static final String ERRO_DESATIVAR = "Erro ao desativar!";
 
     // Mensagens de Campos Vazios Padrões
     public static final String VAZIO_CAMPO = "O Campo está vazio!";
@@ -39,6 +43,8 @@ public class Texto {
 
     // Perguntas de Confirmação Padrões.
     public static final String PERGUNTA_EXCLUIR = "Você deseja Realmente excluir ";
+
+    public static final String PERGUNTA_DESATIVAR = "Você deseja Realmente desativar ";
 
     public static final String PERGUNTA_EDITAR = "Você deseja Realmente editar ";
 

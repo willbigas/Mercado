@@ -32,7 +32,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
                 Produto produto = new Produto();
                 produto.setId(result.getInt("id"));
                 produto.setNome(result.getString("nome"));
-                produto.setCodBarras(result.getInt("CODBARRAS"));
+                produto.setCodBarras(result.getInt("codigoBarras"));
                 produto.setValor(result.getDouble("valor"));
                 produto.setQuantidade(result.getInt("quantidade"));
                 produto.setAtivo(result.getBoolean("ativo"));
@@ -51,7 +51,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public int inserir(Produto produto) {
-        String queryInsert = "INSERT INTO PRODUTOS (NOME, CODBARRAS, VALOR, QUANTIDADE, FK_CATEGORIA, FK_FORNECEDOR, ATIVO) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String queryInsert = "INSERT INTO PRODUTOS (NOME, CODIGOBARRAS, VALOR, QUANTIDADE, FK_CATEGORIA, FK_FORNECEDOR, ATIVO) VALUES(?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -78,7 +78,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public boolean alterar(Produto produto) {
-        String queryUpdate = "UPDATE PRODUTOS SET NOME = ?, CODBARRAS = ?, VALOR = ?, "
+        String queryUpdate = "UPDATE PRODUTOS SET NOME = ?, CODIGOBARRAS = ?, VALOR = ?, "
                 + "QUANTIDADE = ?, FK_CATEGORIA = ?, FK_FORNECEDOR = ?, ATIVO = ? "
                 + "WHERE ID = ?";
         try {
@@ -111,7 +111,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public List<Produto> pesquisar(String termo) {
-        String querySelectComTermo = "SELECT * FROM PRODUTOS WHERE (NOME like ?, CODBARRAS like?)";
+        String querySelectComTermo = "SELECT * FROM PRODUTOS WHERE (NOME like ?, CODIGOBARRAS like?)";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");

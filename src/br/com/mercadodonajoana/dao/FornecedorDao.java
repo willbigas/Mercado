@@ -153,6 +153,24 @@ public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
 
     @Override
     public Fornecedor pesquisar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String querySelectPorId = "SELECT * FROM FORNECEDORES WHERE ID = ?";
+        try {
+            PreparedStatement stmt = conexao.prepareStatement(querySelectPorId);
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                Fornecedor fornecedor = new Fornecedor();
+                fornecedor.setId(result.getInt("id"));
+                fornecedor.setNome(result.getString("nome"));
+                fornecedor.setTelefone(result.getString("telefone"));
+                fornecedor.setAtivo(result.getBoolean("ativo"));
+                return fornecedor;
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

@@ -46,7 +46,7 @@ public class TelaCategoriaGerenciarControl {
 
     private void cadastrarCategoria() {
         if (validarCampos()) {
-            Mensagem.erro(Texto.ERRO_CADASTRAR);
+            Mensagem.erro(Texto.VAZIO_CAMPOS);
             return;
         }
         categoria = new Categoria();
@@ -80,7 +80,11 @@ public class TelaCategoriaGerenciarControl {
 
     }
 
-    private void alterarViagem() {
+    private void alterarCategoria() {
+        if (validarCampos()) {
+            Mensagem.erro(Texto.VAZIO_CAMPOS);
+            return;
+        }
         categoria.setNome(telaCategoriaGerenciar.getTfNome().getText());
         if (telaCategoriaGerenciar.getCheckAtivo().isSelected()) {
             categoria.setAtivo(true);
@@ -103,7 +107,7 @@ public class TelaCategoriaGerenciarControl {
         if (categoria == null) {
             cadastrarCategoria();
         } else {
-            alterarViagem();
+            alterarCategoria();
         }
     }
 
