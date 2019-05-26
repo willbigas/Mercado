@@ -57,12 +57,21 @@ public class TelaReceitaGerenciar extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setText("Pesquisar:");
 
+        btVisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/visualizar_32x32.png"))); // NOI18N
         btVisualizar.setText("Visualizar");
+        btVisualizar.setToolTipText("Visualizar receita...");
+        btVisualizar.setBorder(null);
+        btVisualizar.setBorderPainted(false);
+        btVisualizar.setContentAreaFilled(false);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Gerenciar Receitas");
 
+        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/lupa_32x32.png"))); // NOI18N
         btBuscar.setText("Buscar");
+        btBuscar.setBorder(null);
+        btBuscar.setBorderPainted(false);
+        btBuscar.setContentAreaFilled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,22 +89,23 @@ public class TelaReceitaGerenciar extends javax.swing.JInternalFrame {
                 .addComponent(btVisualizar)
                 .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
+                .addGap(175, 175, 175)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(btVisualizar)
                     .addComponent(btBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
