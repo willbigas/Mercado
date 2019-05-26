@@ -6,13 +6,17 @@
 package br.com.mercadodonajoana.view;
 
 import br.com.mercadodonajoana.control.TelaVendaControl;
+import br.com.mercadodonajoana.model.Fornecedor;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author william.mauro
  */
 public class TelaVenda extends javax.swing.JInternalFrame {
-    
+
     TelaVendaControl vendaControl;
 
     /**
@@ -21,6 +25,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
     public TelaVenda() {
         initComponents();
     }
+
     public TelaVenda(TelaVendaControl control) {
         initComponents();
         vendaControl = control;
@@ -195,7 +200,4 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         this.tfPesquisarProduto = tfPesquisarProduto;
     }
 
-
-    
-    
 }

@@ -5,12 +5,15 @@
  */
 package br.com.mercadodonajoana.view;
 
+import br.com.mercadodonajoana.control.TelaLoginControl;
+import javax.swing.JTextField;
+
 /**
  *
  * @author William
  */
 public class TelaLogin extends javax.swing.JFrame {
-    
+
     TelaLoginControl loginControl;
 
     /**
@@ -19,6 +22,7 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin() {
         initComponents();
     }
+
     public TelaLogin(TelaLoginControl control) {
         initComponents();
         loginControl = control;
@@ -98,7 +102,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -118,7 +122,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         // TODO add your handling code here:
         loginControl.chamarTelaPrincipalAction();
-        
+
     }//GEN-LAST:event_btEntrarActionPerformed
 
     /**
@@ -181,6 +185,5 @@ public class TelaLogin extends javax.swing.JFrame {
     public void setTfSenha(JTextField tfSenha) {
         this.tfSenha = tfSenha;
     }
-
 
 }

@@ -1,6 +1,7 @@
 package br.com.mercadodonajoana.control;
 
 import br.com.mercadodonajoana.view.TelaLogin;
+import br.com.mercadodonajoana.view.TelaPrincipal;
 
 /**
  *
@@ -8,13 +9,25 @@ import br.com.mercadodonajoana.view.TelaLogin;
  */
 public class TelaLoginControl {
     
-    TelaLogin frameLogin;   
+    TelaLogin telaLogin; 
+    TelaPrincipalControl telaPrincipalControl;
 
     public TelaLoginControl() {
-        frameLogin = new TelaLogin();
-        frameLogin.setLocationRelativeTo(null);
-        frameLogin.setVisible(true);
     }
+    
+    
+    public void chamarTelaLoginAction() {
+        telaLogin = new TelaLogin(this);
+        telaLogin.setLocationRelativeTo(null);
+        telaLogin.setVisible(true);
+    }
+
+    public void chamarTelaPrincipalAction() {
+        telaPrincipalControl = new TelaPrincipalControl();
+        telaPrincipalControl.chamarTelaPrincipal();
+    }
+    
+    
     
     
 }

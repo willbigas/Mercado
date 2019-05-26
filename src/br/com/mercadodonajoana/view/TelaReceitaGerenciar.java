@@ -5,6 +5,9 @@
  */
 package br.com.mercadodonajoana.view;
 
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author william.mauro
@@ -125,6 +128,5 @@ public class TelaReceitaGerenciar extends javax.swing.JInternalFrame {
     public void setTfPesquisar(JTextField tfPesquisar) {
         this.tfPesquisar = tfPesquisar;
     }
-
 
 }

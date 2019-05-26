@@ -6,13 +6,16 @@
 package br.com.mercadodonajoana.view;
 
 import br.com.mercadodonajoana.control.TelaFornecedorGerenciarControl;
+import javax.swing.JCheckBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Will
  */
 public class TelaFornecedorGerenciar extends javax.swing.JInternalFrame {
-    
+
     TelaFornecedorGerenciarControl fornecedorGerenciarControl;
 
     /**
@@ -21,6 +24,7 @@ public class TelaFornecedorGerenciar extends javax.swing.JInternalFrame {
     public TelaFornecedorGerenciar() {
         initComponents();
     }
+
     public TelaFornecedorGerenciar(TelaFornecedorGerenciarControl control) {
         initComponents();
         fornecedorGerenciarControl = control;
@@ -253,6 +257,5 @@ public class TelaFornecedorGerenciar extends javax.swing.JInternalFrame {
     public void setTfTelefone(JTextField tfTelefone) {
         this.tfTelefone = tfTelefone;
     }
-
 
 }
