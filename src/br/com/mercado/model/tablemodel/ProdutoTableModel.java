@@ -19,9 +19,10 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
     private static final int QUANTIDADE = 3;
     private static final int VALOR = 4;
     private static final int CATEGORIA = 5;
+    private static final int ATIVO = 6;
 
     private List<Produto> linhas;
-    private String[] COLUNAS = {"Código", "Nome", "Ean13", "Quantidade", "Valor", "Categoria"};
+    private String[] COLUNAS = {"Código", "Nome", "Ean13", "Quantidade", "Valor", "Categoria", "Ativo"};
 
     public ProdutoTableModel() {
         linhas = new ArrayList<>();
@@ -61,6 +62,8 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
                 return Double.class;
             case CATEGORIA:
                 return String.class;
+            case ATIVO:
+                return String.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -82,6 +85,12 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
                 return produto.getValor();
             case CATEGORIA:
                 return produto.getCategoria().getNome();
+            case ATIVO:
+                if (produto.getCategoria().getAtivo() == true) {
+                    return "Ativado";
+                } else {
+                    return "Desativado";
+                }
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -108,6 +117,9 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
                 break;
             case CATEGORIA:
                 produto.getCategoria().setNome((String) valor);
+                break;
+            case ATIVO:
+                produto.getCategoria().setAtivo((Boolean) valor);
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -145,7 +157,6 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
 
     @Override
     public void remover(int linhaInicio, int linhaFim) {
-
         for (int i = linhaInicio; i <= linhaFim; i++) {
             linhas.remove(i);
             fireTableRowsDeleted(linhaInicio, linhaFim); // atualiza delete
@@ -154,8 +165,8 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
     }
 
     @Override
-    public void atualizar(int indiceLinha, Produto p) {
-        linhas.set(indiceLinha, p);
+    public void atualizar(int indiceLinha, Produto produto) {
+        linhas.set(indiceLinha, produto);
         fireTableRowsUpdated(indiceLinha, indiceLinha); // atualiza delete
     }
 

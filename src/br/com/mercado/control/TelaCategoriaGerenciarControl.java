@@ -8,6 +8,7 @@ import br.com.mercado.uteis.Texto;
 import br.com.mercado.view.TelaCategoriaGerenciar;
 import br.com.mercado.view.TelaPrincipal;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,13 +19,13 @@ public class TelaCategoriaGerenciarControl {
     private TelaCategoriaGerenciar telaCategoriaGerenciar;
     private Categoria categoria;
     private CategoriaDao categoriaDao;
-    private CategoriaTableModel tableModelCategoria;
+    private CategoriaTableModel categoriaTableModel;
     private Integer linhaSelecionada;
 
     public TelaCategoriaGerenciarControl() {
         categoriaDao = new CategoriaDao();
-        tableModelCategoria = new CategoriaTableModel();
-        tableModelCategoria.adicionar(categoriaDao.pesquisar());
+        categoriaTableModel = new CategoriaTableModel();
+        categoriaTableModel.adicionar(categoriaDao.pesquisar());
     }
 
     public void chamarTelaCategoriaGerenciar() {
@@ -40,7 +41,7 @@ public class TelaCategoriaGerenciarControl {
                 telaCategoriaGerenciar.setVisible(true);
             }
         }
-        telaCategoriaGerenciar.getTblCategoria().setModel(tableModelCategoria);
+        telaCategoriaGerenciar.getTblCategoria().setModel(categoriaTableModel);
     }
 
     private void cadastrarCategoria() {
@@ -59,7 +60,7 @@ public class TelaCategoriaGerenciarControl {
         Integer idInserido = categoriaDao.inserir(categoria);
         if (idInserido != 0) {
             categoria.setId(idInserido);
-            tableModelCategoria.adicionar(categoria);
+            categoriaTableModel.adicionar(categoria);
             limparCampos();
             Mensagem.info(Texto.SUCESSO_CADASTRAR);
         } else {
@@ -69,7 +70,7 @@ public class TelaCategoriaGerenciarControl {
     }
 
     public void carregarCategoriaAction(){
-        categoria = tableModelCategoria.pegaObjeto(telaCategoriaGerenciar.getTblCategoria().getSelectedRow());
+        categoria = categoriaTableModel.pegaObjeto(telaCategoriaGerenciar.getTblCategoria().getSelectedRow());
         telaCategoriaGerenciar.getTfNome().setText(categoria.getNome());
         if (categoria.getAtivo() == true) {
             telaCategoriaGerenciar.getCheckAtivo().setSelected(true);
@@ -92,7 +93,7 @@ public class TelaCategoriaGerenciarControl {
         boolean alterado = categoriaDao.alterar(categoria);
         linhaSelecionada = telaCategoriaGerenciar.getTblCategoria().getSelectedRow();
         if (alterado) {
-            tableModelCategoria.atualizar(linhaSelecionada, categoria);
+            categoriaTableModel.atualizar(linhaSelecionada, categoria);
             Mensagem.info(Texto.SUCESSO_EDITAR);
             limparCampos();
         } else {
@@ -100,6 +101,27 @@ public class TelaCategoriaGerenciarControl {
         }
         categoria = null;
     }
+    
+    public void desativarCategoriaAction() {
+        int retorno = Mensagem.confirmacao(Texto.PERGUNTA_DESATIVAR);
+        if (retorno == JOptionPane.NO_OPTION) {
+            return;
+        }
+
+        if (retorno == JOptionPane.YES_OPTION) {
+            categoria = categoriaTableModel.pegaObjeto(telaCategoriaGerenciar.getTblCategoria().getSelectedRow());
+            if (categoriaDao.desativar(categoria)) {
+                categoriaTableModel.remover(telaCategoriaGerenciar.getTblCategoria().getSelectedRow());
+                telaCategoriaGerenciar.getTblCategoria().clearSelection();
+                Mensagem.info(Texto.SUCESSO_DESATIVAR);
+            } else {
+                Mensagem.erro(Texto.ERRO_DESATIVAR);
+            }
+        }
+        categoria = null;
+    }
+    
+    
 
     public void gravarCategoriaAction() {
         if (categoria == null) {
@@ -112,11 +134,11 @@ public class TelaCategoriaGerenciarControl {
     public void pesquisarCategoriaAction() {
         List<Categoria> categoriasPesquisadas = categoriaDao.pesquisar(telaCategoriaGerenciar.getTfPesquisar().getText());
         if (categoriasPesquisadas == null) {
-            tableModelCategoria.limpar();
+            categoriaTableModel.limpar();
             categoriasPesquisadas = categoriaDao.pesquisar();
         } else {
-            tableModelCategoria.limpar();
-            tableModelCategoria.adicionar(categoriasPesquisadas);
+            categoriaTableModel.limpar();
+            categoriaTableModel.adicionar(categoriasPesquisadas);
         }
     }
 

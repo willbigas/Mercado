@@ -24,7 +24,7 @@ public class TelaProdutoGerenciarControl {
     TelaProdutoGerenciar telaProdutoGerenciar;
     List<Fornecedor> listFornecedores;
     List<Categoria> listCategorias;
-    ProdutoTableModel tableModelProduto;
+    ProdutoTableModel produtoTableModel;
     FornecedorDao fornecedorDao;
     CategoriaDao categoriaDao;
     ProdutoDao produtoDao;
@@ -35,8 +35,7 @@ public class TelaProdutoGerenciarControl {
         fornecedorDao = new FornecedorDao();
         categoriaDao = new CategoriaDao();
         produtoDao = new ProdutoDao();
-        tableModelProduto = new ProdutoTableModel();
-        tableModelProduto.adicionar(produtoDao.pesquisar());
+        produtoTableModel = new ProdutoTableModel();
     }
 
     public void chamarTelaProdutoGerenciar() {
@@ -53,9 +52,10 @@ public class TelaProdutoGerenciarControl {
             }
         }
 
-        telaProdutoGerenciar.getTblProduto().setModel(tableModelProduto);
+        telaProdutoGerenciar.getTblProduto().setModel(produtoTableModel);
         carregarFornecedoresNaCombo();
         carregarCategoriasNaCombo();
+         produtoTableModel.adicionar(produtoDao.pesquisar());
         telaProdutoGerenciar.getTfNome().requestFocus();
     }
 
@@ -77,24 +77,11 @@ public class TelaProdutoGerenciarControl {
             return;
         }
 
-        criarProduto();
-        Integer idInserido = produtoDao.inserir(produto);
-        if (idInserido != 0) {
-            produto.setId(idInserido);
-            tableModelProduto.adicionar(produto);
-            limparCampos();
-            Mensagem.info(Texto.SUCESSO_CADASTRAR);
-        } else {
-            Mensagem.info(Texto.ERRO_CADASTRAR);
-        }
-        produto = null;
-    }
-
-    private void criarProduto() throws NumberFormatException {
+        produto = new Produto();
         produto.setCodBarras(Integer.valueOf(telaProdutoGerenciar.getTfCodigoBarras().getText()));
         produto.setNome(telaProdutoGerenciar.getTfNome().getText());
         produto.setQuantidade(Integer.valueOf(telaProdutoGerenciar.getTfQuantidade().getText()));
-        produto.setValor(Double.valueOf(telaProdutoGerenciar.getTfQuantidade().getText()));
+        produto.setValor(Double.valueOf(telaProdutoGerenciar.getTfValor().getText()));
         produto.setCategoria((Categoria) telaProdutoGerenciar.getCbCategoria().getSelectedItem());
         produto.setFornecedor((Fornecedor) telaProdutoGerenciar.getCbFornecedor().getSelectedItem());
 
@@ -103,6 +90,17 @@ public class TelaProdutoGerenciarControl {
         } else {
             produto.setAtivo(false);
         }
+
+        Integer idInserido = produtoDao.inserir(produto);
+        if (idInserido != 0) {
+            produto.setId(idInserido);
+            produtoTableModel.adicionar(produto);
+            limparCampos();
+            Mensagem.info(Texto.SUCESSO_CADASTRAR);
+        } else {
+            Mensagem.erro(Texto.ERRO_CADASTRAR);
+        }
+        produto = null;
     }
 
     private void alterarProduto() {
@@ -110,12 +108,20 @@ public class TelaProdutoGerenciarControl {
             Mensagem.erro(Texto.VAZIO_CAMPOS);
             return;
         }
+        produto = produtoTableModel.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
 
-        criarProduto();
-        boolean alterado = produtoDao.alterar(produto);
+        produto.setCodBarras(Integer.valueOf(telaProdutoGerenciar.getTfCodigoBarras().getText()));
+        produto.setNome(telaProdutoGerenciar.getTfNome().getText());
+        produto.setQuantidade(Integer.valueOf(telaProdutoGerenciar.getTfQuantidade().getText()));
+        produto.setValor(Double.valueOf(telaProdutoGerenciar.getTfValor().getText()));
+        produto.setCategoria((Categoria) telaProdutoGerenciar.getCbCategoria().getSelectedItem());
+        produto.setFornecedor((Fornecedor) telaProdutoGerenciar.getCbFornecedor().getSelectedItem());
+        
         linhaSelecionada = telaProdutoGerenciar.getTblProduto().getSelectedRow();
+        boolean alterado = produtoDao.alterar(produto);
+
         if (alterado) {
-            tableModelProduto.atualizar(linhaSelecionada, produto);
+            produtoTableModel.atualizar(linhaSelecionada, produto);
             Mensagem.info(Texto.SUCESSO_EDITAR);
             limparCampos();
         } else {
@@ -133,7 +139,8 @@ public class TelaProdutoGerenciarControl {
     }
 
     public void carregarProdutoAction() {
-        produto = tableModelProduto.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
+        produto = produtoTableModel.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
+
         telaProdutoGerenciar.getTfNome().setText(produto.getNome());
         telaProdutoGerenciar.getTfCodigoBarras().setText(String.valueOf(produto.getCodBarras()));
         telaProdutoGerenciar.getTfQuantidade().setText(String.valueOf(produto.getQuantidade()));
@@ -155,9 +162,9 @@ public class TelaProdutoGerenciarControl {
         }
 
         if (retorno == JOptionPane.YES_OPTION) {
-            produto = tableModelProduto.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
+            produto = produtoTableModel.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
             if (fornecedorDao.desativar(produto.getId())) {
-                tableModelProduto.remover(telaProdutoGerenciar.getTblProduto().getSelectedRow());
+                produtoTableModel.remover(telaProdutoGerenciar.getTblProduto().getSelectedRow());
                 telaProdutoGerenciar.getTblProduto().clearSelection();
                 Mensagem.info(Texto.SUCESSO_DESATIVAR);
             } else {
@@ -170,11 +177,11 @@ public class TelaProdutoGerenciarControl {
     public void pesquisarProdutoAction() {
         List<Produto> produtosPesquisados = produtoDao.pesquisar(telaProdutoGerenciar.getTfPesquisar().getText());
         if (produtosPesquisados == null) {
-            tableModelProduto.limpar();
+            produtoTableModel.limpar();
             produtosPesquisados = produtoDao.pesquisar();
         } else {
-            tableModelProduto.limpar();
-            tableModelProduto.adicionar(produtosPesquisados);
+            produtoTableModel.limpar();
+            produtoTableModel.adicionar(produtosPesquisados);
         }
 
     }
@@ -188,6 +195,7 @@ public class TelaProdutoGerenciarControl {
         telaProdutoGerenciar.getCbCategoria().setSelectedIndex(0);
         telaProdutoGerenciar.getCbFornecedor().setSelectedIndex(0);
         telaProdutoGerenciar.getCheckAtivo().setSelected(false);
+        telaProdutoGerenciar.getTblProduto().clearSelection();
         telaProdutoGerenciar.getTfNome().requestFocus();
     }
 
