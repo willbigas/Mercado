@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.mercadodonajoana.dao;
 
-import br.com.mercadodonajoana.model.Endereco;
 import br.com.mercadodonajoana.model.Fornecedor;
 import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
@@ -35,7 +29,7 @@ public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, fornecedor.getNome());
             stmt.setString(2, fornecedor.getTelefone());
-            stmt.setInt(3, fornecedor.getEndereco().getId());
+        stmt.setInt(3, fornecedor.getEndereco().getId());
             stmt.setBoolean(4, fornecedor.getAtivo());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
