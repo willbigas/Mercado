@@ -10,6 +10,7 @@ public class TelaLoginControl {
     
     TelaLogin telaLogin; 
     TelaPrincipalControl telaPrincipalControl;
+    TelaPrincipalCaixaControl telaPrincipalCaixaControl;
 
     public TelaLoginControl() {
     }
@@ -23,6 +24,14 @@ public class TelaLoginControl {
     public void chamarTelaPrincipalAction() {
         telaPrincipalControl = new TelaPrincipalControl();
         telaPrincipalControl.chamarTelaPrincipal();
+    }
+    public void chamarTelaPrincipalCaixaAction() {
+        telaPrincipalCaixaControl = new TelaPrincipalCaixaControl();
+        telaPrincipalCaixaControl.chamarTelaPrincipalCaixa();
+    }
+    
+    public void verificarPemissoesDeAcessoAction() {
+        
     }
     
     

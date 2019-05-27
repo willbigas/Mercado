@@ -43,7 +43,7 @@ public class TelaCategoriaGerenciarControl {
         telaCategoriaGerenciar.getTblCategoria().setModel(tableModelCategoria);
     }
 
-    private void cadastrarCategoriaAction() {
+    private void cadastrarCategoria() {
         if (validarCampos()) {
             Mensagem.erro(Texto.VAZIO_CAMPOS);
             return;
@@ -78,7 +78,7 @@ public class TelaCategoriaGerenciarControl {
         }
     }
 
-    private void alterarCategoriaAction() {
+    private void alterarCategoria() {
         if (validarCampos()) {
             Mensagem.erro(Texto.VAZIO_CAMPOS);
             return;
@@ -103,9 +103,9 @@ public class TelaCategoriaGerenciarControl {
 
     public void gravarCategoriaAction() {
         if (categoria == null) {
-            cadastrarCategoriaAction();
+            cadastrarCategoria();
         } else {
-            alterarCategoriaAction();
+            alterarCategoria();
         }
     }
 

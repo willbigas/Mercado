@@ -32,7 +32,7 @@ public class TipoPermissao {
 
     @Override
     public String toString() {
-        return id + nome;
+        return id + " - " + nome;
     }
-
+    
 }

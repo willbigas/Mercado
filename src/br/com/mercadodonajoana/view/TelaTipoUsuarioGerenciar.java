@@ -6,6 +6,11 @@
 package br.com.mercadodonajoana.view;
 
 import br.com.mercadodonajoana.control.TelaTipoUsuarioGerenciarControl;
+import br.com.mercadodonajoana.model.TipoPermissao;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -168,7 +173,7 @@ public class TelaTipoUsuarioGerenciar extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCarregar;
     private javax.swing.JButton btGravar;
-    private javax.swing.JComboBox<String> cbPermissao;
+    private javax.swing.JComboBox<TipoPermissao> cbPermissao;
     private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -181,4 +186,46 @@ public class TelaTipoUsuarioGerenciar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField tfPesquisar;
     // End of variables declaration//GEN-END:variables
 
+    public JComboBox<TipoPermissao> getCbPermissao() {
+        return cbPermissao;
+    }
+
+    public void setCbPermissao(JComboBox<TipoPermissao> cbPermissao) {
+        this.cbPermissao = cbPermissao;
+    }
+
+    public JCheckBox getCheckAtivo() {
+        return checkAtivo;
+    }
+
+    public void setCheckAtivo(JCheckBox checkAtivo) {
+        this.checkAtivo = checkAtivo;
+    }
+
+    public JTable getTblTipoUsuario() {
+        return tblTipoUsuario;
+    }
+
+    public void setTblTipoUsuario(JTable tblTipoUsuario) {
+        this.tblTipoUsuario = tblTipoUsuario;
+    }
+
+    public JTextField getTfNome() {
+        return tfNome;
+    }
+
+    public void setTfNome(JTextField tfNome) {
+        this.tfNome = tfNome;
+    }
+
+    public JTextField getTfPesquisar() {
+        return tfPesquisar;
+    }
+
+    public void setTfPesquisar(JTextField tfPesquisar) {
+        this.tfPesquisar = tfPesquisar;
+    }
+
+    
+    
 }
