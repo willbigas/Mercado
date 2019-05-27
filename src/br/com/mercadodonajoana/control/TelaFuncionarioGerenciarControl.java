@@ -4,7 +4,6 @@ import br.com.mercadodonajoana.dao.EnderecoDao;
 import br.com.mercadodonajoana.dao.FuncionarioDao;
 import br.com.mercadodonajoana.dao.TipoUsuarioDao;
 import br.com.mercadodonajoana.model.Endereco;
-import br.com.mercadodonajoana.model.Fornecedor;
 import br.com.mercadodonajoana.model.Funcionario;
 import br.com.mercadodonajoana.model.TipoUsuario;
 import br.com.mercadodonajoana.model.tablemodel.FuncionarioTableModel;
@@ -190,8 +189,8 @@ public class TelaFuncionarioGerenciarControl {
         telaFuncionarioGerenciar.getTfCep().setText("");
         telaFuncionarioGerenciar.getTfNumero().setText("");
         telaFuncionarioGerenciar.getCheckAtivo().setSelected(false);
-        telaFuncionarioGerenciar.getCbTipoUsuario().setSelectedItem(-1);
-        telaFuncionarioGerenciar.getCbEstado().setSelectedItem(-1);
+        telaFuncionarioGerenciar.getCbTipoUsuario().setSelectedItem(0);
+        telaFuncionarioGerenciar.getCbEstado().setSelectedItem(0);
         telaFuncionarioGerenciar.getTfNome().requestFocus();
     }
 }

@@ -2,12 +2,16 @@ package br.com.mercadodonajoana.control;
 
 import br.com.mercadodonajoana.dao.TipoUsuarioDao;
 import br.com.mercadodonajoana.model.TipoPermissao;
+import br.com.mercadodonajoana.model.TipoUsuario;
 import br.com.mercadodonajoana.model.tablemodel.TipoUsuarioTableModel;
+import br.com.mercadodonajoana.uteis.Mensagem;
+import br.com.mercadodonajoana.uteis.Texto;
 import br.com.mercadodonajoana.view.TelaPrincipal;
 import br.com.mercadodonajoana.view.TelaTipoUsuarioGerenciar;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +23,12 @@ public class TelaTipoUsuarioGerenciarControl {
     TipoUsuarioTableModel tipoUsuarioTableModel;
     List<TipoPermissao> listTipoPermissao;
     TelaTipoUsuarioGerenciar telaTipoUsuarioGerenciar;
+    TipoUsuario tipoUsuario;
+    TipoPermissao tipoPermissaoSelecionado;
+    Integer linhaSelecionada;
+    
+    private static final int ADMIN = 1;
+    private static final int CAIXA = 2;
 
     public TelaTipoUsuarioGerenciarControl() {
         tipoUsuarioDao = new TipoUsuarioDao();
@@ -44,25 +54,127 @@ public class TelaTipoUsuarioGerenciarControl {
         atualizarTabelaTipoUsuario();
     }
 
-    public void atualizarTabelaTipoUsuario() {
+    private void atualizarTabelaTipoUsuario() {
         tipoUsuarioTableModel.adicionar(tipoUsuarioDao.pesquisar());
     }
 
-    public void criarListaDePermisssoesDeUsuarios() {
+    private void criarListaDePermisssoesDeUsuarios() {
         listTipoPermissao = new ArrayList<>();
         TipoPermissao administrador = new TipoPermissao();
-        administrador.setId(1);
+        administrador.setId(ADMIN);
         administrador.setNome("Administrador");
         listTipoPermissao.add(administrador);
         TipoPermissao caixa = new TipoPermissao();
-        caixa.setId(2);
+        caixa.setId(CAIXA);
         caixa.setNome("Caixa");
         listTipoPermissao.add(caixa);
     }
 
-    public void carregarComboBoxDeTipoPermissao() {
+    private void carregarComboBoxDeTipoPermissao() {
         DefaultComboBoxModel<TipoPermissao> model = new DefaultComboBoxModel(listTipoPermissao.toArray());
         telaTipoUsuarioGerenciar.getCbPermissao().setModel(model);
+    }
+
+    private void inserirTipoUsuario() {
+        tipoUsuario = new TipoUsuario();
+        tipoUsuario.setNome(telaTipoUsuarioGerenciar.getTfNome().getText());
+        if (telaTipoUsuarioGerenciar.getCheckAtivo().isSelected()) {
+            tipoUsuario.setAtivo(true);
+        } else {
+            tipoUsuario.setAtivo(false);
+        }
+        tipoPermissaoSelecionado = (TipoPermissao) telaTipoUsuarioGerenciar.getCbPermissao().getSelectedItem();
+        tipoUsuario.setTipoPermissao(tipoPermissaoSelecionado.getId());
+        int idInserido = tipoUsuarioDao.inserir(tipoUsuario);
+        if (idInserido == 0) {
+            Mensagem.erro(Texto.ERRO_CADASTRAR);
+            return;
+        }
+        if (idInserido != 0) {
+            tipoUsuario.setId(idInserido);
+            tipoUsuarioTableModel.adicionar(tipoUsuario);
+            limparCamposTipoUsuario();
+            Mensagem.info(Texto.SUCESSO_CADASTRAR);
+        }
+        tipoUsuario = null;
+    }
+
+    private void alterarTipoUsuario() {
+        tipoUsuario = tipoUsuarioTableModel.pegaObjeto(telaTipoUsuarioGerenciar.getTblTipoUsuario().getSelectedRow());
+        tipoUsuario.setNome(telaTipoUsuarioGerenciar.getTfNome().getText());
+        if (telaTipoUsuarioGerenciar.getCheckAtivo().isSelected()) {
+            tipoUsuario.setAtivo(true);
+        } else {
+            tipoUsuario.setAtivo(false);
+        }
+        tipoPermissaoSelecionado = (TipoPermissao) telaTipoUsuarioGerenciar.getCbPermissao().getSelectedItem();
+        tipoUsuario.setTipoPermissao(tipoPermissaoSelecionado.getId());
+        boolean alterado = tipoUsuarioDao.alterar(tipoUsuario);
+        linhaSelecionada = telaTipoUsuarioGerenciar.getTblTipoUsuario().getSelectedRow();
+        if (alterado == false) {
+            Mensagem.erro(Texto.ERRO_EDITAR);
+            return;
+        }
+        if (alterado == true) {
+            tipoUsuarioTableModel.atualizar(linhaSelecionada, tipoUsuario);
+            limparCamposTipoUsuario();
+            Mensagem.info(Texto.SUCESSO_EDITAR);
+        }
+        tipoUsuario = null;
+    }
+    
+    public void desativarTipoUsuarioAction() {
+        int retorno = Mensagem.confirmacao(Texto.PERGUNTA_DESATIVAR);
+
+        if (retorno == JOptionPane.NO_OPTION) {
+            return;
+        }
+        if (retorno == JOptionPane.YES_OPTION) {
+            tipoUsuario = tipoUsuarioTableModel.pegaObjeto(telaTipoUsuarioGerenciar.getTblTipoUsuario().getSelectedRow());
+            boolean deletado = tipoUsuarioDao.desativar(tipoUsuario);
+            if (deletado) {
+                tipoUsuarioTableModel.remover(telaTipoUsuarioGerenciar.getTblTipoUsuario().getSelectedRow());
+                telaTipoUsuarioGerenciar.getTblTipoUsuario().clearSelection();
+                Mensagem.info(Texto.SUCESSO_DESATIVAR);
+            } else {
+                Mensagem.erro(Texto.ERRO_DESATIVAR);
+            }
+        }
+        tipoUsuario = null;
+    }
+    
+    public void carregarTipoUsuarioAction() {
+        tipoUsuario = tipoUsuarioTableModel.pegaObjeto(telaTipoUsuarioGerenciar.getTblTipoUsuario().getSelectedRow());
+        telaTipoUsuarioGerenciar.getTfNome().setText(tipoUsuario.getNome());
+        if (tipoUsuario.getTipoPermissao() == ADMIN) {
+             telaTipoUsuarioGerenciar.getCbPermissao().getModel().setSelectedItem(listTipoPermissao.get(ADMIN - 1));
+        }
+        if (tipoUsuario.getTipoPermissao() == CAIXA) {
+               telaTipoUsuarioGerenciar.getCbPermissao().getModel().setSelectedItem(listTipoPermissao.get(CAIXA - 1));
+        }
+        if (tipoUsuario.getAtivo() == true) {
+            telaTipoUsuarioGerenciar.getCheckAtivo().setSelected(true);
+        }
+        if (tipoUsuario.getAtivo() == false) {
+            telaTipoUsuarioGerenciar.getCheckAtivo().setSelected(false);
+        }
+    }
+    
+    public void gravarTipoUsuarioAction() {
+        if (tipoUsuario == null) {
+           inserirTipoUsuario();
+        } else {
+            alterarTipoUsuario();
+        }
+    }
+    
+    private void limparCamposTipoUsuario(){
+        telaTipoUsuarioGerenciar.getTfNome().setText("");
+        telaTipoUsuarioGerenciar.getCheckAtivo().setSelected(false);
+        telaTipoUsuarioGerenciar.getCbPermissao().getModel().setSelectedItem(listTipoPermissao.get(ADMIN -1));
+        telaTipoUsuarioGerenciar.getTblTipoUsuario().clearSelection();
+        telaTipoUsuarioGerenciar.getTfNome().requestFocus();
+        
     }
 
 }
