@@ -9,7 +9,7 @@ package br.com.mercado.model;
  *
  * @author william.mauro
  */
-public class Funcionario {
+public class Usuario {
 
     private Integer id;
     private String nome;

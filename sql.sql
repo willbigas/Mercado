@@ -61,7 +61,7 @@ ativo boolean,
 tipoPermissao int,
 PRIMARY KEY (id));
 
-CREATE TABLE funcionarios(
+CREATE TABLE usuarios(
 id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
 pis INT(11) NOT NULL,
@@ -80,11 +80,11 @@ FOREIGN KEY(fk_tipoUsuario) references tipoUsuario(id));
 CREATE TABLE vendas(
 id INT(11) not null auto_increment,
 fk_cliente int,
-fk_funcionario int NOT NULL,
+fk_usuario int NOT NULL,
 dataVenda datetime NOT NULL,
 PRIMARY KEY (id),
 foreign key(fk_cliente) references clientes(id),
-foreign key(fk_funcionario) references funcionarios(id));
+foreign key(fk_usuario) references usuarios(id));
 
 CREATE TABLE entradas(
 id INT(11) not null auto_increment,
@@ -138,8 +138,8 @@ INSERT INTO `mercado`.`tipoUsuario` (`id`, `nome`, `ativo`, `tipoPermissao`) VAL
 INSERT INTO `mercado`.`enderecos` (`id`, `cep`, `estado`, `cidade`, `bairro`, `rua`, `complemento`, `numero`) VALUES ('1', '88133810', 'SC', 'Palhoça', 'Jardim das Palmeiras', 'Dália', 'Casa marrom areia', '538');
 INSERT INTO `mercado`.`enderecos` (`id`, `cep`, `estado`, `cidade`, `bairro`, `rua`, `complemento`, `numero`) VALUES ('2', '88130800', 'SC', 'Palhoça', 'Jardim Eldorado', 'Não sei o nome', 'Casa Grande', '111');
 
-INSERT INTO `mercado`.`funcionarios` (`id`, `nome`, `pis`, `salario`, `telefone`, `email`, `senha`, `ativo`, `fk_endereco`, `fk_tipoUsuario`) VALUES ('1', 'William Bigas Mauro', '12345789', '4500.00', '30337442', 'admin', '1234', '1', '1', '1');
-INSERT INTO `mercado`.`funcionarios` (`id`, `nome`, `pis`, `salario`, `telefone`, `email`, `senha`, `ativo`, `fk_endereco`, `fk_tipoUsuario`) VALUES ('2', 'Agostinho Detofano Junior', '123456789', '3500.00', '996822475', 'caixa', '1234', '1', '2', '2');
+INSERT INTO `mercado`.`usuarios` (`id`, `nome`, `pis`, `salario`, `telefone`, `email`, `senha`, `ativo`, `fk_endereco`, `fk_tipoUsuario`) VALUES ('1', 'William Bigas Mauro', '12345789', '4500.00', '30337442', 'admin', '1234', '1', '1', '1');
+INSERT INTO `mercado`.`usuarios` (`id`, `nome`, `pis`, `salario`, `telefone`, `email`, `senha`, `ativo`, `fk_endereco`, `fk_tipoUsuario`) VALUES ('2', 'Agostinho Detofano Junior', '123456789', '3500.00', '996822475', 'caixa', '1234', '1', '2', '2');
 
 
 select * from categorias;
@@ -160,4 +160,4 @@ select * from despesas;
 
 select * from enderecos;
 
-select * from funcionarios;
+select * from usuarios;

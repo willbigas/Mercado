@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.mercado.dao;
 
 import br.com.mercado.model.Cliente;
-import br.com.mercado.model.Funcionario;
+import br.com.mercado.model.Usuario;
 import br.com.mercado.model.Venda;
 import br.com.mercado.interfaces.DaoI;
 import java.sql.PreparedStatement;
@@ -28,7 +23,7 @@ public class VendaDao extends Dao implements DaoI<Venda> {
 
     @Override
     public int inserir(Venda venda) {
-        String queryInsert = "INSERT INTO vendas(DATAVENDA, FK_CLIENTE, FK_FUNCIONARIO) VALUES(?, ?, ?)";
+        String queryInsert = "INSERT INTO vendas(DATAVENDA, FK_CLIENTE, FK_USUARIO) VALUES(?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -51,7 +46,7 @@ public class VendaDao extends Dao implements DaoI<Venda> {
 
     @Override
     public boolean alterar(Venda venda) {
-        String queryUpdate = "UPDATE VENDAS SET dataVenda = ?, fk_cliente = ?, fk_funcionario = ?WHERE ID = ?";
+        String queryUpdate = "UPDATE VENDAS SET dataVenda = ?, fk_cliente = ?, fk_usuario = ?WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setTimestamp(1, Timestamp.valueOf(venda.getDataVenda()));
@@ -116,8 +111,8 @@ public class VendaDao extends Dao implements DaoI<Venda> {
                 venda.setDataVenda((result.getTimestamp("dataVenda").toLocalDateTime()));
                 Cliente cliente = new Cliente();
                 cliente.setId(result.getInt("fk_cliente"));
-                Funcionario funcionario = new Funcionario();
-                funcionario.setId(result.getInt("fk_funcionario"));
+                Usuario funcionario = new Usuario();
+                funcionario.setId(result.getInt("fk_usuario"));
                 lista.add(venda);
             }
             return lista;

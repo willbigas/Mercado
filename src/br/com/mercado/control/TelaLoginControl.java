@@ -1,7 +1,7 @@
 package br.com.mercado.control;
 
-import br.com.mercado.dao.FuncionarioDao;
-import br.com.mercado.model.Funcionario;
+import br.com.mercado.dao.UsuarioDao;
+import br.com.mercado.model.Usuario;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
 import br.com.mercado.view.TelaLogin;
@@ -15,14 +15,14 @@ public class TelaLoginControl {
     TelaLogin telaLogin; 
     TelaPrincipalControl telaPrincipalControl;
     TelaPrincipalCaixaControl telaPrincipalCaixaControl;
-    FuncionarioDao funcionarioDao;
-    Funcionario funcionario;
+    UsuarioDao funcionarioDao;
+    Usuario funcionario;
     
     public static final int ADMINISTRADOR = 1;
     public static final int CAIXA = 2;
 
     public TelaLoginControl() {
-        funcionarioDao = new FuncionarioDao();
+        funcionarioDao = new UsuarioDao();
     }
     
     public void chamarTelaLoginAction() {

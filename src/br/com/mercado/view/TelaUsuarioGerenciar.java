@@ -1,7 +1,7 @@
 package br.com.mercado.view;
 
 import br.com.mercado.model.TipoUsuario;
-import br.com.mercado.control.TelaFuncionarioGerenciarControl;
+import br.com.mercado.control.TelaUsuarioGerenciarControl;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -11,20 +11,20 @@ import javax.swing.JTextField;
  *
  * @author William
  */
-public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
+public class TelaUsuarioGerenciar extends javax.swing.JInternalFrame {
 
-    TelaFuncionarioGerenciarControl funcionarioControl;
+    TelaUsuarioGerenciarControl usuarioGerenciarControl;
 
     /**
      * Creates new form TelaGerenciarProduto
      */
-    public TelaFuncionarioGerenciar() {
+    public TelaUsuarioGerenciar() {
         initComponents();
     }
 
-    public TelaFuncionarioGerenciar(TelaFuncionarioGerenciarControl control) {
+    public TelaUsuarioGerenciar(TelaUsuarioGerenciarControl control) {
         initComponents();
-        funcionarioControl = control;
+        usuarioGerenciarControl = control;
     }
 
     /**
@@ -81,7 +81,7 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
         setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("Gerenciar Funcionarios");
+        jLabel1.setText("Gerenciar Usuários");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("NOME");
@@ -280,11 +280,9 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
                                     .addComponent(tfRua)
                                     .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(0, 16, Short.MAX_VALUE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -300,16 +298,18 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
                                 .addComponent(btVisualizar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btDesativar)
-                                .addGap(17, 17, 17)))))
+                                .addGap(17, 17, 17))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(179, 179, 179)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
-                .addGap(36, 36, 36)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,20 +398,20 @@ public class TelaFuncionarioGerenciar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
-        funcionarioControl.gravarFuncionarioAction();
+        usuarioGerenciarControl.gravarFuncionarioAction();
     }//GEN-LAST:event_btGravarActionPerformed
 
     private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
-        funcionarioControl.carregarFuncionariosAction();
+        usuarioGerenciarControl.carregarFuncionariosAction();
     }//GEN-LAST:event_btVisualizarActionPerformed
 
     private void btDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDesativarActionPerformed
-        funcionarioControl.desativarFuncionarioAction();
+        usuarioGerenciarControl.desativarFuncionarioAction();
     }//GEN-LAST:event_btDesativarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        funcionarioControl.buscaCepEMostraNaTela();
+        usuarioGerenciarControl.buscaCepEMostraNaTela();
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

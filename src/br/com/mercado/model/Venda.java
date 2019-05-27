@@ -16,7 +16,7 @@ public class Venda {
     private Integer id;
     private LocalDateTime dataVenda;
     private Cliente cliente;
-    private Funcionario funcionario;
+    private Usuario funcionario;
 
     public Integer getId() {
         return id;
@@ -42,11 +42,11 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    public Funcionario getFuncionario() {
+    public Usuario getFuncionario() {
         return funcionario;
     }
 
-    public void setFuncionario(Funcionario funcionario) {
+    public void setFuncionario(Usuario funcionario) {
         this.funcionario = funcionario;
     }
 

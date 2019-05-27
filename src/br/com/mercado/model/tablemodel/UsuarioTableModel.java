@@ -5,7 +5,7 @@
  */
 package br.com.mercado.model.tablemodel;
 
-import br.com.mercado.model.Funcionario;
+import br.com.mercado.model.Usuario;
 import br.com.mercado.interfaces.AcoesTableModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,21 +15,21 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author william.mauro
  */
-public class FuncionarioTableModel extends AbstractTableModel implements AcoesTableModel<Funcionario> {
+public class UsuarioTableModel extends AbstractTableModel implements AcoesTableModel<Usuario> {
 
     private static final int CODIGO = 0;
     private static final int NOME = 1;
     private static final int TELEFONE = 2;
     private static final int ATIVO = 3;
 
-    private List<Funcionario> linhas;
+    private List<Usuario> linhas;
     private String[] COLUNAS = {"Código", "Nome", "Telefone", "Ativo"};
 
-    public FuncionarioTableModel() {
+    public UsuarioTableModel() {
         linhas = new ArrayList<>();
     }
 
-    public FuncionarioTableModel(List<Funcionario> listFuncionarios) {
+    public UsuarioTableModel(List<Usuario> listFuncionarios) {
         linhas = new ArrayList<>(listFuncionarios);
     }
 
@@ -66,7 +66,7 @@ public class FuncionarioTableModel extends AbstractTableModel implements AcoesTa
 
     @Override
     public Object getValueAt(int linha, int coluna) {
-        Funcionario funcionario = linhas.get(linha);
+        Usuario funcionario = linhas.get(linha);
         switch (coluna) {
             case CODIGO:
                 return funcionario.getId();
@@ -87,7 +87,7 @@ public class FuncionarioTableModel extends AbstractTableModel implements AcoesTa
 
     @Override
     public void setValueAt(Object valor, int linha, int coluna) {
-        Funcionario funcionario = linhas.get(linha);
+        Usuario funcionario = linhas.get(linha);
         switch (coluna) {
             case CODIGO:
                 funcionario.setId(Integer.valueOf((String) valor));
@@ -115,19 +115,19 @@ public class FuncionarioTableModel extends AbstractTableModel implements AcoesTa
     }
 
     @Override
-    public Funcionario pegaObjeto(int indiceLinha) {
+    public Usuario pegaObjeto(int indiceLinha) {
         return linhas.get(indiceLinha);
     }
 
     @Override
-    public void adicionar(Funcionario funcionario) {
+    public void adicionar(Usuario funcionario) {
         linhas.add(funcionario);
         int ultimoIndice = getRowCount() - 1; // linhas -1
         fireTableRowsInserted(ultimoIndice, ultimoIndice); // atualiza insert
     }
 
     @Override
-    public void adicionar(List<Funcionario> funcionarios) {
+    public void adicionar(List<Usuario> funcionarios) {
         int indice = getRowCount();
         linhas.addAll(funcionarios);
         fireTableRowsInserted(indice, indice + funcionarios.size());
@@ -149,7 +149,7 @@ public class FuncionarioTableModel extends AbstractTableModel implements AcoesTa
     }
 
     @Override
-    public void atualizar(int indiceLinha, Funcionario funcionario) {
+    public void atualizar(int indiceLinha, Usuario funcionario) {
         linhas.set(indiceLinha, funcionario);
         fireTableRowsUpdated(indiceLinha, indiceLinha); // atualiza delete
     }

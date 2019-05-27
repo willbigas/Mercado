@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.mercado.dao;
 
-import br.com.mercado.model.Funcionario;
+import br.com.mercado.model.Usuario;
 import br.com.mercado.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,20 +12,20 @@ import java.util.List;
  *
  * @author william.mauro
  */
-public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
+public class UsuarioDao extends Dao implements DaoI<Usuario> {
 
     EnderecoDao enderecoDao;
     TipoUsuarioDao tipoUsuarioDao;
 
-    public FuncionarioDao() {
+    public UsuarioDao() {
         super();
         enderecoDao = new EnderecoDao();
         tipoUsuarioDao = new TipoUsuarioDao();
     }
 
     @Override
-    public int inserir(Funcionario funcionario) {
-        String queryInsert = "INSERT INTO funcionarios (NOME, PIS, SALARIO, TELEFONE, SENHA, EMAIL, FK_TIPOUSUARIO, FK_ENDERECO, ATIVO) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public int inserir(Usuario funcionario) {
+        String queryInsert = "INSERT INTO usuarios (NOME, PIS, SALARIO, TELEFONE, SENHA, EMAIL, FK_TIPOUSUARIO, FK_ENDERECO, ATIVO) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
@@ -58,8 +53,8 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
     }
 
     @Override
-    public boolean alterar(Funcionario funcionario) {
-        String queryUpdate = "UPDATE funcionarios SET nome = ?, PIS = ?, SALARIO = ?, TELEFONE = ?, SENHA = ?, EMAIL = ?, FK_TIPOUSUARIO = ?,  FK_USUARIO = ?, ATIVO = ?  WHERE ID = ?";
+    public boolean alterar(Usuario funcionario) {
+        String queryUpdate = "UPDATE usuarios SET nome = ?, PIS = ?, SALARIO = ?, TELEFONE = ?, SENHA = ?, EMAIL = ?, FK_TIPOUSUARIO = ?,  FK_USUARIO = ?, ATIVO = ?  WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setString(1, funcionario.getNome());
@@ -80,7 +75,7 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
     }
 
     @Override
-    public boolean deletar(Funcionario funcionario) {
+    public boolean deletar(Usuario funcionario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -90,8 +85,8 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
     }
 
     @Override
-    public boolean desativar(Funcionario funcionario) {
-        String sql = "UPDATE funcionarios SET ativo = false WHERE id = ?";
+    public boolean desativar(Usuario funcionario) {
+        String sql = "UPDATE usuarios SET ativo = false WHERE id = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, funcionario.getId());
@@ -104,7 +99,7 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
 
     @Override
     public boolean desativar(int id) {
-        String sql = "UPDATE funcionarios SET ativo = false WHERE id = ?";
+        String sql = "UPDATE usuarios SET ativo = false WHERE id = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, id);
@@ -116,15 +111,15 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
     }
 
     @Override
-    public List<Funcionario> pesquisar() {
-        String querySelect = "SELECT * FROM FUNCIONARIOS WHERE ATIVO = TRUE";
+    public List<Usuario> pesquisar() {
+        String querySelect = "SELECT * FROM USUARIOS WHERE ATIVO = TRUE";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(querySelect);
             ResultSet result = stmt.executeQuery();
-            List<Funcionario> lista = new ArrayList<>();
+            List<Usuario> lista = new ArrayList<>();
             while (result.next()) {
-                Funcionario funcionario = new Funcionario();
+                Usuario funcionario = new Usuario();
                 funcionario.setId(result.getInt("id"));
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setEmail(result.getString("email"));
@@ -145,17 +140,17 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
     }
 
     @Override
-    public List<Funcionario> pesquisar(String termo) {
-        String querySelectComTermo = "SELECT * FROM funcionarios WHERE (nome LIKE ?, email LIKE ?, telefone LIKE ?)";
+    public List<Usuario> pesquisar(String termo) {
+        String querySelectComTermo = "SELECT * FROM usuarios WHERE (nome LIKE ?, email LIKE ?, telefone LIKE ?)";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");
             stmt.setString(2, "%" + termo + "%");
             stmt.setString(3, "%" + termo + "%");
             ResultSet result = stmt.executeQuery();
-            List<Funcionario> lista = new ArrayList<>();
+            List<Usuario> lista = new ArrayList<>();
             while (result.next()) {
-                Funcionario funcionario = new Funcionario();
+                Usuario funcionario = new Usuario();
                 funcionario.setId(result.getInt("id"));
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setEmail(result.getString("email"));
@@ -176,18 +171,18 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
     }
 
     @Override
-    public Funcionario pesquisar(int id) {
+    public Usuario pesquisar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Funcionario pesquisarLogin(String email) {
-        String querySelectComTermo = "SELECT * FROM funcionarios WHERE (email = ?)";
+    public Usuario pesquisarLogin(String email) {
+        String querySelectComTermo = "SELECT * FROM usuarios WHERE (email = ?)";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, email);
             ResultSet result = stmt.executeQuery();
             if (result.next()) {
-                Funcionario funcionario = new Funcionario();
+                Usuario funcionario = new Usuario();
                 funcionario.setId(result.getInt("id"));
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setEmail(result.getString("email"));
