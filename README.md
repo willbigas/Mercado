@@ -1,7 +1,7 @@
-# MercadoDonaJoana
+# Mercado
 
-Mercado dona Joana
-Desejam informatizar seus sistema de vendas de produtos, receitas e despesas.
+Sistema de Mercado
+Cliente deseja informatizar seus sistema de vendas de produtos, receitas e despesas.
 
 Deseja-se manter os dados dos cliente com nome, telefone, e-mail, endereço.
 
@@ -40,5 +40,3 @@ O sistema terá uma tela incial que será o login.
 Se o login for feito por um funcionário caixa, entãoa brirá apenas a tela de vendas.
 Se o login for feito por um admin, todas os opções ficarão disponíveis, inclusive a venda.
 
-
-Vamos desenhar as telas antes de codificar.
