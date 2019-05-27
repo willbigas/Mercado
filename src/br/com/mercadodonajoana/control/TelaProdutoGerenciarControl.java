@@ -11,7 +11,6 @@ import br.com.mercadodonajoana.uteis.Mensagem;
 import br.com.mercadodonajoana.uteis.Texto;
 import br.com.mercadodonajoana.view.TelaPrincipal;
 import br.com.mercadodonajoana.view.TelaProdutoGerenciar;
-import java.beans.PropertyVetoException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -23,7 +22,7 @@ import javax.swing.JOptionPane;
 public class TelaProdutoGerenciarControl {
 
     TelaProdutoGerenciar telaProdutoGerenciar;
-    List<Fornecedor> listFornecedor;
+    List<Fornecedor> listFornecedores;
     List<Categoria> listCategorias;
     ProdutoTableModel tableModelProduto;
     FornecedorDao fornecedorDao;
@@ -41,18 +40,19 @@ public class TelaProdutoGerenciarControl {
     }
 
     public void chamarTelaProdutoGerenciar() {
-        if (telaProdutoGerenciar == null) { // se tiver nulo chama janela normalmente
+        if (telaProdutoGerenciar == null) { 
             telaProdutoGerenciar = new TelaProdutoGerenciar(this);
             TelaPrincipal.desktopPane.add(telaProdutoGerenciar);
             telaProdutoGerenciar.setVisible(true);
-        } else {//se ele estiver criado
+        } else {
             if (telaProdutoGerenciar.isVisible()) {
-                telaProdutoGerenciar.pack();//Redimensiona ao Quadro Original
+                telaProdutoGerenciar.pack();
             } else {
                 TelaPrincipal.desktopPane.add(telaProdutoGerenciar);
                 telaProdutoGerenciar.setVisible(true);
             }
         }
+        
         telaProdutoGerenciar.getTblProduto().setModel(tableModelProduto);
         carregarFornecedoresNaCombo();
         carregarCategoriasNaCombo();
@@ -60,8 +60,8 @@ public class TelaProdutoGerenciarControl {
     }
 
     private void carregarFornecedoresNaCombo() {
-        listFornecedor = fornecedorDao.pesquisar();
-        DefaultComboBoxModel<Fornecedor> model = new DefaultComboBoxModel(listFornecedor.toArray());
+        listFornecedores = fornecedorDao.pesquisar();
+        DefaultComboBoxModel<Fornecedor> model = new DefaultComboBoxModel(listFornecedores.toArray());
         TelaProdutoGerenciar.cbFornecedor.setModel(model);
     }
 
@@ -76,7 +76,8 @@ public class TelaProdutoGerenciarControl {
             Mensagem.erro(Texto.VAZIO_CAMPOS);
             return;
         }
-        criandoProduto();
+        
+        criarProduto();
         Integer idInserido = produtoDao.inserir(produto);
         if (idInserido != 0) {
             produto.setId(idInserido);
@@ -89,7 +90,7 @@ public class TelaProdutoGerenciarControl {
         produto = null;
     }
 
-    private void criandoProduto() throws NumberFormatException {
+    private void criarProduto() throws NumberFormatException {
         produto = new Produto();
         produto.setCodBarras(Integer.valueOf(telaProdutoGerenciar.getTfCodigoBarras().getText()));
         produto.setNome(telaProdutoGerenciar.getTfNome().getText());
@@ -97,6 +98,7 @@ public class TelaProdutoGerenciarControl {
         produto.setValor(Double.valueOf(telaProdutoGerenciar.getTfQuantidade().getText()));
         produto.setCategoria((Categoria) telaProdutoGerenciar.getCbCategoria().getSelectedItem());
         produto.setFornecedor((Fornecedor) telaProdutoGerenciar.getCbFornecedor().getSelectedItem());
+        
         if (telaProdutoGerenciar.getCheckAtivo().isSelected()) {
             produto.setAtivo(true);
         } else {
@@ -110,7 +112,7 @@ public class TelaProdutoGerenciarControl {
             return;
         }
 
-        criandoProduto();
+        criarProduto();
         boolean alterado = produtoDao.alterar(produto);
         linhaSelecionada = telaProdutoGerenciar.getTblProduto().getSelectedRow();
         if (alterado) {
@@ -123,7 +125,7 @@ public class TelaProdutoGerenciarControl {
         produto = null;
     }
 
-    public void gravarAction() {
+    public void gravarProdutoAction() {
         if (produto == null) {
             cadastrarProduto();
         } else {
@@ -131,7 +133,7 @@ public class TelaProdutoGerenciarControl {
         }
     }
 
-    public void carregarProdutoAction() throws PropertyVetoException {
+    public void carregarProdutoAction(){
         produto = tableModelProduto.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
         telaProdutoGerenciar.getTfNome().setText(produto.getNome());
         telaProdutoGerenciar.getTfCodigoBarras().setText(String.valueOf(produto.getCodBarras()));
@@ -147,15 +149,15 @@ public class TelaProdutoGerenciarControl {
         }
     }
 
-    public void desativarProduto() {
+    public void desativarProdutoAction() {
         int retorno = Mensagem.confirmacao(Texto.PERGUNTA_DESATIVAR);
         if (retorno == JOptionPane.NO_OPTION) {
             return;
         }
+        
         if (retorno == JOptionPane.YES_OPTION) {
             produto = tableModelProduto.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
-            boolean deletado = fornecedorDao.desativar(produto.getId());
-            if (deletado) {
+            if (fornecedorDao.desativar(produto.getId())) {
                 tableModelProduto.remover(telaProdutoGerenciar.getTblProduto().getSelectedRow());
                 telaProdutoGerenciar.getTblProduto().clearSelection();
                 Mensagem.info(Texto.SUCESSO_DESATIVAR);
@@ -177,15 +179,15 @@ public class TelaProdutoGerenciarControl {
         }
 
     }
-
+    
     private void limparCampos() {
         telaProdutoGerenciar.getTfNome().setText("");
         telaProdutoGerenciar.getTfPesquisar().setText("");
         telaProdutoGerenciar.getTfQuantidade().setText("");
         telaProdutoGerenciar.getTfCodigoBarras().setText("");
         telaProdutoGerenciar.getTfValor().setText("");
-        telaProdutoGerenciar.getCbCategoria().setSelectedIndex(- 1);
-        telaProdutoGerenciar.getCbFornecedor().setSelectedIndex(- 1);
+        telaProdutoGerenciar.getCbCategoria().setSelectedIndex(0);
+        telaProdutoGerenciar.getCbFornecedor().setSelectedIndex(0);
         telaProdutoGerenciar.getCheckAtivo().setSelected(false);
         telaProdutoGerenciar.getTfNome().requestFocus();
     }

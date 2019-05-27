@@ -15,13 +15,13 @@ public class TelaVendaControl {
     }
 
     public void chamarTelaVenda() {
-        if (telaVenda == null) { // se tiver nulo chama janela normalmente
+        if (telaVenda == null) {
             telaVenda = new TelaVenda(this);
             TelaPrincipal.desktopPane.add(telaVenda);
             telaVenda.setVisible(true);
-        } else {//se ele estiver criado
+        } else {
             if (telaVenda.isVisible()) {
-                telaVenda.pack();//Redimensiona ao Quadro Original
+                telaVenda.pack();
             } else {
                 TelaPrincipal.desktopPane.add(telaVenda);
                 telaVenda.setVisible(true);

@@ -165,15 +165,11 @@ public class TelaCategoriaGerenciar extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
-        categoriaGerenciarControl.gravarAction();
+        categoriaGerenciarControl.gravarCategoriaAction();
     }//GEN-LAST:event_btGravarActionPerformed
 
     private void btCarregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCarregarActionPerformed
-        try {
             categoriaGerenciarControl.carregarCategoriaAction();
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(TelaCategoriaGerenciar.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_btCarregarActionPerformed
 
     private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased

@@ -14,7 +14,6 @@ public class TelaLoginControl {
     public TelaLoginControl() {
     }
     
-    
     public void chamarTelaLoginAction() {
         telaLogin = new TelaLogin(this);
         telaLogin.setLocationRelativeTo(null);
