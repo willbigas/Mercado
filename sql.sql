@@ -150,3 +150,5 @@ select * from tipoDespesa;
 select * from despesas;
 
 select * from enderecos;
+
+select * from funcionarios;
