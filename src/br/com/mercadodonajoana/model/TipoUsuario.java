@@ -15,7 +15,6 @@ public class TipoUsuario {
     private String nome;
     private Boolean ativo;
     private Integer tipoPermissao;
-    
 
     public Integer getId() {
         return id;
@@ -51,7 +50,7 @@ public class TipoUsuario {
 
     @Override
     public String toString() {
-        return "TipoUsuario{" + "id=" + id + ", nome=" + nome + '}';
+        return nome;
     }
 
 }

@@ -117,7 +117,7 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
 
     @Override
     public List<Funcionario> pesquisar() {
-        String querySelect = "SELECT * FROM FUNCIONARIOS";
+        String querySelect = "SELECT * FROM FUNCIONARIOS WHERE ATIVO = TRUE";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(querySelect);

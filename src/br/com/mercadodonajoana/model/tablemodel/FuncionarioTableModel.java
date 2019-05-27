@@ -15,10 +15,9 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author william.mauro
  */
-public class FuncionarioTableModel extends AbstractTableModel implements AcoesTableModel<Funcionario>{
-    
-    
-     private static final int CODIGO = 0;
+public class FuncionarioTableModel extends AbstractTableModel implements AcoesTableModel<Funcionario> {
+
+    private static final int CODIGO = 0;
     private static final int NOME = 1;
     private static final int TELEFONE = 2;
     private static final int ATIVO = 3;
@@ -104,7 +103,8 @@ public class FuncionarioTableModel extends AbstractTableModel implements AcoesTa
                     funcionario.setAtivo(true);
                 } else {
                     funcionario.setAtivo(false);
-                };
+                }
+                ;
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -153,10 +153,11 @@ public class FuncionarioTableModel extends AbstractTableModel implements AcoesTa
         linhas.set(indiceLinha, funcionario);
         fireTableRowsUpdated(indiceLinha, indiceLinha); // atualiza delete
     }
+
     @Override
     public void limpar() {
         linhas.clear();
         fireTableDataChanged(); // atualiza toda tabela.
     }
-    
+
 }

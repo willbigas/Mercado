@@ -29,7 +29,7 @@ public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setString(1, fornecedor.getNome());
             stmt.setString(2, fornecedor.getTelefone());
-        stmt.setInt(3, fornecedor.getEndereco().getId());
+            stmt.setInt(3, fornecedor.getEndereco().getId());
             stmt.setBoolean(4, fornecedor.getAtivo());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
@@ -136,6 +136,8 @@ public class FornecedorDao extends Dao implements DaoI<Fornecedor> {
                 fornecedor.setId(result.getInt("id"));
                 fornecedor.setNome(result.getString("nome"));
                 fornecedor.setTelefone(result.getString("telefone"));
+                fornecedor.setAtivo(result.getBoolean("ativo"));
+                fornecedor.setEndereco(enderecoDao.pesquisar(result.getInt("fk_endereco")));
                 lista.add(fornecedor);
             }
             return lista;

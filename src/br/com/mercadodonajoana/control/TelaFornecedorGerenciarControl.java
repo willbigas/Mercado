@@ -11,6 +11,7 @@ import br.com.mercadodonajoana.uteis.Texto;
 import br.com.mercadodonajoana.view.TelaFornecedorGerenciar;
 import br.com.mercadodonajoana.view.TelaPrincipal;
 import java.beans.PropertyVetoException;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -33,10 +34,10 @@ public class TelaFornecedorGerenciarControl {
         tableModelFornecedor = new FornecedorTableModel();
         tableModelFornecedor.adicionar(fornecedorDao.pesquisar());
     }
-    
+
     public void carregarEstadosNaComboBox() {
-       telaFornecedorGerenciar.getCbEstado().setModel(new DefaultComboBoxModel<>(Enderecos.ESTADOS_BRASILEIROS));
-        
+        telaFornecedorGerenciar.getCbEstado().setModel(new DefaultComboBoxModel<>(Enderecos.ESTADOS_BRASILEIROS));
+
     }
 
     public void chamarTelaFornecedorGerenciar() {
@@ -124,7 +125,7 @@ public class TelaFornecedorGerenciarControl {
 
     public void desativarFornecedorAction() {
         int retorno = Mensagem.confirmacao(Texto.PERGUNTA_DESATIVAR);
-        
+
         if (retorno == JOptionPane.NO_OPTION) {
             return;
         }
@@ -142,16 +143,28 @@ public class TelaFornecedorGerenciarControl {
         fornecedor = null;
     }
 
+    public void pesquisarFornecedorAction() {
+        List<Fornecedor> fornecedoresPesquisados = fornecedorDao.pesquisar(telaFornecedorGerenciar.getTfPesquisar().getText());
+        if (fornecedoresPesquisados == null) {
+            tableModelFornecedor.limpar();
+            fornecedoresPesquisados = fornecedorDao.pesquisar();
+        } else {
+            tableModelFornecedor.limpar();
+            tableModelFornecedor.adicionar(fornecedoresPesquisados);
+        }
+    }
+
     public void carregarFornecedorAction() throws PropertyVetoException {
         fornecedor = tableModelFornecedor.pegaObjeto(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
         telaFornecedorGerenciar.getTfNome().setText(fornecedor.getNome());
+        telaFornecedorGerenciar.getTfTelefone().setText(fornecedor.getTelefone());
+
         telaFornecedorGerenciar.getTfBairro().setText(fornecedor.getEndereco().getBairro());
         telaFornecedorGerenciar.getTfCidade().setText(fornecedor.getEndereco().getCidade());
         telaFornecedorGerenciar.getTfComplemento().setText(fornecedor.getEndereco().getComplemento());
         telaFornecedorGerenciar.getCbEstado().getModel().setSelectedItem(fornecedor.getEndereco().getEstado());
         telaFornecedorGerenciar.getTfNumero().setText(fornecedor.getEndereco().getNumero());
         telaFornecedorGerenciar.getTfRua().setText(fornecedor.getEndereco().getRua());
-        telaFornecedorGerenciar.getTfTelefone().setText(fornecedor.getTelefone());
         telaFornecedorGerenciar.getTfCep().setText(String.valueOf(fornecedor.getEndereco().getCep()));
 
         if (fornecedor.getAtivo() == true) {
@@ -178,10 +191,13 @@ public class TelaFornecedorGerenciarControl {
     }
 
     private boolean validarCampos() {
-        if (telaFornecedorGerenciar.getTfNome().getText().isEmpty() || telaFornecedorGerenciar.getTfBairro().getText().isEmpty()
-                || telaFornecedorGerenciar.getTfCep().getText().isEmpty() || telaFornecedorGerenciar.getTfCidade().getText().isEmpty()
+        if (telaFornecedorGerenciar.getTfNome().getText().isEmpty()
+                || telaFornecedorGerenciar.getTfBairro().getText().isEmpty()
+                || telaFornecedorGerenciar.getTfCep().getText().isEmpty()
+                || telaFornecedorGerenciar.getTfCidade().getText().isEmpty()
                 || telaFornecedorGerenciar.getTfNumero().getText().isEmpty()
-                || telaFornecedorGerenciar.getTfNumero().getText().isEmpty() || telaFornecedorGerenciar.getTfTelefone().getText().isEmpty()
+                || telaFornecedorGerenciar.getTfNumero().getText().isEmpty()
+                || telaFornecedorGerenciar.getTfTelefone().getText().isEmpty()
                 || telaFornecedorGerenciar.getTfRua().getText().isEmpty()) {
             telaFornecedorGerenciar.getTfNome().requestFocus();
             return true;

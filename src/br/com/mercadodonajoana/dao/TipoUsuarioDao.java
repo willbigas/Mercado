@@ -53,9 +53,8 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setString(1, tipoUsuario.getNome());
             stmt.setInt(2, tipoUsuario.getTipoPermissao());
-            stmt.setInt(3, tipoUsuario.getId());
-            stmt.setBoolean(4, tipoUsuario.getAtivo());
-
+            stmt.setBoolean(3, tipoUsuario.getAtivo());
+            stmt.setInt(4, tipoUsuario.getId());
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -75,7 +74,7 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public List<TipoUsuario> pesquisar() {
-        String querySelect = "SELECT * FROM TIPOUSUARIO";
+        String querySelect = "SELECT * FROM TIPOUSUARIO WHERE ATIVO = TRUE";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(querySelect);
@@ -121,7 +120,7 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public TipoUsuario pesquisar(int id) {
-        String querySelect = "SELECT * FROM TIPOUSUARIO";
+        String querySelect = "SELECT * FROM TIPOUSUARIO WHERE ATIVO = TRUE";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(querySelect);
