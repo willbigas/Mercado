@@ -7,7 +7,6 @@ import br.com.mercadodonajoana.uteis.Mensagem;
 import br.com.mercadodonajoana.uteis.Texto;
 import br.com.mercadodonajoana.view.TelaCategoriaGerenciar;
 import br.com.mercadodonajoana.view.TelaPrincipal;
-import java.beans.PropertyVetoException;
 import java.util.List;
 
 /**
@@ -16,11 +15,11 @@ import java.util.List;
  */
 public class TelaCategoriaGerenciarControl {
 
-    TelaCategoriaGerenciar telaCategoriaGerenciar;
-    Categoria categoria;
-    CategoriaDao categoriaDao;
-    CategoriaTableModel tableModelCategoria;
-    Integer linhaSelecionada;
+    private TelaCategoriaGerenciar telaCategoriaGerenciar;
+    private Categoria categoria;
+    private CategoriaDao categoriaDao;
+    private CategoriaTableModel tableModelCategoria;
+    private Integer linhaSelecionada;
 
     public TelaCategoriaGerenciarControl() {
         categoriaDao = new CategoriaDao();
@@ -29,13 +28,13 @@ public class TelaCategoriaGerenciarControl {
     }
 
     public void chamarTelaCategoriaGerenciar() {
-        if (telaCategoriaGerenciar == null) { // se tiver nulo chama janela normalmente
+        if (telaCategoriaGerenciar == null) {
             telaCategoriaGerenciar = new TelaCategoriaGerenciar(this);
             TelaPrincipal.desktopPane.add(telaCategoriaGerenciar);
             telaCategoriaGerenciar.setVisible(true);
-        } else {//se ele estiver criado
+        } else {
             if (telaCategoriaGerenciar.isVisible()) {
-                telaCategoriaGerenciar.pack();//Redimensiona ao Quadro Original
+                telaCategoriaGerenciar.pack();
             } else {
                 TelaPrincipal.desktopPane.add(telaCategoriaGerenciar);
                 telaCategoriaGerenciar.setVisible(true);
@@ -44,11 +43,12 @@ public class TelaCategoriaGerenciarControl {
         telaCategoriaGerenciar.getTblCategoria().setModel(tableModelCategoria);
     }
 
-    private void cadastrarCategoria() {
+    private void cadastrarCategoriaAction() {
         if (validarCampos()) {
             Mensagem.erro(Texto.VAZIO_CAMPOS);
             return;
         }
+        
         categoria = new Categoria();
         categoria.setNome(telaCategoriaGerenciar.getTfNome().getText());
         if (telaCategoriaGerenciar.getCheckAtivo().isSelected()) {
@@ -56,7 +56,6 @@ public class TelaCategoriaGerenciarControl {
         } else {
             categoria.setAtivo(false);
         }
-
         Integer idInserido = categoriaDao.inserir(categoria);
         if (idInserido != 0) {
             categoria.setId(idInserido);
@@ -69,7 +68,7 @@ public class TelaCategoriaGerenciarControl {
         categoria = null;
     }
 
-    public void carregarCategoriaAction() throws PropertyVetoException {
+    public void carregarCategoriaAction(){
         categoria = tableModelCategoria.pegaObjeto(telaCategoriaGerenciar.getTblCategoria().getSelectedRow());
         telaCategoriaGerenciar.getTfNome().setText(categoria.getNome());
         if (categoria.getAtivo() == true) {
@@ -77,10 +76,9 @@ public class TelaCategoriaGerenciarControl {
         } else {
             telaCategoriaGerenciar.getCheckAtivo().setSelected(false);
         }
-
     }
 
-    private void alterarCategoria() {
+    private void alterarCategoriaAction() {
         if (validarCampos()) {
             Mensagem.erro(Texto.VAZIO_CAMPOS);
             return;
@@ -103,11 +101,11 @@ public class TelaCategoriaGerenciarControl {
         categoria = null;
     }
 
-    public void gravarAction() {
+    public void gravarCategoriaAction() {
         if (categoria == null) {
-            cadastrarCategoria();
+            cadastrarCategoriaAction();
         } else {
-            alterarCategoria();
+            alterarCategoriaAction();
         }
     }
 
@@ -120,7 +118,6 @@ public class TelaCategoriaGerenciarControl {
             tableModelCategoria.limpar();
             tableModelCategoria.adicionar(categoriasPesquisadas);
         }
-
     }
 
     private void limparCampos() {

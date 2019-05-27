@@ -15,13 +15,13 @@ public class TelaClienteGerenciarControl {
     }
 
     public void chamarTelaClienteGerenciar() {
-        if (telaClienteGerenciar == null) { // se tiver nulo chama janela normalmente
+        if (telaClienteGerenciar == null) {
             telaClienteGerenciar = new TelaClienteGerenciar(this);
             TelaPrincipal.desktopPane.add(telaClienteGerenciar);
             telaClienteGerenciar.setVisible(true);
-        } else {//se ele estiver criado
+        } else {
             if (telaClienteGerenciar.isVisible()) {
-                telaClienteGerenciar.pack();//Redimensiona ao Quadro Original
+                telaClienteGerenciar.pack();
             } else {
                 TelaPrincipal.desktopPane.add(telaClienteGerenciar);
                 telaClienteGerenciar.setVisible(true);

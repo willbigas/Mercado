@@ -89,7 +89,7 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
 
     @Override
     public List<Categoria> pesquisar(String termo) {
-        String querySelectComTermo = "SELECT * FROM CATEGORIAS WHERE (NOME like ?)";
+        String querySelectComTermo = "select * from categorias where ativo = true and nome LIKE ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");
@@ -99,6 +99,7 @@ public class CategoriaDao extends Dao implements DaoI<Categoria> {
                 Categoria categoria = new Categoria();
                 categoria.setId(result.getInt("id"));
                 categoria.setNome(result.getString("nome"));
+                categoria.setAtivo(result.getBoolean("ativo"));
                 lista.add(categoria);
             }
             return lista;
