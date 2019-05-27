@@ -5,17 +5,25 @@
  */
 package br.com.mercado.view;
 
+import br.com.mercado.control.TelaDespesaGerenciarControl;
+
 /**
  *
  * @author william.mauro
  */
 public class TelaDespesaGerenciar extends javax.swing.JInternalFrame {
+    
+    TelaDespesaGerenciarControl despesaGerenciarControl;
 
     /**
      * Creates new form TelaDespesaGerenciar
      */
     public TelaDespesaGerenciar() {
         initComponents();
+    }
+    public TelaDespesaGerenciar(TelaDespesaGerenciarControl control) {
+        initComponents();
+        despesaGerenciarControl = control;
     }
 
     /**
@@ -38,7 +46,7 @@ public class TelaDespesaGerenciar extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/lupa_32x32.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/lupa_32x32.png"))); // NOI18N
         jButton4.setBorder(null);
         jButton4.setBorderPainted(false);
         jButton4.setContentAreaFilled(false);
@@ -85,7 +93,7 @@ public class TelaDespesaGerenciar extends javax.swing.JInternalFrame {
                         .addComponent(jButton4)
                         .addGap(12, 12, 12))
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(16, 16, 16))
         );

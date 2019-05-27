@@ -18,6 +18,8 @@ public class TelaPrincipalControl {
     private TelaClienteGerenciarControl telaClienteGerenciarControl = null;
     private TelaFornecedorGerenciarControl telaFornecedorGerenciarControl = null;
     private TelaTipoUsuarioGerenciarControl telaTipoUsuarioGerenciarControl = null;
+    private TelaReceitaGerenciarControl telaReceitaGerenciarControl = null;
+    private TelaDespesaGerenciarControl telaDespesaGerenciarControl = null;
     private TelaVendaControl telaVendaControl = null;
     private TelaSobreControl telaSobreControl = null;
 
@@ -93,6 +95,22 @@ public class TelaPrincipalControl {
         } else {
             telaTipoUsuarioGerenciarControl = new TelaTipoUsuarioGerenciarControl();
             telaTipoUsuarioGerenciarControl.chamarTelaTipoUsuarioGerenciar();
+        }
+    }
+    public void chamarTelaReceitaGerenciarAction() {
+        if (telaReceitaGerenciarControl != null) {
+            telaReceitaGerenciarControl.chamarTelaReceitaGerenciar();
+        } else {
+            telaReceitaGerenciarControl = new TelaReceitaGerenciarControl();
+            telaReceitaGerenciarControl.chamarTelaReceitaGerenciar();
+        }
+    }
+    public void chamarTelaDespesaGerenciarAction() {
+        if (telaDespesaGerenciarControl != null) {
+            telaDespesaGerenciarControl.chamarTelaDespesaGerenciar();
+        } else {
+            telaDespesaGerenciarControl = new TelaDespesaGerenciarControl();
+            telaDespesaGerenciarControl.chamarTelaDespesaGerenciar();
         }
     }
 

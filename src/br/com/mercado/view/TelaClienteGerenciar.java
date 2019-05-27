@@ -122,7 +122,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
 
         tfNome.setColumns(15);
 
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/lupa_32x32.png"))); // NOI18N
+        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/lupa_32x32.png"))); // NOI18N
         btBuscar.setBorder(null);
         btBuscar.setBorderPainted(false);
         btBuscar.setContentAreaFilled(false);
@@ -167,7 +167,11 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel12.setText("Numero:");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/localizacao_32x32.png"))); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         jLabel13.setText("[Informações de Endereço]");

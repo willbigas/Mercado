@@ -60,7 +60,7 @@ public class TelaTipoUsuarioGerenciar extends javax.swing.JInternalFrame {
         setIconifiable(true);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/lupa_32x32.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/lupa_32x32.png"))); // NOI18N
         jLabel3.setText("Pesquisar:");
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N

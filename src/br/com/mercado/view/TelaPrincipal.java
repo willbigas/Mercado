@@ -45,8 +45,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuItemReceita = new javax.swing.JMenuItem();
         menuItemDespesa = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        menuItemAjuda = new javax.swing.JMenuItem();
+        menuItemSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -167,10 +167,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         menuItemReceita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/receita_32x32.png"))); // NOI18N
         menuItemReceita.setText("Receitas");
+        menuItemReceita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemReceitaActionPerformed(evt);
+            }
+        });
         jMenu5.add(menuItemReceita);
 
         menuItemDespesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/despesa_32x32.png"))); // NOI18N
         menuItemDespesa.setText("Despesas");
+        menuItemDespesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemDespesaActionPerformed(evt);
+            }
+        });
         jMenu5.add(menuItemDespesa);
 
         jMenuBar1.add(jMenu5);
@@ -178,18 +188,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/info_32x32.png"))); // NOI18N
         jMenu7.setText("Sobre");
 
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/ajuda_32x32.png"))); // NOI18N
-        jMenuItem1.setText("Ajuda");
-        jMenu7.add(jMenuItem1);
+        menuItemAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/ajuda_32x32.png"))); // NOI18N
+        menuItemAjuda.setText("Ajuda");
+        jMenu7.add(menuItemAjuda);
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/developer_32x32.png"))); // NOI18N
-        jMenuItem2.setText("Sobre");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        menuItemSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/developer_32x32.png"))); // NOI18N
+        menuItemSobre.setText("Sobre");
+        menuItemSobre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                menuItemSobreActionPerformed(evt);
             }
         });
-        jMenu7.add(jMenuItem2);
+        jMenu7.add(menuItemSobre);
 
         jMenuBar1.add(jMenu7);
 
@@ -246,10 +256,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaPrincipalControl.chamarTelaVendaAction();
     }//GEN-LAST:event_menuItemVendaActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void menuItemSobreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSobreActionPerformed
         // TODO add your handling code here:
         telaPrincipalControl.chamarTelaSobreAction();
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_menuItemSobreActionPerformed
+
+    private void menuItemReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemReceitaActionPerformed
+        // TODO add your handling code here:
+        telaPrincipalControl.chamarTelaReceitaGerenciarAction();
+        
+    }//GEN-LAST:event_menuItemReceitaActionPerformed
+
+    private void menuItemDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDespesaActionPerformed
+        // TODO add your handling code here:
+        telaPrincipalControl.chamarTelaDespesaGerenciarAction();
+    }//GEN-LAST:event_menuItemDespesaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,8 +317,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem menuItemAjuda;
     private javax.swing.JMenuItem menuItemDespesa;
     private javax.swing.JMenuItem menuItemEntradaProduto;
     private javax.swing.JMenuItem menuItemGerenciarCategoria;
@@ -307,6 +327,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemGerenciarProduto;
     private javax.swing.JMenuItem menuItemGerenciarTipoUsuario;
     private javax.swing.JMenuItem menuItemReceita;
+    private javax.swing.JMenuItem menuItemSobre;
     private javax.swing.JMenuItem menuItemVenda;
     // End of variables declaration//GEN-END:variables
 }

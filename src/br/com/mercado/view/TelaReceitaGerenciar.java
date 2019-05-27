@@ -5,6 +5,7 @@
  */
 package br.com.mercado.view;
 
+import br.com.mercado.control.TelaReceitaGerenciarControl;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -13,12 +14,18 @@ import javax.swing.JTextField;
  * @author william.mauro
  */
 public class TelaReceitaGerenciar extends javax.swing.JInternalFrame {
+    
+    TelaReceitaGerenciarControl receitaGerenciarControl;
 
     /**
      * Creates new form TelaReceitaGerenciar
      */
     public TelaReceitaGerenciar() {
         initComponents();
+    }
+    public TelaReceitaGerenciar(TelaReceitaGerenciarControl control) {
+        initComponents();
+        receitaGerenciarControl = control;
     }
 
     /**
