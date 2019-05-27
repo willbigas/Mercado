@@ -69,7 +69,7 @@ public class TelaCategoriaGerenciarControl {
         categoria = null;
     }
 
-    public void carregarCategoriaAction() throws PropertyVetoException {
+    public void carregarCategoriaAction()  {
         categoria = tableModelCategoria.pegaObjeto(telaCategoriaGerenciar.getTblCategoria().getSelectedRow());
         telaCategoriaGerenciar.getTfNome().setText(categoria.getNome());
         if (categoria.getAtivo() == true) {
