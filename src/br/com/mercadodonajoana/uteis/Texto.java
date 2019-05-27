@@ -47,5 +47,10 @@ public class Texto {
     public static final String PERGUNTA_DESATIVAR = "Você deseja Realmente desativar ";
 
     public static final String PERGUNTA_EDITAR = "Você deseja Realmente editar ";
+    
+    
+    public static final String ERRO_USUARIO = "Usuário não encontrado!";
+    
+    public static final String SENHA_USUARIO = "A senha não bate com o login de usuário encontrado!";
 
 }

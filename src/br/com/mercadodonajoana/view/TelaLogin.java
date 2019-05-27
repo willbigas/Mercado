@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.mercadodonajoana.view;
 
 import br.com.mercadodonajoana.control.TelaLoginControl;
@@ -139,7 +134,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void btEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEntrarActionPerformed
         // TODO add your handling code here:
-        loginControl.chamarTelaPrincipalAction();
+        loginControl.acessarTelaPrincipalAction();
 
     }//GEN-LAST:event_btEntrarActionPerformed
 
@@ -197,14 +192,12 @@ public class TelaLogin extends javax.swing.JFrame {
         this.tfLogin = tfLogin;
     }
 
-    public JPasswordField getjPasswordField1() {
+    public JPasswordField getTfSenha() {
         return tfSenha;
     }
 
-    public void setjPasswordField1(JPasswordField jPasswordField1) {
-        this.tfSenha = jPasswordField1;
+    public void setTfSenha(JPasswordField tfSenha) {
+        this.tfSenha = tfSenha;
     }
-
-   
 
 }

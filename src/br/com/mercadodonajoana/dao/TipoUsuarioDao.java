@@ -120,7 +120,7 @@ public class TipoUsuarioDao extends Dao implements DaoI<TipoUsuario> {
 
     @Override
     public TipoUsuario pesquisar(int id) {
-        String querySelect = "SELECT * FROM TIPOUSUARIO WHERE ATIVO = TRUE";
+        String querySelect = "SELECT * FROM TIPOUSUARIO WHERE (id = ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(querySelect);

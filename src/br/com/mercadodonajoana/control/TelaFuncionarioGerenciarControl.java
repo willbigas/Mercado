@@ -36,7 +36,6 @@ public class TelaFuncionarioGerenciarControl {
         funcionarioDao = new FuncionarioDao();
         enderecoDao = new EnderecoDao();
         tableModelFuncionarios = new FuncionarioTableModel();
-        tableModelFuncionarios.adicionar(funcionarioDao.pesquisar());
     }
 
     public void carregarEstadosNaComboBox() {
@@ -58,6 +57,8 @@ public class TelaFuncionarioGerenciarControl {
         }
         carregarTiposUsuariosNaCombo();
         carregarEstadosNaComboBox();
+        telaFuncionarioGerenciar.getTblFuncionario().setModel(tableModelFuncionarios);
+        tableModelFuncionarios.adicionar(funcionarioDao.pesquisar());
     }
 
     private void carregarTiposUsuariosNaCombo() {
@@ -66,9 +67,9 @@ public class TelaFuncionarioGerenciarControl {
         telaFuncionarioGerenciar.getCbTipoUsuario().setModel(model);
     }
 
-    private void cadastrarFuncionario() {
+    private void inserirFuncionario() {
         funcionario = new Funcionario();
-        adicionarFuncionarioAction();
+        criarFuncionario();
         Integer idInserido = funcionarioDao.inserir(funcionario);
         if (idInserido != 0) {
             funcionario.setId(idInserido);
@@ -82,7 +83,7 @@ public class TelaFuncionarioGerenciarControl {
     }
 
     private void alterarFuncionario() {
-        adicionarFuncionarioAction();
+        criarFuncionario();
         boolean alterado = funcionarioDao.alterar(funcionario);
         linhaSelecionada = telaFuncionarioGerenciar.getTblFuncionario().getSelectedRow();
         if (alterado) {
@@ -95,7 +96,7 @@ public class TelaFuncionarioGerenciarControl {
         funcionario = null;
     }
 
-    private void adicionarFuncionarioAction() throws NumberFormatException {
+    private void criarFuncionario() throws NumberFormatException {
         funcionario.setNome(telaFuncionarioGerenciar.getTfNome().getText());
         funcionario.setTelefone(telaFuncionarioGerenciar.getTfTelefone().getText());
         funcionario.setEmail(telaFuncionarioGerenciar.getTfEmail().getText());
@@ -123,7 +124,7 @@ public class TelaFuncionarioGerenciarControl {
 
     public void gravarFuncionarioAction() {
         if (funcionario == null) {
-            cadastrarFuncionario();
+            inserirFuncionario();
         } else {
             alterarFuncionario();
         }

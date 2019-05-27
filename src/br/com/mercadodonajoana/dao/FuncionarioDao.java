@@ -160,6 +160,12 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
                 funcionario.setNome(result.getString("nome"));
                 funcionario.setEmail(result.getString("email"));
                 funcionario.setTelefone(result.getString("telefone"));
+                funcionario.setPis(result.getInt("pis"));
+                funcionario.setSalario(result.getDouble("salario"));
+                funcionario.setSenha(result.getString("senha"));
+                funcionario.setAtivo(result.getBoolean("ativo"));
+                funcionario.setEndereco(enderecoDao.pesquisar(result.getInt("fk_endereco")));
+                funcionario.setTipoUsuario(tipoUsuarioDao.pesquisar(result.getInt("fk_tipoUsuario")));
                 lista.add(funcionario);
             }
             return lista;
@@ -172,5 +178,33 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
     @Override
     public Funcionario pesquisar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Funcionario pesquisarLogin(String email) {
+        String querySelectComTermo = "SELECT * FROM funcionarios WHERE (email = ?)";
+        try {
+            PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
+            stmt.setString(1, email);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                Funcionario funcionario = new Funcionario();
+                funcionario.setId(result.getInt("id"));
+                funcionario.setNome(result.getString("nome"));
+                funcionario.setEmail(result.getString("email"));
+                funcionario.setTelefone(result.getString("telefone"));
+                funcionario.setPis(result.getInt("pis"));
+                funcionario.setSalario(result.getDouble("salario"));
+                funcionario.setSenha(result.getString("senha"));
+                funcionario.setAtivo(result.getBoolean("ativo"));
+                funcionario.setEndereco(enderecoDao.pesquisar(result.getInt("fk_endereco")));
+                funcionario.setTipoUsuario(tipoUsuarioDao.pesquisar(result.getInt("fk_tipoUsuario")));
+                return funcionario;
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 }

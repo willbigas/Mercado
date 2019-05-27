@@ -132,6 +132,15 @@ fk_tipoDespesa int,
 PRIMARY KEY (id),
 foreign key(fk_tipoDespesa) references tipoDespesa(id));
 
+INSERT INTO `mercadodonajoana`.`tipoUsuario` (`id`, `nome`, `ativo`, `tipoPermissao`) VALUES ('1', 'Administradores', '1', '1');
+INSERT INTO `mercadodonajoana`.`tipoUsuario` (`id`, `nome`, `ativo`, `tipoPermissao`) VALUES ('2', 'Caixas', '1', '2');
+
+INSERT INTO `mercadodonajoana`.`enderecos` (`id`, `cep`, `estado`, `cidade`, `bairro`, `rua`, `complemento`, `numero`) VALUES ('1', '88133810', 'SC', 'Palhoça', 'Jardim das Palmeiras', 'Dália', 'Casa marrom areia', '538');
+INSERT INTO `mercadodonajoana`.`enderecos` (`id`, `cep`, `estado`, `cidade`, `bairro`, `rua`, `complemento`, `numero`) VALUES ('2', '88130800', 'SC', 'Palhoça', 'Jardim Eldorado', 'Não sei o nome', 'Casa Grande', '111');
+
+INSERT INTO `mercadodonajoana`.`funcionarios` (`id`, `nome`, `pis`, `salario`, `telefone`, `email`, `senha`, `ativo`, `fk_endereco`, `fk_tipoUsuario`) VALUES ('1', 'William Bigas Mauro', '12345789', '4500.00', '30337442', 'admin', '1234', '1', '1', '1');
+INSERT INTO `mercadodonajoana`.`funcionarios` (`id`, `nome`, `pis`, `salario`, `telefone`, `email`, `senha`, `ativo`, `fk_endereco`, `fk_tipoUsuario`) VALUES ('2', 'Agostinho Detofano Junior', '123456789', '3500.00', '996822475', 'caixa', '1234', '1', '2', '2');
+
 
 select * from categorias;
 
