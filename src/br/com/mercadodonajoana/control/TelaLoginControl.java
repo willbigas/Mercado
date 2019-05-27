@@ -1,7 +1,6 @@
 package br.com.mercadodonajoana.control;
 
 import br.com.mercadodonajoana.view.TelaLogin;
-import br.com.mercadodonajoana.view.TelaPrincipal;
 
 /**
  *

@@ -6,6 +6,7 @@
 package br.com.mercadodonajoana.view;
 
 import br.com.mercadodonajoana.control.TelaLoginControl;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
@@ -41,10 +42,10 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         tfLogin = new javax.swing.JTextField();
-        tfSenha = new javax.swing.JTextField();
         btEntrar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        tfSenha = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login no sistema");
@@ -61,8 +62,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/lock_32x32.png"))); // NOI18N
 
         tfLogin.setColumns(12);
-
-        tfSenha.setColumns(12);
 
         btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/entrar_32x32.png"))); // NOI18N
         btEntrar.setToolTipText("Entrar...");
@@ -103,8 +102,8 @@ public class TelaLogin extends javax.swing.JFrame {
                                                     .addComponent(jLabel2)
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(tfSenha)
-                                                .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addComponent(tfLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
+                                                .addComponent(tfSenha)))))
                                 .addGap(13, 13, 13)))
                         .addGap(36, 36, 36))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -125,7 +124,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfSenha))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,7 +186,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField tfLogin;
-    private javax.swing.JTextField tfSenha;
+    private javax.swing.JPasswordField tfSenha;
     // End of variables declaration//GEN-END:variables
 
     public JTextField getTfLogin() {
@@ -198,12 +197,14 @@ public class TelaLogin extends javax.swing.JFrame {
         this.tfLogin = tfLogin;
     }
 
-    public JTextField getTfSenha() {
+    public JPasswordField getjPasswordField1() {
         return tfSenha;
     }
 
-    public void setTfSenha(JTextField tfSenha) {
-        this.tfSenha = tfSenha;
+    public void setjPasswordField1(JPasswordField jPasswordField1) {
+        this.tfSenha = jPasswordField1;
     }
+
+   
 
 }

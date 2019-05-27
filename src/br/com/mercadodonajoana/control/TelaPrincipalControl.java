@@ -19,6 +19,7 @@ public class TelaPrincipalControl {
     private TelaFornecedorGerenciarControl telaFornecedorGerenciarControl = null;
     private TelaTipoUsuarioGerenciarControl telaTipoUsuarioGerenciarControl = null;
     private TelaVendaControl telaVendaControl = null;
+    private TelaSobreControl telaSobreControl = null;
 
     public TelaPrincipalControl() {
     }
@@ -101,6 +102,15 @@ public class TelaPrincipalControl {
         } else {
             telaVendaControl = new TelaVendaControl();
             telaVendaControl.chamarTelaVenda();
+        }
+    }
+    
+    public void chamarTelaSobreAction() {
+        if (telaSobreControl != null) {
+            telaSobreControl.chamarTelaSobre();
+        } else {
+            telaSobreControl = new TelaSobreControl();
+            telaSobreControl.chamarTelaSobre();
         }
     }
 
