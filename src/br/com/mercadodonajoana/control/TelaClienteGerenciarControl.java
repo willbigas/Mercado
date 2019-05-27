@@ -1,7 +1,9 @@
 package br.com.mercadodonajoana.control;
 
+import br.com.mercadodonajoana.uteis.Enderecos;
 import br.com.mercadodonajoana.view.TelaClienteGerenciar;
 import br.com.mercadodonajoana.view.TelaPrincipal;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -27,6 +29,14 @@ public class TelaClienteGerenciarControl {
                 telaClienteGerenciar.setVisible(true);
             }
         }
+        carregarEstadosNaComboBox();
     }
+    
+    public void carregarEstadosNaComboBox() {
+        telaClienteGerenciar.getCbEstado().setModel(new DefaultComboBoxModel<>(Enderecos.ESTADOS_BRASILEIROS));
+
+    }
+
+    
 
 }

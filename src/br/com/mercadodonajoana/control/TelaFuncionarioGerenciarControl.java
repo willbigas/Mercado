@@ -1,5 +1,9 @@
 package br.com.mercadodonajoana.control;
 
+import br.com.mercadodonajoana.api.buscacep.control.BuscaCep;
+import br.com.mercadodonajoana.api.buscacep.exceptions.BuscaCepException;
+import br.com.mercadodonajoana.api.buscacep.interfaces.BuscaCepEventos;
+import br.com.mercadodonajoana.api.buscacep.interfaces.BuscaCepEventosImpl;
 import br.com.mercadodonajoana.dao.EnderecoDao;
 import br.com.mercadodonajoana.dao.FuncionarioDao;
 import br.com.mercadodonajoana.dao.TipoUsuarioDao;
@@ -30,6 +34,7 @@ public class TelaFuncionarioGerenciarControl {
     Funcionario funcionario;
     EnderecoDao enderecoDao;
     Integer linhaSelecionada;
+    Endereco endereco;
 
     public TelaFuncionarioGerenciarControl() {
         tipoUsuarioDao = new TipoUsuarioDao();
@@ -94,6 +99,7 @@ public class TelaFuncionarioGerenciarControl {
             Mensagem.erro(Texto.ERRO_EDITAR);
         }
         funcionario = null;
+        endereco = null;
     }
 
     private void criarFuncionario() throws NumberFormatException {
@@ -104,7 +110,8 @@ public class TelaFuncionarioGerenciarControl {
         funcionario.setSalario(Double.valueOf(telaFuncionarioGerenciar.getTfSalario().getText()));
         funcionario.setSenha(telaFuncionarioGerenciar.getTfSenha().getText());
         funcionario.setTipoUsuario((TipoUsuario) telaFuncionarioGerenciar.getCbTipoUsuario().getSelectedItem());
-        Endereco endereco = new Endereco();
+
+        // modifica os atributos baseado no que o usuario modificar.
         endereco.setBairro(telaFuncionarioGerenciar.getTfBairro().getText());
         endereco.setCep(Integer.valueOf(telaFuncionarioGerenciar.getTfCep().getText()));
         endereco.setCidade(telaFuncionarioGerenciar.getTfCidade().getText());
@@ -115,10 +122,39 @@ public class TelaFuncionarioGerenciarControl {
         Integer idEndereco = enderecoDao.inserir(endereco);
         endereco.setId(idEndereco);
         funcionario.setEndereco(endereco);
+
         if (telaFuncionarioGerenciar.getCheckAtivo().isSelected()) {
             funcionario.setAtivo(true);
         } else {
             funcionario.setAtivo(false);
+        }
+    }
+
+    public void buscaCepEMostraNaTela() {
+        BuscaCepEventos buscaCepEvents = new BuscaCepEventosImpl();
+        BuscaCep buscadorDeCep = new BuscaCep();
+        try {
+            buscadorDeCep.buscar(telaFuncionarioGerenciar.getTfCep().getText());
+            Endereco endereco = new Endereco();
+//            endereco.setCep(Integer.valueOf(buscadorDeCep.getCep()));
+            endereco.setBairro(buscadorDeCep.getBairro());
+            endereco.setCidade(buscadorDeCep.getCidade());
+            endereco.setRua(buscadorDeCep.getLogradouro());
+            endereco.setComplemento(buscadorDeCep.getComplemento());
+            System.out.println("Endereco encontrado" + endereco);
+
+            // mostra na tela o cep pesquisado
+            telaFuncionarioGerenciar.getTfBairro().setText(endereco.getBairro());
+            telaFuncionarioGerenciar.getTfCidade().setText(endereco.getCidade());
+            telaFuncionarioGerenciar.getTfComplemento().setText(endereco.getComplemento());
+            telaFuncionarioGerenciar.getTfRua().setText(endereco.getRua());
+            telaFuncionarioGerenciar.getTfCep().setText(telaFuncionarioGerenciar.getTfCep().getText());
+        } catch (BuscaCepException buscaCepException) {
+            System.out.println(buscaCepException.getMessage());
+            buscaCepException.printStackTrace();
+        } catch (NumberFormatException numberFormatException) {
+            System.out.println(numberFormatException.getMessage());
+            numberFormatException.printStackTrace();
         }
     }
 

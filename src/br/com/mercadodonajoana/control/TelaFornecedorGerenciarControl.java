@@ -1,5 +1,9 @@
 package br.com.mercadodonajoana.control;
 
+import br.com.mercadodonajoana.api.buscacep.control.BuscaCep;
+import br.com.mercadodonajoana.api.buscacep.exceptions.BuscaCepException;
+import br.com.mercadodonajoana.api.buscacep.interfaces.BuscaCepEventos;
+import br.com.mercadodonajoana.api.buscacep.interfaces.BuscaCepEventosImpl;
 import br.com.mercadodonajoana.uteis.Enderecos;
 import br.com.mercadodonajoana.dao.EnderecoDao;
 import br.com.mercadodonajoana.dao.FornecedorDao;
@@ -114,6 +118,35 @@ public class TelaFornecedorGerenciarControl {
             fornecedor.setAtivo(false);
         }
     }
+    
+    public void buscaCepEMostraNaTela() {
+        BuscaCepEventos buscaCepEvents = new BuscaCepEventosImpl();
+        BuscaCep buscadorDeCep = new BuscaCep();
+        try {
+            buscadorDeCep.buscar(telaFornecedorGerenciar.getTfCep().getText());
+            Endereco endereco = new Endereco();
+//            endereco.setCep(Integer.valueOf(buscadorDeCep.getCep()));
+            endereco.setBairro(buscadorDeCep.getBairro());
+            endereco.setCidade(buscadorDeCep.getCidade());
+            endereco.setRua(buscadorDeCep.getLogradouro());
+            endereco.setComplemento(buscadorDeCep.getComplemento());
+            System.out.println("Endereco encontrado" + endereco);
+
+            // mostra na tela o cep pesquisado
+            telaFornecedorGerenciar.getTfBairro().setText(endereco.getBairro());
+            telaFornecedorGerenciar.getTfCidade().setText(endereco.getCidade());
+            telaFornecedorGerenciar.getTfComplemento().setText(endereco.getComplemento());
+            telaFornecedorGerenciar.getTfRua().setText(endereco.getRua());
+            telaFornecedorGerenciar.getTfCep().setText(telaFornecedorGerenciar.getTfCep().getText());
+        } catch (BuscaCepException buscaCepException) {
+            System.out.println(buscaCepException.getMessage());
+            buscaCepException.printStackTrace();
+        } catch (NumberFormatException numberFormatException) {
+            System.out.println(numberFormatException.getMessage());
+            numberFormatException.printStackTrace();
+        }
+    }
+    
 
     public void gravarFornecedorAction() {
         if (fornecedor == null) {
