@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/ADJ-PC/Documents/GitHub/MercadoDonaJoana/src/br/com/mercadodonajoana/view/TelaProdutoGerenciar.java</file>
+            <file>file:/C:/Users/ADJ-PC/Documents/GitHub/MercadoDonaJoana/src/br/com/mercadodonajoana/control/TelaProdutoGerenciarControl.java</file>
+            <file>file:/C:/Users/ADJ-PC/Documents/GitHub/MercadoDonaJoana/src/br/com/mercadodonajoana/dao/ProdutoDao.java</file>
+            <file>file:/C:/Users/ADJ-PC/Documents/GitHub/MercadoDonaJoana/src/MercadoJoana.java</file>
+            <file>file:/C:/Users/ADJ-PC/Documents/GitHub/MercadoDonaJoana/src/br/com/mercadodonajoana/dao/CategoriaDao.java</file>
+            <file>file:/C:/Users/ADJ-PC/Documents/GitHub/MercadoDonaJoana/src/br/com/mercadodonajoana/control/TelaCategoriaGerenciarControl.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -12,6 +12,7 @@ cidade varchar(50) NOT NULL,
 bairro varchar(100) NOT NULL,
 rua varchar(120) NOT NULL,
 complemento varchar(120),
+numero varchar(8),
 PRIMARY KEY (id));
 
 CREATE TABLE clientes(
@@ -57,6 +58,7 @@ CREATE TABLE tipoUsuario(
 id INT(11) not null auto_increment,
 nome varchar(50) NOT NULL,
 ativo boolean,
+tipoPermissao int,
 PRIMARY KEY (id));
 
 CREATE TABLE funcionarios(
@@ -70,10 +72,8 @@ senha varchar(25) NOT NULL,
 ativo boolean,
 fk_endereco int NOT NULL,
 fk_tipoUsuario int NOT NULL,
-fk_fornecedor int NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (fk_endereco) references enderecos(id),
-FOREIGN KEY (fk_fornecedor) references fornecedores(id),
 FOREIGN KEY(fk_tipoUsuario) references tipoUsuario(id));
 
 
@@ -132,8 +132,21 @@ fk_tipoDespesa int,
 PRIMARY KEY (id),
 foreign key(fk_tipoDespesa) references tipoDespesa(id));
 
+
 select * from categorias;
 
 select * from produtos;
 
 select * from fornecedores;
+
+select * from tipoUsuario;
+
+select * from clientes;
+
+select * from enderecos;
+
+select * from tipoDespesa;
+
+select * from despesas;
+
+select * from enderecos;
