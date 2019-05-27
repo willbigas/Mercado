@@ -1,5 +1,6 @@
 package br.com.mercadodonajoana.control;
 
+import br.com.mercadodonajoana.uteis.Enderecos;
 import br.com.mercadodonajoana.dao.EnderecoDao;
 import br.com.mercadodonajoana.dao.FornecedorDao;
 import br.com.mercadodonajoana.model.Endereco;
@@ -34,7 +35,7 @@ public class TelaFornecedorGerenciarControl {
     }
     
     public void carregarEstadosNaComboBox() {
-       telaFornecedorGerenciar.getCbEstado().setModel(new DefaultComboBoxModel<>(EnderecoControl.ESTADOS_BRASILEIROS));
+       telaFornecedorGerenciar.getCbEstado().setModel(new DefaultComboBoxModel<>(Enderecos.ESTADOS_BRASILEIROS));
         
     }
 
