@@ -1,5 +1,5 @@
 
-import br.com.mercadodonajoana.control.TelaLoginControl;
+import br.com.mercado.control.TelaLoginControl;
 
 /**
  *
