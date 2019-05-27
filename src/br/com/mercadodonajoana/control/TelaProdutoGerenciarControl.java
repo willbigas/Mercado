@@ -2,19 +2,19 @@ package br.com.mercadodonajoana.control;
 
 import br.com.mercadodonajoana.dao.CategoriaDao;
 import br.com.mercadodonajoana.dao.FornecedorDao;
-import br.com.mercadodonajoana.dao.FuncionarioDao;
 import br.com.mercadodonajoana.dao.ProdutoDao;
 import br.com.mercadodonajoana.model.Categoria;
 import br.com.mercadodonajoana.model.Fornecedor;
-import br.com.mercadodonajoana.model.Funcionario;
 import br.com.mercadodonajoana.model.Produto;
 import br.com.mercadodonajoana.model.tablemodel.ProdutoTableModel;
 import br.com.mercadodonajoana.uteis.Mensagem;
 import br.com.mercadodonajoana.uteis.Texto;
 import br.com.mercadodonajoana.view.TelaPrincipal;
 import br.com.mercadodonajoana.view.TelaProdutoGerenciar;
+import java.beans.PropertyVetoException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +30,7 @@ public class TelaProdutoGerenciarControl {
     CategoriaDao categoriaDao;
     ProdutoDao produtoDao;
     Produto produto;
+    Integer linhaSelecionada;
 
     public TelaProdutoGerenciarControl() {
         fornecedorDao = new FornecedorDao();
@@ -55,11 +56,11 @@ public class TelaProdutoGerenciarControl {
         telaProdutoGerenciar.getTblProduto().setModel(tableModelProduto);
         carregarFornecedoresNaCombo();
         carregarCategoriasNaCombo();
+        telaProdutoGerenciar.getTfNome().requestFocus();
     }
 
     private void carregarFornecedoresNaCombo() {
         listFornecedor = fornecedorDao.pesquisar();
-        System.out.println(listFornecedor);
         DefaultComboBoxModel<Fornecedor> model = new DefaultComboBoxModel(listFornecedor.toArray());
         TelaProdutoGerenciar.cbFornecedor.setModel(model);
     }
@@ -70,7 +71,25 @@ public class TelaProdutoGerenciarControl {
         TelaProdutoGerenciar.cbCategoria.setModel(model);
     }
 
-    public void cadastrarProdutoAction() {
+    private void cadastrarProduto() {
+        if (validarCampos()) {
+            Mensagem.erro(Texto.VAZIO_CAMPOS);
+            return;
+        }
+        criandoProduto();
+        Integer idInserido = produtoDao.inserir(produto);
+        if (idInserido != 0) {
+            produto.setId(idInserido);
+            tableModelProduto.adicionar(produto);
+            limparCampos();
+            Mensagem.info(Texto.SUCESSO_CADASTRAR);
+        } else {
+            Mensagem.info(Texto.ERRO_CADASTRAR);
+        }
+        produto = null;
+    }
+
+    private void criandoProduto() throws NumberFormatException {
         produto = new Produto();
         produto.setCodBarras(Integer.valueOf(telaProdutoGerenciar.getTfCodigoBarras().getText()));
         produto.setNome(telaProdutoGerenciar.getTfNome().getText());
@@ -83,14 +102,100 @@ public class TelaProdutoGerenciarControl {
         } else {
             produto.setAtivo(false);
         }
-        Integer idInserido = produtoDao.inserir(produto);
-        if (idInserido != 0) {
-            produto.setId(idInserido);
-            tableModelProduto.adicionar(produto);
-            Mensagem.info(Texto.SUCESSO_CADASTRAR);
+    }
+
+    private void alterarProduto() {
+        if (validarCampos()) {
+            Mensagem.erro(Texto.VAZIO_CAMPOS);
+            return;
+        }
+
+        criandoProduto();
+        boolean alterado = produtoDao.alterar(produto);
+        linhaSelecionada = telaProdutoGerenciar.getTblProduto().getSelectedRow();
+        if (alterado) {
+            tableModelProduto.atualizar(linhaSelecionada, produto);
+            Mensagem.info(Texto.SUCESSO_EDITAR);
+            limparCampos();
         } else {
-            Mensagem.info(Texto.ERRO_CADASTRAR);
+            Mensagem.erro(Texto.ERRO_EDITAR);
         }
         produto = null;
+    }
+
+    public void gravarAction() {
+        if (produto == null) {
+            cadastrarProduto();
+        } else {
+            alterarProduto();
+        }
+    }
+
+    public void carregarProdutoAction() throws PropertyVetoException {
+        produto = tableModelProduto.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
+        telaProdutoGerenciar.getTfNome().setText(produto.getNome());
+        telaProdutoGerenciar.getTfCodigoBarras().setText(String.valueOf(produto.getCodBarras()));
+        telaProdutoGerenciar.getTfQuantidade().setText(String.valueOf(produto.getQuantidade()));
+        telaProdutoGerenciar.getTfValor().setText(String.valueOf(produto.getValor()));
+        telaProdutoGerenciar.getCbCategoria().getModel().setSelectedItem(produto.getCategoria());
+        telaProdutoGerenciar.getCbFornecedor().getModel().setSelectedItem(produto.getFornecedor());
+
+        if (produto.getAtivo() == true) {
+            telaProdutoGerenciar.getCheckAtivo().setSelected(true);
+        } else {
+            telaProdutoGerenciar.getCheckAtivo().setSelected(false);
+        }
+    }
+
+    public void desativarProduto() {
+        int retorno = Mensagem.confirmacao(Texto.PERGUNTA_DESATIVAR);
+        if (retorno == JOptionPane.NO_OPTION) {
+            return;
+        }
+        if (retorno == JOptionPane.YES_OPTION) {
+            produto = tableModelProduto.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
+            boolean deletado = fornecedorDao.desativar(produto.getId());
+            if (deletado) {
+                tableModelProduto.remover(telaProdutoGerenciar.getTblProduto().getSelectedRow());
+                telaProdutoGerenciar.getTblProduto().clearSelection();
+                Mensagem.info(Texto.SUCESSO_DESATIVAR);
+            } else {
+                Mensagem.erro(Texto.ERRO_DESATIVAR);
+            }
+        }
+        produto = null;
+    }
+
+    public void pesquisarProdutoAction() {
+        List<Produto> produtosPesquisados = produtoDao.pesquisar(telaProdutoGerenciar.getTfPesquisar().getText());
+        if (produtosPesquisados == null) {
+            tableModelProduto.limpar();
+            produtosPesquisados = produtoDao.pesquisar();
+        } else {
+            tableModelProduto.limpar();
+            tableModelProduto.adicionar(produtosPesquisados);
+        }
+
+    }
+
+    private void limparCampos() {
+        telaProdutoGerenciar.getTfNome().setText("");
+        telaProdutoGerenciar.getTfPesquisar().setText("");
+        telaProdutoGerenciar.getTfQuantidade().setText("");
+        telaProdutoGerenciar.getTfCodigoBarras().setText("");
+        telaProdutoGerenciar.getTfValor().setText("");
+        telaProdutoGerenciar.getCbCategoria().setSelectedIndex(- 1);
+        telaProdutoGerenciar.getCbFornecedor().setSelectedIndex(- 1);
+        telaProdutoGerenciar.getCheckAtivo().setSelected(false);
+        telaProdutoGerenciar.getTfNome().requestFocus();
+    }
+
+    private boolean validarCampos() {
+        if (telaProdutoGerenciar.getTfNome().getText().isEmpty() || telaProdutoGerenciar.getTfCodigoBarras().getText().isEmpty()
+                || telaProdutoGerenciar.getTfQuantidade().getText().isEmpty() || telaProdutoGerenciar.getTfValor().getText().isEmpty()) {
+            telaProdutoGerenciar.getTfNome().requestFocus();
+            return true;
+        }
+        return false;
     }
 }

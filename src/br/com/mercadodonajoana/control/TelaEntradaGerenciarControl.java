@@ -19,7 +19,6 @@ public class TelaEntradaGerenciarControl {
 
     public TelaEntradaGerenciarControl() {
         fornecedorDao = new FornecedorDao();
-        carregarFornecedoresNaCombo();
     }
 
     public void chamarTelaEntradaGerenciar() {
@@ -35,6 +34,7 @@ public class TelaEntradaGerenciarControl {
                 telaEntradaGerenciar.setVisible(true);
             }
         }
+        carregarFornecedoresNaCombo();
     }
 
     private void carregarFornecedoresNaCombo() {

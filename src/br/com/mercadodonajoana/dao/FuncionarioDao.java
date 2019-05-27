@@ -5,9 +5,7 @@
  */
 package br.com.mercadodonajoana.dao;
 
-import br.com.mercadodonajoana.model.Endereco;
 import br.com.mercadodonajoana.model.Funcionario;
-import br.com.mercadodonajoana.model.TipoUsuario;
 import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,8 +19,13 @@ import java.util.List;
  */
 public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
 
+    EnderecoDao enderecoDao;
+    TipoUsuarioDao tipoUsuarioDao;
+
     public FuncionarioDao() {
         super();
+        enderecoDao = new EnderecoDao();
+        tipoUsuarioDao = new TipoUsuarioDao();
     }
 
     @Override
@@ -130,10 +133,8 @@ public class FuncionarioDao extends Dao implements DaoI<Funcionario> {
                 funcionario.setSalario(result.getDouble("salario"));
                 funcionario.setSenha(result.getString("senha"));
                 funcionario.setAtivo(result.getBoolean("ativo"));
-                Endereco endereco = new Endereco();
-                endereco.setId(result.getInt("fk_endereco"));
-                TipoUsuario tipoUsuario = new TipoUsuario();
-                tipoUsuario.setId(result.getInt(result.getInt("fk_tipoUsuario")));
+                funcionario.setEndereco(enderecoDao.pesquisar(result.getInt("fk_endereco")));
+                funcionario.setTipoUsuario(tipoUsuarioDao.pesquisar(result.getInt("fk_tipoUsuario")));
                 lista.add(funcionario);
             }
             return lista;

@@ -19,7 +19,6 @@ public class TelaFuncionarioGerenciarControl {
 
     public TelaFuncionarioGerenciarControl() {
         tipoUsuarioDao = new TipoUsuarioDao();
-        carregarTiposUsuariosNaCombo();
     }
 
     public void chamarTelaFuncionarioGerenciar() {
@@ -35,6 +34,7 @@ public class TelaFuncionarioGerenciarControl {
                 funcionarioGerenciar.setVisible(true);
             }
         }
+        carregarTiposUsuariosNaCombo();
     }
 
     private void carregarTiposUsuariosNaCombo() {

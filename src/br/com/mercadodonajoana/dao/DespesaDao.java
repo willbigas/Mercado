@@ -6,7 +6,6 @@
 package br.com.mercadodonajoana.dao;
 
 import br.com.mercadodonajoana.model.Despesa;
-import br.com.mercadodonajoana.model.TipoDespesa;
 import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -21,11 +20,14 @@ import java.util.List;
  * @author william.mauro
  */
 public class DespesaDao extends Dao implements DaoI<Despesa> {
-
+    
+    TipoDespesaDao tipoDespesaDao;
+    
     public DespesaDao() {
         super();
+        tipoDespesaDao = new TipoDespesaDao();
     }
-
+    
     @Override
     public int inserir(Despesa despesa) {
         String queryInsert = "INSERT INTO despesas(DATACADASTRO, DATAPAGAMENTO, DATAVENCIMENTO, VALORPAGO, CODENTRADA, FK_TIPODESPESA ) VALUES(?, ?, ?, ?, ?, ?)";
@@ -51,7 +53,7 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
             return 0;
         }
     }
-
+    
     @Override
     public boolean alterar(Despesa despesa) {
         String queryUpdate = "UPDATE despesas SET dataCadastro = ?, dataPagamento = ?, dataVencimento = ?, codEntrada = ?, fk_tipoDespesa = ? WHERE ID = ?";
@@ -64,14 +66,14 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
             stmt.setInt(5, despesa.getCodEntrada());
             stmt.setInt(6, despesa.getTipoDespesa().getId());
             stmt.setInt(7, despesa.getId());
-
+            
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return false;
         }
     }
-
+    
     @Override
     public boolean deletar(Despesa despesa) {
         String queryDelete = "DELETE FROM DESPESAS WHERE ID = ?";
@@ -84,7 +86,7 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
             return false;
         }
     }
-
+    
     @Override
     public boolean deletar(int id) {
         String queryDelete = "DELETE FROM DESPESAS WHERE ID = ?";
@@ -97,17 +99,17 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
             return false;
         }
     }
-
+    
     @Override
     public boolean desativar(Despesa despesa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public boolean desativar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public List<Despesa> pesquisar() {
         String querySelect = "SELECT * FROM DESPESAS";
@@ -124,8 +126,7 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
                 despesa.setDataVencimento(result.getDate("dataVencimento"));
                 despesa.setValorPago(result.getDouble("valorPago"));
                 despesa.setCodEntrada(result.getInt("codEntrada"));
-                TipoDespesa tipoDespesa = new TipoDespesa();
-                tipoDespesa.setId(result.getInt("fk_tipoDespesa"));
+                despesa.setTipoDespesa(tipoDespesaDao.pesquisar(result.getInt("fk_tipoDespesa")));
                 lista.add(despesa);
             }
             return lista;
@@ -134,7 +135,7 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
             return null;
         }
     }
-
+    
     @Override
     public List<Despesa> pesquisar(String termo) {
         String querySelectComTermo = "SELECT * FROM despesas WHERE (codEntrada LIKE ?)";
@@ -155,10 +156,10 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
             return null;
         }
     }
-
+    
     @Override
     public Despesa pesquisar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }

@@ -170,7 +170,6 @@ public class EnderecoDao extends Dao implements DaoI<Endereco> {
             stmt = conexao.prepareStatement(querySelect);
             stmt.setInt(1, id);
             ResultSet result = stmt.executeQuery();
-            List<Endereco> lista = new ArrayList<>();
             while (result.next()) {
                 Endereco endereco = new Endereco();
                 endereco.setId(result.getInt("id"));

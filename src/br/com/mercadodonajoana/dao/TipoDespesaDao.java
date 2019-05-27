@@ -138,7 +138,23 @@ public class TipoDespesaDao extends Dao implements DaoI<TipoDespesa> {
 
     @Override
     public TipoDespesa pesquisar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String querySelect = "SELECT * FROM TIPODESPESA WHERE ID = ?";
+        try {
+            PreparedStatement stmt;
+            stmt = conexao.prepareStatement(querySelect);
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            while (result.next()) {
+                TipoDespesa tipoDespesa = new TipoDespesa();
+                tipoDespesa.setId(result.getInt("id"));
+                tipoDespesa.setNome(result.getString("nome"));
+                return tipoDespesa;
+            }
+            return null;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
 }

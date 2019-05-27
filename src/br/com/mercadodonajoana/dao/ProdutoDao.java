@@ -1,7 +1,5 @@
 package br.com.mercadodonajoana.dao;
 
-import br.com.mercadodonajoana.model.Categoria;
-import br.com.mercadodonajoana.model.Fornecedor;
 import br.com.mercadodonajoana.model.Produto;
 import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
@@ -16,13 +14,18 @@ import java.util.List;
  */
 public class ProdutoDao extends Dao implements DaoI<Produto> {
 
+    FornecedorDao fornecedorDao;
+    CategoriaDao categoriaDao;
+
     public ProdutoDao() {
         super();
+        fornecedorDao = new FornecedorDao();
+        categoriaDao = new CategoriaDao();
     }
 
     @Override
     public List<Produto> pesquisar() {
-        String querySelect = "SELECT * FROM PRODUTOS";
+        String querySelect = "SELECT * FROM PRODUTOS WHERE ATIVO = TRUE";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(querySelect);
@@ -36,10 +39,8 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
                 produto.setValor(result.getDouble("valor"));
                 produto.setQuantidade(result.getInt("quantidade"));
                 produto.setAtivo(result.getBoolean("ativo"));
-                Categoria categoria = new Categoria();
-                categoria.setId(result.getInt("fk_categoria"));
-                Fornecedor fornecedor = new Fornecedor();
-                fornecedor.setId(result.getInt("fk_fornecedor"));
+                produto.setCategoria(categoriaDao.pesquisar(result.getInt("fk_categoria")));
+                produto.setFornecedor(fornecedorDao.pesquisar(result.getInt("fk_fornecedor")));
                 lista.add(produto);
             }
             return lista;
@@ -89,8 +90,8 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
             stmt.setInt(4, produto.getQuantidade());
             stmt.setInt(5, produto.getCategoria().getId());
             stmt.setInt(6, produto.getFornecedor().getId());
-            stmt.setInt(7, produto.getId());
-            stmt.setBoolean(8, produto.getAtivo());
+            stmt.setBoolean(7, produto.getAtivo());
+            stmt.setInt(8, produto.getId());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
@@ -111,7 +112,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public List<Produto> pesquisar(String termo) {
-        String querySelectComTermo = "SELECT * FROM PRODUTOS WHERE (NOME like ?, CODIGOBARRAS like?)";
+        String querySelectComTermo = "SELECT * FROM PRODUTOS WHERE (NOME like ?, CODIGOBARRAS like ?)";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");
@@ -122,7 +123,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
                 Produto produto = new Produto();
                 produto.setId(result.getInt("id"));
                 produto.setNome(result.getString("nome"));
-                produto.setCodBarras(result.getInt("CODBARRAS"));
+                produto.setCodBarras(result.getInt("codigoBarras"));
                 lista.add(produto);
             }
             return lista;

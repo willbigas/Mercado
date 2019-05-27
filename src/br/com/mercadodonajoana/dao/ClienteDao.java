@@ -6,7 +6,6 @@
 package br.com.mercadodonajoana.dao;
 
 import br.com.mercadodonajoana.model.Cliente;
-import br.com.mercadodonajoana.model.Endereco;
 import br.com.mercadodonajoana.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,8 +19,11 @@ import java.util.List;
  */
 public class ClienteDao extends Dao implements DaoI<Cliente> {
 
+    EnderecoDao enderecoDao;
+
     public ClienteDao() {
         super();
+        enderecoDao = new EnderecoDao();
     }
 
     @Override
@@ -92,8 +94,7 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
                 cliente.setEmail(result.getString("email"));
                 cliente.setTelefone(result.getString("telefone"));
                 cliente.setAtivo(result.getBoolean("ativo"));
-                Endereco endereco = new Endereco();
-                endereco.setId(result.getInt("fk_endereco"));
+                cliente.setEndereco(enderecoDao.pesquisar(result.getInt("fk_endereco")));
                 lista.add(cliente);
             }
             return lista;
