@@ -184,6 +184,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercadodonajoana/img/developer_32x32.png"))); // NOI18N
         jMenuItem2.setText("Sobre");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem2);
 
         jMenuBar1.add(jMenu7);
@@ -240,6 +245,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void menuItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemVendaActionPerformed
         telaPrincipalControl.chamarTelaVendaAction();
     }//GEN-LAST:event_menuItemVendaActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        telaPrincipalControl.chamarTelaSobreAction();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
