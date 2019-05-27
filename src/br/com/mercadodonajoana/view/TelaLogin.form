@@ -48,8 +48,8 @@
                                               </Group>
                                           </Group>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="tfLogin" pref="222" max="32767" attributes="0"/>
                                               <Component id="tfSenha" max="32767" attributes="0"/>
-                                              <Component id="tfLogin" min="-2" pref="222" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -82,7 +82,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel3" max="32767" attributes="0"/>
-                  <Component id="tfSenha" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="tfSenha" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -134,11 +134,6 @@
         <Property name="columns" type="int" value="12"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="tfSenha">
-      <Properties>
-        <Property name="columns" type="int" value="12"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btEntrar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -166,6 +161,8 @@
           <Image iconType="3" name="/br/com/mercadodonajoana/img/basket_64x64.png"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="tfSenha">
     </Component>
   </SubComponents>
 </Form>
