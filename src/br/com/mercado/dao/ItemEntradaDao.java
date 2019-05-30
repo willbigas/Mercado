@@ -21,6 +21,9 @@ import java.util.List;
  */
 public class ItemEntradaDao extends Dao implements DaoI<ItemEntrada> {
 
+    EntradaDao entradaDao = new EntradaDao();
+    ProdutoDao produtoDao = new ProdutoDao();
+
     public ItemEntradaDao() {
         super();
     }
@@ -155,7 +158,51 @@ public class ItemEntradaDao extends Dao implements DaoI<ItemEntrada> {
 
     @Override
     public ItemEntrada pesquisar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String querySelectComTermo = "SELECT * FROM itemEntrada WHERE id = ?";
+        try {
+            PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                ItemEntrada itemEntrada = new ItemEntrada();
+                itemEntrada.setId(result.getInt("id"));
+                itemEntrada.setNumeroLote(result.getInt("numeroLote"));
+                itemEntrada.setQuantidade(result.getInt("quantidade"));
+                itemEntrada.setValorProduto(result.getDouble("valorProduto"));
+                itemEntrada.setEntrada(entradaDao.pesquisar(result.getInt("fk_entrada")));
+                itemEntrada.setProduto(produtoDao.pesquisar(result.getInt("fk_produto")));
+                return itemEntrada;
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
+    public List<ItemEntrada> pesquisarPorEntrada(int id) {
+        String querySelectComTermo = "SELECT * FROM itemEntrada WHERE fk_entrada = ?";
+        try {
+            PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            List<ItemEntrada> lista = new ArrayList<>();
+            while (result.next()) {
+                ItemEntrada itemEntrada = new ItemEntrada();
+                itemEntrada.setId(result.getInt("id"));
+                itemEntrada.setNumeroLote(result.getInt("numeroLote"));
+                itemEntrada.setQuantidade(result.getInt("quantidade"));
+                itemEntrada.setValorProduto(result.getDouble("valorProduto"));
+                itemEntrada.setEntrada(entradaDao.pesquisar(result.getInt("fk_entrada")));
+                itemEntrada.setProduto(produtoDao.pesquisar(result.getInt("fk_produto")));
+                lista.add(itemEntrada);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
     }
 
 }
