@@ -6,8 +6,6 @@
 package br.com.mercado.dao;
 
 import br.com.mercado.model.Entrada;
-import br.com.mercado.model.ItemEntrada;
-import br.com.mercado.model.Produto;
 import br.com.mercado.interfaces.DaoI;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +21,6 @@ import java.util.List;
 public class EntradaDao extends Dao implements DaoI<Entrada> {
 
     FornecedorDao fornecedorDao = new FornecedorDao();
-    ItemEntradaDao itemEntradaDao = new ItemEntradaDao();
 
     public EntradaDao() {
         super();
@@ -115,7 +112,6 @@ public class EntradaDao extends Dao implements DaoI<Entrada> {
                 entrada.setId(result.getInt("id"));
                 entrada.setDataEntrada(result.getTimestamp("dataEntrada").toLocalDateTime());
                 entrada.setFornecedor(fornecedorDao.pesquisar(result.getInt("fk_fornecedor")));
-                entrada.setItensEntrada(itemEntradaDao.pesquisarPorEntrada(result.getInt("id")));
                 lista.add(entrada);
             }
             return lista;
@@ -138,7 +134,6 @@ public class EntradaDao extends Dao implements DaoI<Entrada> {
                 entrada.setId(result.getInt("id"));
                 entrada.setDataEntrada(result.getTimestamp("dataEntrada").toLocalDateTime());
                 entrada.setFornecedor(fornecedorDao.pesquisar(result.getInt("fk_fornecedor")));
-                entrada.setItensEntrada(itemEntradaDao.pesquisarPorEntrada(result.getInt("id")));
                 lista.add(entrada);
             }
             return lista;
@@ -160,7 +155,6 @@ public class EntradaDao extends Dao implements DaoI<Entrada> {
                 entrada.setId(result.getInt("id"));
                 entrada.setDataEntrada(result.getTimestamp("dataEntrada").toLocalDateTime());
                 entrada.setFornecedor(fornecedorDao.pesquisar(result.getInt("fk_fornecedor")));
-                entrada.setItensEntrada(itemEntradaDao.pesquisarPorEntrada(result.getInt("id")));
                 return entrada;
             } else {
                 return null;

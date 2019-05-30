@@ -3,6 +3,8 @@ package br.com.mercado.view;
 import br.com.mercado.model.Fornecedor;
 import br.com.mercado.control.TelaEntradaGerenciarControl;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -35,17 +37,17 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        tfQuantidade = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblEntrada = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        tfLote = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         cbFornecedor = new javax.swing.JComboBox<>();
         jButton2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        tfValor = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -53,9 +55,9 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblProduto = new javax.swing.JTable();
         jSeparator4 = new javax.swing.JSeparator();
-        jTextField4 = new javax.swing.JTextField();
+        tfPesquisaProduto = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
 
         setClosable(true);
@@ -66,7 +68,7 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
 
         jLabel4.setText("QTD:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblEntrada.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -77,7 +79,7 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblEntrada);
 
         jLabel6.setText("LOTE:");
 
@@ -111,7 +113,7 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
         jButton3.setBorderPainted(false);
         jButton3.setContentAreaFilled(false);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -122,7 +124,7 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tblProduto);
 
         jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
@@ -173,9 +175,9 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
                                             .addComponent(jLabel4))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfLote, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfQuantidade, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(144, 144, 144)
                                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel10))
@@ -184,7 +186,7 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(6, 6, 6)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton3))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -215,22 +217,22 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
                             .addComponent(jButton3)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel5)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel8)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel6)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tfLote, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -273,12 +275,12 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTable tblEntrada;
+    private javax.swing.JTable tblProduto;
+    private javax.swing.JTextField tfLote;
+    private javax.swing.JTextField tfPesquisaProduto;
+    private javax.swing.JTextField tfQuantidade;
+    private javax.swing.JTextField tfValor;
     // End of variables declaration//GEN-END:variables
 
     public JComboBox<Fornecedor> getCbFornecedor() {
@@ -288,5 +290,56 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
     public void setCbFornecedor(JComboBox<Fornecedor> cbFornecedor) {
         this.cbFornecedor = cbFornecedor;
     }
+
+    public JTable getTblEntrada() {
+        return tblEntrada;
+    }
+
+    public void setTblEntrada(JTable tblEntrada) {
+        this.tblEntrada = tblEntrada;
+    }
+
+    public JTable getTblProduto() {
+        return tblProduto;
+    }
+
+    public void setTblProduto(JTable tblProduto) {
+        this.tblProduto = tblProduto;
+    }
+
+    public JTextField getTfLote() {
+        return tfLote;
+    }
+
+    public void setTfLote(JTextField tfLote) {
+        this.tfLote = tfLote;
+    }
+
+    public JTextField getTfPesquisaProduto() {
+        return tfPesquisaProduto;
+    }
+
+    public void setTfPesquisaProduto(JTextField tfPesquisaProduto) {
+        this.tfPesquisaProduto = tfPesquisaProduto;
+    }
+
+    public JTextField getTfQuantidade() {
+        return tfQuantidade;
+    }
+
+    public void setTfQuantidade(JTextField tfQuantidade) {
+        this.tfQuantidade = tfQuantidade;
+    }
+
+    public JTextField getTfValor() {
+        return tfValor;
+    }
+
+    public void setTfValor(JTextField tfValor) {
+        this.tfValor = tfValor;
+    }
+    
+    
+    
 
 }

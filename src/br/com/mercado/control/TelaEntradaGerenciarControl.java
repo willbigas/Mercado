@@ -1,7 +1,11 @@
 package br.com.mercado.control;
 
+import br.com.mercado.dao.EntradaDao;
 import br.com.mercado.dao.FornecedorDao;
+import br.com.mercado.dao.ProdutoDao;
 import br.com.mercado.model.Fornecedor;
+import br.com.mercado.model.tablemodel.EntradaProdutoTableModel;
+import br.com.mercado.model.tablemodel.EntradaTableModel;
 import br.com.mercado.view.TelaEntradaGerenciar;
 import br.com.mercado.view.TelaPrincipal;
 import java.util.List;
@@ -13,12 +17,20 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class TelaEntradaGerenciarControl {
 
-    TelaEntradaGerenciar telaEntradaGerenciar = null;
+    private TelaEntradaGerenciar telaEntradaGerenciar = null;
+    EntradaProdutoTableModel entradaProdutoTableModel;
+    EntradaTableModel entradaTableModel;
     private List<Fornecedor> listFornecedores;
     private FornecedorDao fornecedorDao;
+    private ProdutoDao produtoDao;
+    private EntradaDao entradaDao;
 
     public TelaEntradaGerenciarControl() {
         fornecedorDao = new FornecedorDao();
+        produtoDao = new ProdutoDao();
+        entradaDao = new EntradaDao();
+        entradaProdutoTableModel = new EntradaProdutoTableModel();
+        entradaTableModel = new EntradaTableModel();
     }
 
     public void chamarTelaEntradaGerenciar() {
@@ -35,6 +47,10 @@ public class TelaEntradaGerenciarControl {
             }
         }
         carregarFornecedoresNaCombo();
+        telaEntradaGerenciar.getTblProduto().setModel(entradaProdutoTableModel);
+        entradaProdutoTableModel.adicionar(produtoDao.pesquisar());
+        telaEntradaGerenciar.getTblEntrada().setModel(entradaTableModel);
+        entradaTableModel.adicionar(entradaDao.pesquisar());
     }
 
     private void carregarFornecedoresNaCombo() {
