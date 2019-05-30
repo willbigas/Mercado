@@ -53,14 +53,15 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
 
     @Override
     public boolean alterar(Cliente cliente) {
-        String queryUpdate = "UPDATE clientes SET nome = ?, telefone = ?, email = ?, fk_endereco = ? WHERE ID = ?";
+        String queryUpdate = "UPDATE clientes SET nome = ?, telefone = ?, email = ?, , ativo ? fk_endereco = ? WHERE ID = ?";
         try {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setString(1, cliente.getNome());
             stmt.setString(2, cliente.getTelefone());
             stmt.setString(3, cliente.getEmail());
-            stmt.setInt(4, cliente.getEndereco().getId());
-            stmt.setInt(5, cliente.getId());
+            stmt.setBoolean(4, cliente.getAtivo());
+            stmt.setInt(5, cliente.getEndereco().getId());
+            stmt.setInt(6, cliente.getId());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException ex) {
@@ -81,7 +82,7 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
 
     @Override
     public List<Cliente> pesquisar() {
-        String querySelect = "SELECT * FROM CLIENTES";
+        String querySelect = "SELECT * FROM CLIENTES where ativo = true";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(querySelect);
@@ -106,7 +107,7 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
 
     @Override
     public List<Cliente> pesquisar(String termo) {
-        String querySelectComTermo = "SELECT * FROM clientes WHERE (nome LIKE ?, email LIKE ?, telefone LIKE ?)";
+        String querySelectComTermo = "SELECT * FROM clientes WHERE (nome LIKE ? or email LIKE ? or telefone LIKE ?) and ativo = true";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");
@@ -120,6 +121,8 @@ public class ClienteDao extends Dao implements DaoI<Cliente> {
                 cliente.setNome(result.getString("nome"));
                 cliente.setEmail(result.getString("email"));
                 cliente.setTelefone(result.getString("telefone"));
+                cliente.setAtivo(result.getBoolean("ativo"));
+                cliente.setEndereco(enderecoDao.pesquisar(result.getInt("fk_endereco")));
                 lista.add(cliente);
             }
             return lista;

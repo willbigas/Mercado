@@ -14,7 +14,6 @@ import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
 import br.com.mercado.view.TelaFornecedorGerenciar;
 import br.com.mercado.view.TelaPrincipal;
-import java.beans.PropertyVetoException;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -36,7 +35,6 @@ public class TelaFornecedorGerenciarControl {
         fornecedorDao = new FornecedorDao();
         enderecoDao = new EnderecoDao();
         tableModelFornecedor = new FornecedorTableModel();
-        tableModelFornecedor.adicionar(fornecedorDao.pesquisar());
     }
 
     public void carregarEstadosNaComboBox() {
@@ -59,6 +57,7 @@ public class TelaFornecedorGerenciarControl {
         }
         telaFornecedorGerenciar.getTblFornecedor().setModel(tableModelFornecedor);
         carregarEstadosNaComboBox();
+        tableModelFornecedor.adicionar(fornecedorDao.pesquisar());
     }
 
     private void cadastrarFornecedor() {
@@ -118,8 +117,8 @@ public class TelaFornecedorGerenciarControl {
             fornecedor.setAtivo(false);
         }
     }
-    
-    public void buscaCepEMostraNaTela() {
+
+    public void buscarCepAction() {
         BuscaCepEventos buscaCepEvents = new BuscaCepEventosImpl();
         BuscaCep buscadorDeCep = new BuscaCep();
         try {
@@ -146,7 +145,6 @@ public class TelaFornecedorGerenciarControl {
             numberFormatException.printStackTrace();
         }
     }
-    
 
     public void gravarFornecedorAction() {
         if (fornecedor == null) {
@@ -187,7 +185,7 @@ public class TelaFornecedorGerenciarControl {
         }
     }
 
-    public void carregarFornecedorAction() throws PropertyVetoException {
+    public void carregarFornecedorAction(){
         fornecedor = tableModelFornecedor.pegaObjeto(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
         telaFornecedorGerenciar.getTfNome().setText(fornecedor.getNome());
         telaFornecedorGerenciar.getTfTelefone().setText(fornecedor.getTelefone());

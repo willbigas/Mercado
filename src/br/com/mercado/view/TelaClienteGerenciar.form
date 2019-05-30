@@ -27,7 +27,7 @@
               <EmptySpace min="25" pref="25" max="-2" attributes="0"/>
               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-              <Component id="jTextField10" min="-2" pref="289" max="-2" attributes="0"/>
+              <Component id="tfComplemento" min="-2" pref="289" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btGravar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
@@ -48,7 +48,7 @@
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Component id="tfTelefone" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace min="18" pref="18" max="-2" attributes="0"/>
-                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkAtivo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
@@ -64,7 +64,7 @@
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                       <Component id="tfCep" min="-2" pref="140" max="-2" attributes="0"/>
                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                      <Component id="pesquisarCep" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                   <Component id="jSeparator3" min="-2" pref="552" max="-2" attributes="0"/>
@@ -133,7 +133,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkAtivo" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
@@ -161,7 +161,7 @@
                       <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
                       <Component id="tfCep" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="pesquisarCep" min="-2" max="-2" attributes="0"/>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -209,7 +209,7 @@
                               <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jTextField10" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfComplemento" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
@@ -251,6 +251,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tfPesquisa">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPesquisaKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btVisualizar">
       <Properties>
@@ -264,6 +267,9 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btVisualizarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btDesativar">
       <Properties>
@@ -277,6 +283,9 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btDesativarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btGravar">
       <Properties>
@@ -290,6 +299,9 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btGravarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -303,9 +315,6 @@
       <Properties>
         <Property name="columns" type="int" value="15"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfTelefoneActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
@@ -352,8 +361,11 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+    <Component class="javax.swing.JCheckBox" name="checkAtivo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ativo"/>
       </Properties>
@@ -365,7 +377,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tfClientes">
+        <Component class="javax.swing.JTable" name="tblCliente">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="4" rowCount="4">
@@ -438,7 +450,7 @@
         <Property name="text" type="java.lang.String" value="Compl:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField10">
+    <Component class="javax.swing.JTextField" name="tfComplemento">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value="Campo n&#xe3;o Obrigat&#xf3;rio"/>
       </Properties>
@@ -457,7 +469,7 @@
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator2">
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="pesquisarCep">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/br/com/mercado/img/localizacao_32x32.png"/>
@@ -469,6 +481,9 @@
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pesquisarCepActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="cbEstado">
       <Properties>

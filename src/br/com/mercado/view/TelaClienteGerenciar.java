@@ -6,6 +6,7 @@
 package br.com.mercado.view;
 
 import br.com.mercado.control.TelaClienteGerenciarControl;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -15,7 +16,7 @@ import javax.swing.JTextField;
  * @author Will
  */
 public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
-    
+
     TelaClienteGerenciarControl clienteGerenciarControl;
 
     /**
@@ -24,6 +25,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
     public TelaClienteGerenciar() {
         initComponents();
     }
+
     public TelaClienteGerenciar(TelaClienteGerenciarControl control) {
         initComponents();
         clienteGerenciarControl = control;
@@ -51,9 +53,9 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         tfNome = new javax.swing.JTextField();
         btBuscar = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        checkAtivo = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tfClientes = new javax.swing.JTable();
+        tblCliente = new javax.swing.JTable();
         tfCep = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -64,12 +66,12 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         tfRua = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        tfComplemento = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         tfNumero = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        pesquisarCep = new javax.swing.JButton();
         cbEstado = new javax.swing.JComboBox<>();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel13 = new javax.swing.JLabel();
@@ -81,33 +83,49 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel5.setText("Pesquisar:");
 
+        tfPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfPesquisaKeyReleased(evt);
+            }
+        });
+
         btVisualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/visualizar_32x32.png"))); // NOI18N
         btVisualizar.setText("Visualizar");
         btVisualizar.setBorder(null);
         btVisualizar.setBorderPainted(false);
         btVisualizar.setContentAreaFilled(false);
+        btVisualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVisualizarActionPerformed(evt);
+            }
+        });
 
         btDesativar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/desativar_32x32.png"))); // NOI18N
         btDesativar.setText("Desativar");
         btDesativar.setBorder(null);
         btDesativar.setBorderPainted(false);
         btDesativar.setContentAreaFilled(false);
+        btDesativar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDesativarActionPerformed(evt);
+            }
+        });
 
         btGravar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/save_32x32.png"))); // NOI18N
         btGravar.setText("Gravar");
         btGravar.setBorder(null);
         btGravar.setBorderPainted(false);
         btGravar.setContentAreaFilled(false);
+        btGravar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGravarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setText("Telefone:");
 
         tfTelefone.setColumns(15);
-        tfTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfTelefoneActionPerformed(evt);
-            }
-        });
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel9.setText("E-mail:");
@@ -126,10 +144,15 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
         btBuscar.setBorder(null);
         btBuscar.setBorderPainted(false);
         btBuscar.setContentAreaFilled(false);
+        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btBuscarActionPerformed(evt);
+            }
+        });
 
-        jCheckBox1.setText("Ativo");
+        checkAtivo.setText("Ativo");
 
-        tfClientes.setModel(new javax.swing.table.DefaultTableModel(
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -140,7 +163,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tfClientes);
+        jScrollPane1.setViewportView(tblCliente);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setText("Buscar Cep:");
@@ -162,16 +185,21 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setText("Compl:");
 
-        jTextField10.setToolTipText("Campo não Obrigatório");
+        tfComplemento.setToolTipText("Campo não Obrigatório");
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel12.setText("Numero:");
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/localizacao_32x32.png"))); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
+        pesquisarCep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/localizacao_32x32.png"))); // NOI18N
+        pesquisarCep.setText("Buscar");
+        pesquisarCep.setBorder(null);
+        pesquisarCep.setBorderPainted(false);
+        pesquisarCep.setContentAreaFilled(false);
+        pesquisarCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pesquisarCepActionPerformed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 10)); // NOI18N
         jLabel13.setText("[Informações de Endereço]");
@@ -187,7 +215,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel11)
                 .addGap(6, 6, 6)
-                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btGravar)
                 .addGap(20, 20, 20))
@@ -206,7 +234,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                         .addGap(6, 6, 6)
                         .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jCheckBox1))
+                        .addComponent(checkAtivo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel9)
@@ -220,7 +248,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                         .addGap(6, 6, 6)
                         .addComponent(tfCep, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(6, 6, 6)
-                        .addComponent(jButton1))
+                        .addComponent(pesquisarCep))
                     .addComponent(jLabel13)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
@@ -279,7 +307,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                         .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jCheckBox1)))
+                        .addComponent(checkAtivo)))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -299,7 +327,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(tfCep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1))
+                    .addComponent(pesquisarCep))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -336,7 +364,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel11))
-                            .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(39, 39, 39)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
@@ -361,9 +389,35 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTelefoneActionPerformed
+    private void pesquisarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarCepActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfTelefoneActionPerformed
+        clienteGerenciarControl.buscarCepAction();
+    }//GEN-LAST:event_pesquisarCepActionPerformed
+
+    private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
+        // TODO add your handling code here:
+        clienteGerenciarControl.gravarClienteAction();
+    }//GEN-LAST:event_btGravarActionPerformed
+
+    private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
+        // TODO add your handling code here:
+        clienteGerenciarControl.carregarClienteAction();
+    }//GEN-LAST:event_btVisualizarActionPerformed
+
+    private void btDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDesativarActionPerformed
+        // TODO add your handling code here:
+        clienteGerenciarControl.desativarClienteAction();
+    }//GEN-LAST:event_btDesativarActionPerformed
+
+    private void tfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisaKeyReleased
+        // TODO add your handling code here:
+        clienteGerenciarControl.pesquisarClienteAction();
+    }//GEN-LAST:event_tfPesquisaKeyReleased
+
+    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        // TODO add your handling code here:
+        clienteGerenciarControl.pesquisarClienteAction();
+    }//GEN-LAST:event_btBuscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -372,8 +426,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
     private javax.swing.JButton btGravar;
     private javax.swing.JButton btVisualizar;
     private javax.swing.JComboBox<String> cbEstado;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox checkAtivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -392,11 +445,12 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField10;
+    private javax.swing.JButton pesquisarCep;
+    private javax.swing.JTable tblCliente;
     private javax.swing.JTextField tfBairro;
     private javax.swing.JTextField tfCep;
     private javax.swing.JTextField tfCidade;
-    private javax.swing.JTable tfClientes;
+    private javax.swing.JTextField tfComplemento;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfNumero;
@@ -438,11 +492,11 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
     }
 
     public JTable getTfClientes() {
-        return tfClientes;
+        return tblCliente;
     }
 
     public void setTfClientes(JTable tfClientes) {
-        this.tfClientes = tfClientes;
+        this.tblCliente = tfClientes;
     }
 
     public JTextField getTfEmail() {
@@ -493,5 +547,28 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
         this.tfTelefone = tfTelefone;
     }
 
+    public JCheckBox getCheckAtivo() {
+        return checkAtivo;
+    }
+
+    public void setCheckAtivo(JCheckBox checkAtivo) {
+        this.checkAtivo = checkAtivo;
+    }
+
+    public JTextField getTfComplemento() {
+        return tfComplemento;
+    }
+
+    public void setTfComplemento(JTextField tfComplemento) {
+        this.tfComplemento = tfComplemento;
+    }
+
+    public JTable getTblCliente() {
+        return tblCliente;
+    }
+
+    public void setTblCliente(JTable tblCliente) {
+        this.tblCliente = tblCliente;
+    }
 
 }
