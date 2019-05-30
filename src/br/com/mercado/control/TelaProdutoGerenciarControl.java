@@ -55,7 +55,8 @@ public class TelaProdutoGerenciarControl {
         telaProdutoGerenciar.getTblProduto().setModel(produtoTableModel);
         carregarFornecedoresNaCombo();
         carregarCategoriasNaCombo();
-         produtoTableModel.adicionar(produtoDao.pesquisar());
+        produtoTableModel.limpar();
+        produtoTableModel.adicionar(produtoDao.pesquisar());
         telaProdutoGerenciar.getTfNome().requestFocus();
     }
 
@@ -116,7 +117,7 @@ public class TelaProdutoGerenciarControl {
         produto.setValor(Double.valueOf(telaProdutoGerenciar.getTfValor().getText()));
         produto.setCategoria((Categoria) telaProdutoGerenciar.getCbCategoria().getSelectedItem());
         produto.setFornecedor((Fornecedor) telaProdutoGerenciar.getCbFornecedor().getSelectedItem());
-        
+
         linhaSelecionada = telaProdutoGerenciar.getTblProduto().getSelectedRow();
         boolean alterado = produtoDao.alterar(produto);
 

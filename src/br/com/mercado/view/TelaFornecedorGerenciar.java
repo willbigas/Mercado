@@ -6,7 +6,6 @@
 package br.com.mercado.view;
 
 import br.com.mercado.control.TelaFornecedorGerenciarControl;
-import java.beans.PropertyVetoException;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -377,11 +376,7 @@ public class TelaFornecedorGerenciar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btGravarActionPerformed
 
     private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
-        try {
             fornecedorGerenciarControl.carregarFornecedorAction();
-        } catch (PropertyVetoException ex) {
-            System.out.println(ex.getMessage());
-        }
     }//GEN-LAST:event_btVisualizarActionPerformed
 
     private void btDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDesativarActionPerformed

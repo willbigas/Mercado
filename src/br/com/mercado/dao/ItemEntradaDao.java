@@ -39,7 +39,6 @@ public class ItemEntradaDao extends Dao implements DaoI<ItemEntrada> {
             stmt.setInt(3, itemEntrada.getQuantidade());
             stmt.setInt(4, itemEntrada.getProduto().getId());
             stmt.setInt(5, itemEntrada.getEntrada().getId());
-
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
                 res = stmt.getGeneratedKeys();
@@ -122,11 +121,9 @@ public class ItemEntradaDao extends Dao implements DaoI<ItemEntrada> {
                 itemEntrada.setNumeroLote(result.getInt("numeroLote"));
                 itemEntrada.setQuantidade(result.getInt("quantidade"));
                 itemEntrada.setValorProduto(result.getDouble("valorProduto"));
-                Produto produto = new Produto();
-                produto.setId(result.getInt("fk_produto"));
-                Entrada entrada = new Entrada();
-                entrada.setId(result.getInt("fk_entrada"));
-                lista.add(itemEntrada);
+                itemEntrada.setEntrada(entradaDao.pesquisar(result.getInt("fk_entrada")));
+                itemEntrada.setProduto(produtoDao.pesquisar(result.getInt("fk_produto")));
+
             }
             return lista;
         } catch (SQLException ex) {
@@ -147,6 +144,10 @@ public class ItemEntradaDao extends Dao implements DaoI<ItemEntrada> {
                 ItemEntrada itemEntrada = new ItemEntrada();
                 itemEntrada.setId(result.getInt("id"));
                 itemEntrada.setNumeroLote(result.getInt("numeroLote"));
+                itemEntrada.setQuantidade(result.getInt("quantidade"));
+                itemEntrada.setValorProduto(result.getDouble("valorProduto"));
+                itemEntrada.setEntrada(entradaDao.pesquisar(result.getInt("fk_entrada")));
+                itemEntrada.setProduto(produtoDao.pesquisar(result.getInt("fk_produto")));
                 lista.add(itemEntrada);
             }
             return lista;

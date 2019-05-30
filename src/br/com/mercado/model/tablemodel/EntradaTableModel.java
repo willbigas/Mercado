@@ -2,6 +2,7 @@ package br.com.mercado.model.tablemodel;
 
 import br.com.mercado.model.Entrada;
 import br.com.mercado.interfaces.AcoesTableModel;
+import br.com.mercado.model.ItemEntrada;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,21 +13,23 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author william.mauro
  */
-public class EntradaTableModel extends AbstractTableModel implements AcoesTableModel<Entrada>{
-    
-    private static final int CODIGO = 0;
-    private static final int FORNECEDOR = 1;
-    private static final int DATA_ENTRADA = 2;
+public class EntradaTableModel extends AbstractTableModel implements AcoesTableModel<ItemEntrada> {
 
-    private List<Entrada> linhas;
-    private String[] COLUNAS = {"Código", "Fornecedor", "DataEntrada"};
+    private static final int EAN13 = 0;
+    private static final int NOME_PRODUTO = 1;
+    private static final int QUANTIDADE = 2;
+    private static final int VALOR_PRODUTO = 3;
+    private static final int NUMERO_LOTE = 4;
+
+    private List<ItemEntrada> linhas;
+    private String[] COLUNAS = {"Ean13", "Produto", "Quantidade", "Valor Unitário", "Numero Lote"};
 
     public EntradaTableModel() {
         linhas = new ArrayList<>();
     }
 
-    public EntradaTableModel(List<Entrada> listEntradas) {
-        linhas = new ArrayList<>(listEntradas);
+    public EntradaTableModel(List<ItemEntrada> listItemEntradas) {
+        linhas = new ArrayList<>(listItemEntradas);
     }
 
     @Override
@@ -47,12 +50,16 @@ public class EntradaTableModel extends AbstractTableModel implements AcoesTableM
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
-            case CODIGO:
+            case EAN13:
                 return Integer.class;
-            case FORNECEDOR:
+            case NOME_PRODUTO:
                 return String.class;
-            case DATA_ENTRADA:
-                return Date.class;
+            case QUANTIDADE:
+                return Integer.class;
+            case VALOR_PRODUTO:
+                return Double.class;
+            case NUMERO_LOTE:
+                return Integer.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -60,14 +67,18 @@ public class EntradaTableModel extends AbstractTableModel implements AcoesTableM
 
     @Override
     public Object getValueAt(int linha, int coluna) {
-        Entrada entrada = linhas.get(linha);
+        ItemEntrada itemEntrada = linhas.get(linha);
         switch (coluna) {
-            case CODIGO:
-                return entrada.getId();
-            case FORNECEDOR:
-                return entrada.getFornecedor().getNome();
-            case DATA_ENTRADA:
-                return entrada.getDataEntrada();
+            case EAN13:
+                return itemEntrada.getProduto().getCodBarras();
+            case NOME_PRODUTO:
+                return itemEntrada.getProduto().getNome();
+            case QUANTIDADE:
+                return itemEntrada.getQuantidade();
+            case VALOR_PRODUTO:
+                return itemEntrada.getValorProduto();
+            case NUMERO_LOTE:
+                return itemEntrada.getNumeroLote();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -75,16 +86,22 @@ public class EntradaTableModel extends AbstractTableModel implements AcoesTableM
 
     @Override
     public void setValueAt(Object valor, int linha, int coluna) {
-        Entrada entrada = linhas.get(linha);
+        ItemEntrada itemEntrada = linhas.get(linha);
         switch (coluna) {
-            case CODIGO:
-                entrada.setId(Integer.valueOf((String) valor));
+            case EAN13:
+                itemEntrada.getProduto().setCodBarras(Integer.valueOf((String) valor));
                 break;
-            case FORNECEDOR:
-                entrada.getFornecedor().setNome((String) valor);
+            case NOME_PRODUTO:
+                itemEntrada.getProduto().setNome((String) valor);
                 break;
-            case DATA_ENTRADA:
-                entrada.setDataEntrada((LocalDateTime) valor);
+            case QUANTIDADE:
+                itemEntrada.setQuantidade((Integer) valor);
+                break;
+            case VALOR_PRODUTO:
+                itemEntrada.setValorProduto((Double) valor);
+                break;
+            case NUMERO_LOTE:
+                itemEntrada.setNumeroLote((Integer) valor);
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -95,22 +112,22 @@ public class EntradaTableModel extends AbstractTableModel implements AcoesTableM
     }
 
     @Override
-    public Entrada pegaObjeto(int indiceLinha) {
+    public ItemEntrada pegaObjeto(int indiceLinha) {
         return linhas.get(indiceLinha);
     }
 
     @Override
-    public void adicionar(Entrada entrada) {
-        linhas.add(entrada);
+    public void adicionar(ItemEntrada itemEntrada) {
+        linhas.add(itemEntrada);
         int ultimoIndice = getRowCount() - 1; // linhas -1
         fireTableRowsInserted(ultimoIndice, ultimoIndice); // atualiza insert
     }
 
     @Override
-    public void adicionar(List<Entrada> entradas) {
+    public void adicionar(List<ItemEntrada> itemEntradas) {
         int indice = getRowCount();
-        linhas.addAll(entradas);
-        fireTableRowsInserted(indice, indice + entradas.size());
+        linhas.addAll(itemEntradas);
+        fireTableRowsInserted(indice, indice + itemEntradas.size());
         fireTableDataChanged();
     }
 
@@ -129,15 +146,15 @@ public class EntradaTableModel extends AbstractTableModel implements AcoesTableM
     }
 
     @Override
-    public void atualizar(int indiceLinha, Entrada entrada) {
-        linhas.set(indiceLinha, entrada);
+    public void atualizar(int indiceLinha, ItemEntrada itemEntrada) {
+        linhas.set(indiceLinha, itemEntrada);
         fireTableRowsUpdated(indiceLinha, indiceLinha); // atualiza delete
     }
-
+                    
     @Override
     public void limpar() {
         linhas.clear();
         fireTableDataChanged(); // atualiza toda tabela.
     }
-    
+
 }

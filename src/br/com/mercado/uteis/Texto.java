@@ -19,6 +19,8 @@ public class Texto {
     public static final String SUCESSO_DELETAR = "Excluido com Sucesso!";
 
     public static final String SUCESSO_DESATIVAR = "Desativado com Sucesso!";
+    
+    public static final String SUCESSO_REMOVER = "Sucesso ao remover!";
 
     // Mensagens de Erro Padrões
     public static final String ERRO_DELETAR = "Erro ao excluir";
@@ -48,9 +50,16 @@ public class Texto {
 
     public static final String PERGUNTA_EDITAR = "Você deseja Realmente editar ";
     
+    public static final String PERGUNTA_REMOVER_ITEM_ENTRADA = "Você deseja remover este item da lista de entradas?";
+    
     
     public static final String ERRO_USUARIO = "Usuário não encontrado!";
     
     public static final String SENHA_USUARIO = "A senha não bate com o login de usuário encontrado!";
+    
+    
+    public static final String ERRO_INTERFACE = "Atenção , Este sistema operacional "
+            + "não suporta a mudança de interface pela JVM , "
+            + "por favor contate o desenvolvedor.";
 
 }

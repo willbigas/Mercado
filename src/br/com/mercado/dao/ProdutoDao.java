@@ -124,6 +124,11 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
                 produto.setId(result.getInt("id"));
                 produto.setNome(result.getString("nome"));
                 produto.setCodBarras(result.getInt("codigoBarras"));
+                produto.setValor(result.getDouble("valor"));
+                produto.setQuantidade(result.getInt("quantidade"));
+                produto.setAtivo(result.getBoolean("ativo"));
+                produto.setCategoria(categoriaDao.pesquisar(result.getInt("fk_categoria")));
+                produto.setFornecedor(fornecedorDao.pesquisar(result.getInt("fk_fornecedor")));
                 lista.add(produto);
             }
             return lista;
@@ -136,7 +141,30 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public Produto pesquisar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String querySelectComTermo = "SELECT * FROM PRODUTOS WHERE id = ?";
+        try {
+            PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
+            stmt.setInt(1, id);
+            ResultSet result = stmt.executeQuery();
+            if (result.next()) {
+                Produto produto = new Produto();
+                produto.setId(result.getInt("id"));
+                produto.setNome(result.getString("nome"));
+                produto.setCodBarras(result.getInt("codigoBarras"));
+                produto.setValor(result.getDouble("valor"));
+                produto.setQuantidade(result.getInt("quantidade"));
+                produto.setAtivo(result.getBoolean("ativo"));
+                produto.setCategoria(categoriaDao.pesquisar(result.getInt("fk_categoria")));
+                produto.setFornecedor(fornecedorDao.pesquisar(result.getInt("fk_fornecedor")));
+                return produto;
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+
     }
 
     @Override

@@ -57,6 +57,7 @@ public class TelaFornecedorGerenciarControl {
         }
         telaFornecedorGerenciar.getTblFornecedor().setModel(tableModelFornecedor);
         carregarEstadosNaComboBox();
+        tableModelFornecedor.limpar();
         tableModelFornecedor.adicionar(fornecedorDao.pesquisar());
     }
 

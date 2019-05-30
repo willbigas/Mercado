@@ -15,6 +15,7 @@ public class EntradaProdutoTableModel extends AbstractTableModel implements Acoe
     private static final int EAN13 = 0;
     private static final int NOME = 1;
     private static final int CATEGORIA = 2;
+    
 
     private List<Produto> linhas;
     
