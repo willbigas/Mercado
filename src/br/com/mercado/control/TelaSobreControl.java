@@ -33,7 +33,7 @@ public class TelaSobreControl {
             Desktop desktop = null;
             //Primeiro verificamos se é possível a integração com o desktop
             if (!Desktop.isDesktopSupported()) {
-                throw new IllegalStateException("Não consegui acessar sua area de Trabalho");
+                throw new IllegalStateException("Erro ao acessar sua area de Trabalho , Contate o administrador do sistema.");
             }
             desktop = Desktop.getDesktop();
             //Agora vemos se é possível disparar o browser default.

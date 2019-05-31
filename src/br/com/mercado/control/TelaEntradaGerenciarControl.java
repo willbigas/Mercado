@@ -63,6 +63,7 @@ public class TelaEntradaGerenciarControl {
         }
         carregarFornecedoresNaCombo();
         telaEntradaGerenciar.getTblProduto().setModel(entradaProdutoTableModel);
+        entradaProdutoTableModel.limpar();
         entradaProdutoTableModel.adicionar(produtoDao.pesquisar());
         telaEntradaGerenciar.getTblEntrada().setModel(entradaTableModel);
     }

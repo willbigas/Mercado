@@ -53,6 +53,7 @@ public class TelaClienteGerenciarControl {
         }
         telaClienteGerenciar.getTblCliente().setModel(clienteTableModel);
         carregarEstadosNaComboBox();
+        clienteTableModel.limpar();
         clienteTableModel.adicionar(clienteDao.pesquisar());
     }
 

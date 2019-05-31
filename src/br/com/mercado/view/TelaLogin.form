@@ -134,6 +134,10 @@
       <Properties>
         <Property name="columns" type="int" value="12"/>
       </Properties>
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfLoginFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfLoginFocusLost"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btEntrar">
       <Properties>
@@ -164,6 +168,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="tfSenha">
+      <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfSenhaFocusGained"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfSenhaFocusLost"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

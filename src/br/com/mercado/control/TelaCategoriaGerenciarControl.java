@@ -25,6 +25,7 @@ public class TelaCategoriaGerenciarControl {
     public TelaCategoriaGerenciarControl() {
         categoriaDao = new CategoriaDao();
         categoriaTableModel = new CategoriaTableModel();
+        categoriaTableModel.limpar();
         categoriaTableModel.adicionar(categoriaDao.pesquisar());
     }
 
