@@ -7,6 +7,7 @@ package br.com.mercado.view;
 
 import br.com.mercado.control.TelaCategoriaGerenciarControl;
 import br.com.mercado.factory.Conexao;
+import br.com.mercado.uteis.Relatorio;
 import java.sql.Connection;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
@@ -211,15 +212,15 @@ public class TelaCategoriaGerenciar extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Connection con = Conexao.getConexao();
         String src = "D:\\GitHub\\Mercado\\reports\\MyReports\\categoria.jasper";
-        JasperPrint jasperPrint = null;
-        try {
-            jasperPrint = JasperFillManager.fillReport(src , null , con);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório de categorias /n " + e);
-        }
-        JasperViewer.viewReport(jasperPrint);
+        Relatorio.chamarRelatorio(src);
+//        JasperPrint jasperPrint = null;
+//        try {
+//            jasperPrint = JasperFillManager.fillReport(src , null , con);
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "Erro ao gerar relatório de categorias /n " + e);
+//        }
+//        JasperViewer.viewReport(jasperPrint);
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
