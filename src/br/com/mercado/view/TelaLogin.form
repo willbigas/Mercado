@@ -133,11 +133,10 @@
     <Component class="javax.swing.JTextField" name="tfLogin">
       <Properties>
         <Property name="columns" type="int" value="12"/>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dialog" size="14" style="0"/>
+        </Property>
       </Properties>
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfLoginFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfLoginFocusLost"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btEntrar">
       <Properties>
@@ -168,10 +167,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="tfSenha">
-      <Events>
-        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfSenhaFocusGained"/>
-        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="tfSenhaFocusLost"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

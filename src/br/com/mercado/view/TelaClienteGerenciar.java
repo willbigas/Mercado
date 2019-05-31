@@ -6,6 +6,7 @@
 package br.com.mercado.view;
 
 import br.com.mercado.control.TelaClienteGerenciarControl;
+import br.com.mercado.uteis.InterfaceJanela;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -29,6 +30,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
     public TelaClienteGerenciar(TelaClienteGerenciarControl control) {
         initComponents();
         clienteGerenciarControl = control;
+        InterfaceJanela.alteraIconePrincipaldoJInternalFrame(this, "br/com/Mercado/img/clientes_32x32.png");
     }
 
     /**

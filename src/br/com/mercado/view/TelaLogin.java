@@ -61,14 +61,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/lock_32x32.png"))); // NOI18N
 
         tfLogin.setColumns(12);
-        tfLogin.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tfLoginFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tfLoginFocusLost(evt);
-            }
-        });
+        tfLogin.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
 
         btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/entrar_32x32.png"))); // NOI18N
         btEntrar.setToolTipText("Entrar...");
@@ -84,15 +77,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel4.setText("Esqueceu sua senha?");
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/basket_64x64.png"))); // NOI18N
-
-        tfSenha.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tfSenhaFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                tfSenhaFocusLost(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,25 +143,6 @@ public class TelaLogin extends javax.swing.JFrame {
         loginControl.acessarTelaPrincipalAction();
 
     }//GEN-LAST:event_btEntrarActionPerformed
-
-    private void tfLoginFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfLoginFocusLost
-        // TODO add your handling code here:
-        tfLogin.setText("Ex: jose@hotmail.com");
-        tfLogin.setForeground(Color.GRAY);
-    }//GEN-LAST:event_tfLoginFocusLost
-
-    private void tfLoginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfLoginFocusGained
-        // TODO add your handling code here:
-        tfLogin.setText("");
-    }//GEN-LAST:event_tfLoginFocusGained
-
-    private void tfSenhaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfSenhaFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfSenhaFocusLost
-
-    private void tfSenhaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfSenhaFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfSenhaFocusGained
 
     /**
      * @param args the command line arguments

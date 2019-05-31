@@ -88,18 +88,20 @@
                                           <Component id="tfNumero" max="32767" attributes="0"/>
                                           <Component id="cbEstado" min="-2" pref="64" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfCidade" min="-2" pref="127" max="-2" attributes="0"/>
-                                          </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="tfBairro" min="-2" pref="127" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="tfCidade" max="32767" attributes="0"/>
+                                          <Component id="tfBairro" pref="127" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="tfRua" alignment="0" max="32767" attributes="0"/>

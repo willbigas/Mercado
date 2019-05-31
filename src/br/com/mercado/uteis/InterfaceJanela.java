@@ -10,7 +10,9 @@ import java.awt.Toolkit;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -85,6 +87,11 @@ public class InterfaceJanela {
         url = jframe.getClass().getResource(enderecoArq);
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         jframe.setIconImage(imagemTitulo);
+    }
+    
+    public static void alteraIconePrincipaldoJInternalFrame (JInternalFrame internalFrame , String enderecoArq) {
+         ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource(enderecoArq));
+        internalFrame.setFrameIcon(icon);
     }
       
 }

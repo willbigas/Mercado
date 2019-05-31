@@ -3,6 +3,7 @@ package br.com.mercado.view;
 import br.com.mercado.model.Categoria;
 import br.com.mercado.model.Fornecedor;
 import br.com.mercado.control.TelaProdutoGerenciarControl;
+import br.com.mercado.uteis.InterfaceJanela;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -29,6 +30,8 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
     public TelaProdutoGerenciar(TelaProdutoGerenciarControl control) {
         initComponents();
         telaProdutoGerenciarControl = control;
+        InterfaceJanela.alteraIconePrincipaldoJInternalFrame(this, "br/com/Mercado/img/produto_32x32.png");
+
     }
 
     /**
