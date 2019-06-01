@@ -144,6 +144,8 @@ public class TelaEntradaGerenciarControl {
             itemEntradaDao.inserir(umItemEntradaDaTabela);
 
         }
+        
+        
 
         JOptionPane.showMessageDialog(null, "Itens gravados com sucesso");
 

@@ -19,6 +19,8 @@ public class Despesa {
     private LocalDateTime dataPagamento;
     private Date dataVencimento;
     private Double valorPago;
+    private Double valorPagoRestante;
+    private Boolean pago;
     private Integer codEntrada;
     private TipoDespesa tipoDespesa;
 
@@ -60,6 +62,22 @@ public class Despesa {
 
     public void setValorPago(Double valorPago) {
         this.valorPago = valorPago;
+    }
+
+    public Double getValorPagoRestante() {
+        return valorPagoRestante;
+    }
+
+    public void setValorPagoRestante(Double valorPagoRestante) {
+        this.valorPagoRestante = valorPagoRestante;
+    }
+
+    public Boolean getPago() {
+        return pago;
+    }
+
+    public void setPago(Boolean pago) {
+        this.pago = pago;
     }
 
     public Integer getCodEntrada() {

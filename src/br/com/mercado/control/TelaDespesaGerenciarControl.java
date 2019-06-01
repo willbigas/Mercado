@@ -5,21 +5,34 @@
  */
 package br.com.mercado.control;
 
+import br.com.mercado.dao.DespesaDao;
+import br.com.mercado.dao.TipoDespesaDao;
+import br.com.mercado.model.Despesa;
+import br.com.mercado.model.TipoDespesa;
+import br.com.mercado.uteis.Mensagem;
+import br.com.mercado.uteis.Texto;
 import br.com.mercado.view.TelaDespesaGerenciar;
 import br.com.mercado.view.TelaPrincipal;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
  * @author William
  */
 public class TelaDespesaGerenciarControl {
-    
-    
+
     TelaDespesaGerenciar telaDespesaGerenciar;
+    TipoDespesa tipoDespesa;
+    TipoDespesaDao tipoDespesaDao;
+    Despesa despesa;
+    DespesaDao despesaDao;
 
     public TelaDespesaGerenciarControl() {
+        tipoDespesaDao = new TipoDespesaDao();
+        despesaDao = new DespesaDao();
     }
-    
+
     public void chamarTelaDespesaGerenciar() {
         if (telaDespesaGerenciar == null) { // se tiver nulo chama janela normalmente
             telaDespesaGerenciar = new TelaDespesaGerenciar(this);
@@ -34,4 +47,29 @@ public class TelaDespesaGerenciarControl {
             }
         }
     }
+
+    public void criarDespesa(Integer codEntrada, Date dataVencimento) {
+        despesa = new Despesa();
+        despesa.setDataCadastro(LocalDateTime.now());
+        despesa.setDataPagamento(null);
+        despesa.setDataVencimento(dataVencimento);
+        despesa.setValorPago(null);
+        
+        if (codEntrada != null) {
+            despesa.setTipoDespesa(tipoDespesaDao.pesquisar(1)); // retorna o tipo Fornecedor
+            despesa.setCodEntrada(codEntrada);
+        }
+        
+        if (codEntrada == null) {
+            despesa.setTipoDespesa(tipoDespesaDao.pesquisar(2)); // retorna o tipo Funcionario
+        }
+        
+        int inserido = despesaDao.inserir(despesa);
+        if (inserido != 0) {
+            Mensagem.info(Texto.SUCESSO_CADASTRAR);
+        } else {
+            Mensagem.erro(Texto.ERRO_CADASTRAR);
+        }
+    }
+
 }

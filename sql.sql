@@ -126,7 +126,9 @@ id INT(11) not null auto_increment,
 dataCadastro datetime NOT NULL,
 dataPagamento datetime NOT NULL,
 dataVencimento date NOT NULL,
-valorPago decimal(10,2) NOT NULL,
+valorPago decimal(10,2),
+valorPagoRestante decimal(10,2) NOT NULL,
+pago boolean,
 codEntrada int(9),
 fk_tipoDespesa int,
 PRIMARY KEY (id),
@@ -141,8 +143,8 @@ INSERT INTO `mercado`.`enderecos` (`id`, `cep`, `estado`, `cidade`, `bairro`, `r
 INSERT INTO `mercado`.`usuarios` (`id`, `nome`, `pis`, `salario`, `telefone`, `email`, `senha`, `ativo`, `fk_endereco`, `fk_tipoUsuario`) VALUES ('1', 'William Bigas Mauro', '12345789', '4500.00', '30337442', 'admin', '1234', '1', '1', '1');
 INSERT INTO `mercado`.`usuarios` (`id`, `nome`, `pis`, `salario`, `telefone`, `email`, `senha`, `ativo`, `fk_endereco`, `fk_tipoUsuario`) VALUES ('2', 'Agostinho Detofano Junior', '123456789', '3500.00', '996822475', 'caixa', '1234', '1', '2', '2');
 
-INSERT INTO `mercado`.`usuarios` (`id`, `nome`, `pis`, `salario`, `telefone`, `email`, `senha`, `ativo`, `fk_endereco`, `fk_tipoUsuario`) VALUES ('1', 'William Bigas Mauro', '12345789', '4500.00', '30337442', 'admin', '1234', '1', '1', '1');
-INSERT INTO `mercado`.`usuarios` (`id`, `nome`, `pis`, `salario`, `telefone`, `email`, `senha`, `ativo`, `fk_endereco`, `fk_tipoUsuario`) VALUES ('2', 'Agostinho Detofano Junior', '123456789', '3500.00', '996822475', 'caixa', '1234', '1', '2', '2');
+INSERT INTO `mercado`.`tipodespesa` (`id`, `nome`) VALUES ('1', 'Fornecedor');
+INSERT INTO `mercado`.`tipodespesa` (`id`, `nome`) VALUES ('2', 'Funcionário');
 
 
 select * from categorias;
