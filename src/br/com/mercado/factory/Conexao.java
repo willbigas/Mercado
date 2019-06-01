@@ -18,6 +18,7 @@ public class Conexao {
     public static Connection getConexao() {
         if (conexao == null) {
             try {
+                DriverManager.registerDriver(new com.mysql.jdbc.Driver());
                 conexao = DriverManager.getConnection(URL, USER, PASS);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
