@@ -1,13 +1,14 @@
 package br.com.mercado.view;
 
 import br.com.mercado.control.TelaPrincipalControl;
+import br.com.mercado.uteis.Relatorio;
 
 /**
  *
  * @author William
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-    
+
     TelaPrincipalControl telaPrincipalControl;
 
     /**
@@ -44,6 +45,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuFinanceiro = new javax.swing.JMenu();
         menuItemReceita = new javax.swing.JMenuItem();
         menuItemDespesa = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        menuItemRelatorioClientes = new javax.swing.JMenuItem();
+        menuItemRelatorioCategorias = new javax.swing.JMenuItem();
         menuSobre = new javax.swing.JMenu();
         menuItemAjuda = new javax.swing.JMenuItem();
         menuItemSobre = new javax.swing.JMenuItem();
@@ -191,6 +195,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuFinanceiro);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/relatorio_32x32.png"))); // NOI18N
+        jMenu1.setText("Relatórios");
+
+        menuItemRelatorioClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/clientes_32x32.png"))); // NOI18N
+        menuItemRelatorioClientes.setText("Clientes");
+        menuItemRelatorioClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRelatorioClientesActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemRelatorioClientes);
+
+        menuItemRelatorioCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/categoria_32x32.png"))); // NOI18N
+        menuItemRelatorioCategorias.setText("Categorias");
+        menuItemRelatorioCategorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRelatorioCategoriasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemRelatorioCategorias);
+
+        jMenuBar1.add(jMenu1);
+
         menuSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/info_32x32.png"))); // NOI18N
         menuSobre.setText("Sobre");
 
@@ -233,7 +260,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemGerenciarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarFuncionarioActionPerformed
-       telaPrincipalControl.chamarTelaGerenciarFuncionarioAction();
+        telaPrincipalControl.chamarTelaGerenciarFuncionarioAction();
     }//GEN-LAST:event_menuItemGerenciarFuncionarioActionPerformed
 
     private void menuItemGerenciarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGerenciarProdutoActionPerformed
@@ -272,13 +299,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void menuItemReceitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemReceitaActionPerformed
         // TODO add your handling code here:
         telaPrincipalControl.chamarTelaReceitaGerenciarAction();
-        
+
     }//GEN-LAST:event_menuItemReceitaActionPerformed
 
     private void menuItemDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemDespesaActionPerformed
         // TODO add your handling code here:
         telaPrincipalControl.chamarTelaDespesaGerenciarAction();
     }//GEN-LAST:event_menuItemDespesaActionPerformed
+
+    private void menuItemRelatorioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioClientesActionPerformed
+        // TODO add your handling code here:
+        String src = "D:\\GitHub\\Mercado\\reports\\MyReports\\clientes.jasper";
+        Relatorio.chamarRelatorio(src);
+    }//GEN-LAST:event_menuItemRelatorioClientesActionPerformed
+
+    private void menuItemRelatorioCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioCategoriasActionPerformed
+        // TODO add your handling code here:
+        String src = "D:\\GitHub\\Mercado\\reports\\MyReports\\categorias.jasper";
+        Relatorio.chamarRelatorio(src);
+    }//GEN-LAST:event_menuItemRelatorioCategoriasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,6 +357,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static final javax.swing.JDesktopPane desktopPane = new javax.swing.JDesktopPane();
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuClientes;
     private javax.swing.JMenu menuFinanceiro;
@@ -332,6 +372,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemGerenciarProduto;
     private javax.swing.JMenuItem menuItemGerenciarTipoUsuario;
     private javax.swing.JMenuItem menuItemReceita;
+    private javax.swing.JMenuItem menuItemRelatorioCategorias;
+    private javax.swing.JMenuItem menuItemRelatorioClientes;
     private javax.swing.JMenuItem menuItemSobre;
     private javax.swing.JMenuItem menuItemVenda;
     private javax.swing.JMenu menuProdutos;
