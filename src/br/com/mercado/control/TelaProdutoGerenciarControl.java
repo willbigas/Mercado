@@ -81,7 +81,7 @@ public class TelaProdutoGerenciarControl {
         produto = new Produto();
         produto.setCodBarras(Integer.valueOf(telaProdutoGerenciar.getTfCodigoBarras().getText()));
         produto.setNome(telaProdutoGerenciar.getTfNome().getText());
-        produto.setQuantidade(Integer.valueOf(telaProdutoGerenciar.getTfQuantidade().getText()));
+        produto.setQuantidade(0);
         produto.setValor(Double.valueOf(telaProdutoGerenciar.getTfValor().getText()));
         produto.setCategoria((Categoria) telaProdutoGerenciar.getCbCategoria().getSelectedItem());
         produto.setFornecedor((Fornecedor) telaProdutoGerenciar.getCbFornecedor().getSelectedItem());
@@ -202,7 +202,7 @@ public class TelaProdutoGerenciarControl {
 
     private boolean validarCampos() {
         if (telaProdutoGerenciar.getTfNome().getText().isEmpty() || telaProdutoGerenciar.getTfCodigoBarras().getText().isEmpty()
-                || telaProdutoGerenciar.getTfQuantidade().getText().isEmpty() || telaProdutoGerenciar.getTfValor().getText().isEmpty()) {
+                || telaProdutoGerenciar.getTfValor().getText().isEmpty()) {
             telaProdutoGerenciar.getTfNome().requestFocus();
             return true;
         }

@@ -109,7 +109,7 @@ foreign key(fk_produto) references produtos(id));
 CREATE TABLE receitas(
 id INT(11) not null auto_increment,
 dataCadastro datetime NOT NULL,
-dataPagamento datetime NOT NULL,
+dataPagamento datetime,
 dataVencimento date NOT NULL,
 valorTotal decimal(10,2) NOT NULL,
 valorRecebido decimal(10,2) NOT NULL,
@@ -124,11 +124,11 @@ PRIMARY KEY (id));
 CREATE TABLE despesas(
 id INT(11) not null auto_increment,
 dataCadastro datetime NOT NULL,
-dataPagamento datetime NOT NULL,
+dataPagamento datetime,
 dataVencimento date NOT NULL,
 valorPago decimal(10,2),
 valorPagoRestante decimal(10,2) NOT NULL,
-pago boolean,
+pago boolean not null,
 codEntrada int(9),
 fk_tipoDespesa int,
 PRIMARY KEY (id),

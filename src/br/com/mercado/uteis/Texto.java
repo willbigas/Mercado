@@ -61,5 +61,7 @@ public class Texto {
     public static final String ERRO_INTERFACE = "Atenção , Este sistema operacional "
             + "não suporta a mudança de interface pela JVM , "
             + "por favor contate o desenvolvedor.";
+    
+    public static final String ERRO_COVERTER_CAMPO_DATA = "Atenção, Erro ao converter o campo para data";
 
 }

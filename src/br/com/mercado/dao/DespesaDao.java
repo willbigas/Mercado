@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,14 +31,25 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
 
     @Override
     public int inserir(Despesa despesa) {
-        String queryInsert = "INSERT INTO despesas(DATACADASTRO, DATAPAGAMENTO, DATAVENCIMENTO, VALORPAGO, VALORPAGORESTANTE , PAGO , CODENTRADA, FK_TIPODESPESA ) VALUES(?, ?, ?, ?, ?, ?)";
+        String queryInsert = "INSERT INTO despesas(DATACADASTRO, DATAPAGAMENTO, "
+                + "DATAVENCIMENTO, VALORPAGO, VALORPAGORESTANTE , PAGO , CODENTRADA, FK_TIPODESPESA ) VALUES(?, ?, ?, ?, ?, ? , ? , ?)";
         try {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setTimestamp(1, Timestamp.valueOf(despesa.getDataCadastro()));
-            stmt.setTimestamp(2, Timestamp.valueOf(despesa.getDataPagamento()));
+            if (despesa.getDataPagamento() == null) {
+                stmt.setNull(2, Types.TIMESTAMP);
+            } else {
+                stmt.setTimestamp(2, Timestamp.valueOf(despesa.getDataPagamento()));
+            }
+            
             stmt.setDate(3, new Date(despesa.getDataVencimento().getTime()));
-            stmt.setDouble(4, despesa.getValorPago());
+            
+            if (despesa.getValorPago() == null) {
+                stmt.setNull(4, Types.DOUBLE);
+            } else {
+                stmt.setDouble(4, despesa.getValorPago());
+            }
             stmt.setDouble(5, despesa.getValorPagoRestante());
             stmt.setBoolean(6, despesa.getPago());
             stmt.setInt(7, despesa.getCodEntrada());

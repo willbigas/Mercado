@@ -48,12 +48,14 @@ public class TelaDespesaGerenciarControl {
         }
     }
 
-    public void criarDespesa(Integer codEntrada, Date dataVencimento) {
+    public void criarDespesa(Integer codEntrada, Date dataVencimento , Double valorRestante) {
         despesa = new Despesa();
         despesa.setDataCadastro(LocalDateTime.now());
         despesa.setDataPagamento(null);
         despesa.setDataVencimento(dataVencimento);
         despesa.setValorPago(null);
+        despesa.setPago(false);
+        despesa.setValorPagoRestante(valorRestante);
         
         if (codEntrada != null) {
             despesa.setTipoDespesa(tipoDespesaDao.pesquisar(1)); // retorna o tipo Fornecedor

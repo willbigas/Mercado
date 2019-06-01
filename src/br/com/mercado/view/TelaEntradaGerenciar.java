@@ -268,7 +268,7 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
 
     private void btGravarEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarEntradaActionPerformed
         // TODO add your handling code here:
-        entradaGerenciarControl.adicionarEntrada();
+        entradaGerenciarControl.chamarDialogEntradaDespesaAction();
     }//GEN-LAST:event_btGravarEntradaActionPerformed
 
     private void btAdicionarItemEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarItemEntradaActionPerformed

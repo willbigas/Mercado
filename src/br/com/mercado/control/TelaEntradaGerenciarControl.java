@@ -4,6 +4,7 @@ import br.com.mercado.dao.EntradaDao;
 import br.com.mercado.dao.FornecedorDao;
 import br.com.mercado.dao.ItemEntradaDao;
 import br.com.mercado.dao.ProdutoDao;
+import br.com.mercado.model.Despesa;
 import br.com.mercado.model.Entrada;
 import br.com.mercado.model.Fornecedor;
 import br.com.mercado.model.ItemEntrada;
@@ -12,10 +13,13 @@ import br.com.mercado.model.tablemodel.EntradaProdutoTableModel;
 import br.com.mercado.model.tablemodel.EntradaTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.UtilDate;
+import br.com.mercado.view.TelaEntradaDespesa;
 import br.com.mercado.view.TelaEntradaGerenciar;
 import br.com.mercado.view.TelaPrincipal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -27,6 +31,7 @@ import javax.swing.JOptionPane;
 public class TelaEntradaGerenciarControl {
 
     private TelaEntradaGerenciar telaEntradaGerenciar = null;
+    private TelaEntradaDespesa telaEntradaDespesa;
     private EntradaProdutoTableModel entradaProdutoTableModel;
     private EntradaTableModel entradaTableModel;
     private List<Fornecedor> listFornecedores;
@@ -37,6 +42,7 @@ public class TelaEntradaGerenciarControl {
     private ItemEntradaDao itemEntradaDao;
     private ItemEntrada itemEntrada;
     private Entrada entrada;
+    private TelaDespesaGerenciarControl despesaGerenciarControl;
 
     public TelaEntradaGerenciarControl() {
         fornecedorDao = new FornecedorDao();
@@ -96,13 +102,18 @@ public class TelaEntradaGerenciarControl {
         if (retorno == JOptionPane.NO_OPTION) {
             return;
         }
-        
+
         itemEntrada = entradaTableModel.pegaObjeto(telaEntradaGerenciar.getTblEntrada().getSelectedRow());
         listItemEntradas.remove(itemEntrada);
         entradaTableModel.remover(telaEntradaGerenciar.getTblEntrada().getSelectedRow());
         Mensagem.info(Texto.SUCESSO_REMOVER);
         itemEntrada = null;
 
+    }
+
+    public void chamarDialogEntradaDespesaAction() {
+        telaEntradaDespesa = new TelaEntradaDespesa(telaEntradaGerenciar, true, this);
+        telaEntradaDespesa.setVisible(true);
     }
 
     /**
@@ -117,7 +128,7 @@ public class TelaEntradaGerenciarControl {
      * como quantidade do estoque e preço do item
      *
      */
-    public void adicionarEntrada() {
+    public void adicionarEntradaAction() {
         entrada = new Entrada();
         entrada.setDataEntrada(LocalDateTime.now());
         entrada.setFornecedor((Fornecedor) telaEntradaGerenciar.getCbFornecedor().getSelectedItem());
@@ -144,8 +155,21 @@ public class TelaEntradaGerenciarControl {
             itemEntradaDao.inserir(umItemEntradaDaTabela);
 
         }
-        
-        
+
+        try {
+
+            Date dataVencimento = UtilDate.data(telaEntradaDespesa.getTfDataVencimento().getText());
+            Double valorTotalPagamento = Double.valueOf(telaEntradaDespesa.getTfValorPagamento().getText());
+            System.out.println("Data de Vencimento " + dataVencimento);
+            System.out.println("Valor total para pagamento" + valorTotalPagamento);
+
+            despesaGerenciarControl = new TelaDespesaGerenciarControl();
+            despesaGerenciarControl.criarDespesa(idEntradaInserida, dataVencimento, valorTotalPagamento);
+        } catch (Exception exception) {
+            Mensagem.erro(Texto.ERRO_COVERTER_CAMPO_DATA);
+            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+        }
 
         JOptionPane.showMessageDialog(null, "Itens gravados com sucesso");
 
