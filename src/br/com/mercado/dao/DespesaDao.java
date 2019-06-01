@@ -138,7 +138,7 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
                 Despesa despesa = new Despesa();
                 despesa.setId(result.getInt("id"));
                 despesa.setDataCadastro((result.getTimestamp("dataCadastro").toLocalDateTime()));
-                despesa.setDataPagamento((result.getTimestamp("dataCadastro").toLocalDateTime()));
+                despesa.setDataPagamento((result.getTimestamp("dataPagamento").toLocalDateTime()));
                 despesa.setDataVencimento(result.getDate("dataVencimento"));
                 despesa.setValorPago(result.getDouble("valorPago"));
                 despesa.setValorPagoRestante(result.getDouble("valorPagoRestante"));
@@ -166,7 +166,7 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
                 Despesa despesa = new Despesa();
                 despesa.setId(result.getInt("id"));
                 despesa.setDataCadastro((result.getTimestamp("dataCadastro").toLocalDateTime()));
-                despesa.setDataPagamento((result.getTimestamp("dataCadastro").toLocalDateTime()));
+                despesa.setDataPagamento((result.getTimestamp("dataPagamento").toLocalDateTime()));
                 despesa.setDataVencimento(result.getDate("dataVencimento"));
                 despesa.setValorPago(result.getDouble("valorPago"));
                 despesa.setValorPagoRestante(result.getDouble("valorPagoRestante"));
@@ -193,7 +193,7 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
                 Despesa despesa = new Despesa();
                 despesa.setId(result.getInt("id"));
                 despesa.setDataCadastro((result.getTimestamp("dataCadastro").toLocalDateTime()));
-                despesa.setDataPagamento((result.getTimestamp("dataCadastro").toLocalDateTime()));
+                despesa.setDataPagamento((result.getTimestamp("dataPagamento").toLocalDateTime()));
                 despesa.setDataVencimento(result.getDate("dataVencimento"));
                 despesa.setValorPago(result.getDouble("valorPago"));
                 despesa.setValorPagoRestante(result.getDouble("valorPagoRestante"));
@@ -209,4 +209,36 @@ public class DespesaDao extends Dao implements DaoI<Despesa> {
             return null;
         }
     }
+    
+    public List<Despesa> pesquisar(Boolean pago) {
+        String querySelect = "SELECT * FROM DESPESAS where pago = ?";
+        try {
+            PreparedStatement stmt;
+            stmt = conexao.prepareStatement(querySelect);
+            stmt.setBoolean(1, pago);
+            ResultSet result = stmt.executeQuery();
+            List<Despesa> lista = new ArrayList<>();
+            while (result.next()) {
+                Despesa despesa = new Despesa();
+                despesa.setId(result.getInt("id"));
+                despesa.setDataCadastro((result.getTimestamp("dataCadastro").toLocalDateTime()));
+                despesa.setDataPagamento((result.getTimestamp("dataPagamento").toLocalDateTime()));
+                despesa.setDataVencimento(result.getDate("dataVencimento"));
+                despesa.setValorPago(result.getDouble("valorPago"));
+                despesa.setValorPagoRestante(result.getDouble("valorPagoRestante"));
+                despesa.setPago(result.getBoolean("pago"));
+                despesa.setCodEntrada(result.getInt("codEntrada"));
+                despesa.setTipoDespesa(tipoDespesaDao.pesquisar(result.getInt("fk_tipoDespesa")));
+                lista.add(despesa);
+            }
+            return lista;
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+    
+    
+    
+    
 }
