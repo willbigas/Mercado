@@ -17,7 +17,7 @@ import javax.validation.ValidatorFactory;
  */
 public class Validacao {
 
-    public static String validaObjeto(Object object) {
+    public static String validaEntidade(Object object) {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<Object>> constraintViolations = validator.validate(object);

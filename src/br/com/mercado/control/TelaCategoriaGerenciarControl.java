@@ -61,8 +61,8 @@ public class TelaCategoriaGerenciarControl {
             categoria.setAtivo(false);
         }
 
-        if (Validacao.validaObjeto(categoria) != null) {
-            JOptionPane.showMessageDialog(null, Validacao.validaObjeto(categoria));
+        if (Validacao.validaEntidade(categoria) != null) {
+            JOptionPane.showMessageDialog(null, Validacao.validaEntidade(categoria));
             categoria = null;
             return;
         }
@@ -101,8 +101,8 @@ public class TelaCategoriaGerenciarControl {
             categoria.setAtivo(false);
         }
         
-        if (Validacao.validaObjeto(categoria) != null) {
-            JOptionPane.showMessageDialog(null, Validacao.validaObjeto(categoria));
+        if (Validacao.validaEntidade(categoria) != null) {
+            JOptionPane.showMessageDialog(null, Validacao.validaEntidade(categoria));
             categoria = null;
             return;
         }
