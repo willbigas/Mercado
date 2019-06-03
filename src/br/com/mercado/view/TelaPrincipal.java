@@ -2,6 +2,9 @@ package br.com.mercado.view;
 
 import br.com.mercado.control.TelaPrincipalControl;
 import br.com.mercado.uteis.Relatorio;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  *
@@ -309,13 +312,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menuItemRelatorioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioClientesActionPerformed
         // TODO add your handling code here:
-        String src = "D:\\GitHub\\Mercado\\reports\\MyReports\\clientes.jasper";
+        String src = "C:\\Users\\william.mauro\\Documents\\GitHub\\Mercado\\reports\\MyReports\\clientes.jasper";
         Relatorio.chamarRelatorio(src);
+     
     }//GEN-LAST:event_menuItemRelatorioClientesActionPerformed
 
     private void menuItemRelatorioCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioCategoriasActionPerformed
         // TODO add your handling code here:
-        String src = "D:\\GitHub\\Mercado\\reports\\MyReports\\categorias.jasper";
+        String src = "C:\\Users\\william.mauro\\Documents\\GitHub\\Mercado\\reports\\MyReports\\categorias.jasper";
         Relatorio.chamarRelatorio(src);
     }//GEN-LAST:event_menuItemRelatorioCategoriasActionPerformed
 
