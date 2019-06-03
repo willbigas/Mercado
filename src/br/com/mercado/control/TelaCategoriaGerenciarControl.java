@@ -5,6 +5,7 @@ import br.com.mercado.model.Categoria;
 import br.com.mercado.model.tablemodel.CategoriaTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaCategoriaGerenciar;
 import br.com.mercado.view.TelaPrincipal;
 import java.util.List;
@@ -46,18 +47,26 @@ public class TelaCategoriaGerenciarControl {
     }
 
     private void cadastrarCategoria() {
-        if (validarCampos()) {
-            Mensagem.erro(Texto.VAZIO_CAMPOS);
-            return;
-        }
-        
+//        if (validarCampos()) {
+//            Mensagem.erro(Texto.VAZIO_CAMPOS);
+//            return;
+//        }
+
         categoria = new Categoria();
+        categoria.setId(Integer.MAX_VALUE);
         categoria.setNome(telaCategoriaGerenciar.getTfNome().getText());
         if (telaCategoriaGerenciar.getCheckAtivo().isSelected()) {
             categoria.setAtivo(true);
         } else {
             categoria.setAtivo(false);
         }
+
+        if (Validacao.validaObjeto(categoria) != null) {
+            JOptionPane.showMessageDialog(null, Validacao.validaObjeto(categoria));
+            categoria = null;
+            return;
+        }
+
         Integer idInserido = categoriaDao.inserir(categoria);
         if (idInserido != 0) {
             categoria.setId(idInserido);
@@ -70,7 +79,7 @@ public class TelaCategoriaGerenciarControl {
         categoria = null;
     }
 
-    public void carregarCategoriaAction(){
+    public void carregarCategoriaAction() {
         categoria = categoriaTableModel.pegaObjeto(telaCategoriaGerenciar.getTblCategoria().getSelectedRow());
         telaCategoriaGerenciar.getTfNome().setText(categoria.getNome());
         if (categoria.getAtivo() == true) {
@@ -81,16 +90,23 @@ public class TelaCategoriaGerenciarControl {
     }
 
     private void alterarCategoria() {
-        if (validarCampos()) {
-            Mensagem.erro(Texto.VAZIO_CAMPOS);
-            return;
-        }
+//        if (validarCampos()) {
+//            Mensagem.erro(Texto.VAZIO_CAMPOS);
+//            return;
+//        }
         categoria.setNome(telaCategoriaGerenciar.getTfNome().getText());
         if (telaCategoriaGerenciar.getCheckAtivo().isSelected()) {
             categoria.setAtivo(true);
         } else {
             categoria.setAtivo(false);
         }
+        
+        if (Validacao.validaObjeto(categoria) != null) {
+            JOptionPane.showMessageDialog(null, Validacao.validaObjeto(categoria));
+            categoria = null;
+            return;
+        }
+
         boolean alterado = categoriaDao.alterar(categoria);
         linhaSelecionada = telaCategoriaGerenciar.getTblCategoria().getSelectedRow();
         if (alterado) {
@@ -102,7 +118,7 @@ public class TelaCategoriaGerenciarControl {
         }
         categoria = null;
     }
-    
+
     public void desativarCategoriaAction() {
         int retorno = Mensagem.confirmacao(Texto.PERGUNTA_DESATIVAR);
         if (retorno == JOptionPane.NO_OPTION) {
@@ -121,8 +137,6 @@ public class TelaCategoriaGerenciarControl {
         }
         categoria = null;
     }
-    
-    
 
     public void gravarCategoriaAction() {
         if (categoria == null) {
@@ -150,11 +164,11 @@ public class TelaCategoriaGerenciarControl {
         telaCategoriaGerenciar.getTfNome().requestFocus();
     }
 
-    private boolean validarCampos() {
-        if (telaCategoriaGerenciar.getTfNome().getText().isEmpty()) {
-            telaCategoriaGerenciar.getTfNome().requestFocus();
-            return true;
-        }
-        return false;
-    }
+//    private boolean validarCampos() {
+//        if (telaCategoriaGerenciar.getTfNome().getText().isEmpty()) {
+//            telaCategoriaGerenciar.getTfNome().requestFocus();
+//            return true;
+//        }
+//        return false;
+//    }
 }
