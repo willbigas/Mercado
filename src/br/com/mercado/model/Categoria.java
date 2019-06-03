@@ -13,8 +13,8 @@ public class Categoria {
 
     @NotNull(message = "Para criar uma categoria, preencha os campos obrigatórios")
     private Integer id;
-//    @NotEmpty(message = "O campo Categoria não pode estar vazio")
-//    @NotNull(message = "O campo Categoria não pode ser nulo")
+    @NotEmpty(message = "O campo Categoria não pode estar vazio")
+    @NotNull(message = "O campo Categoria não pode ser nulo")
     @NotBlank(message = "O campo categoria não poder somente espaços..")
     @Size(min = 5, max = 255, message = "O campo Nome deve ter entre 5 e 255 caracteres")
     private String nome;

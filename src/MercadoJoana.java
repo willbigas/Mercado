@@ -12,11 +12,11 @@ public class MercadoJoana {
 
     public static void main(String[] args) {
 
-        try {
-            InterfaceJanela.MudaSwingParaPadraoDoSO();
-        } catch (Exception exception) {
-            Mensagem.erro(Texto.ERRO_INTERFACE);
-        }
+//        try {
+//            InterfaceJanela.MudaSwingParaPadraoDoSO();
+//        } catch (Exception exception) {
+//            Mensagem.erro(Texto.ERRO_INTERFACE);
+//        }
         TelaLoginControl telaLogin = new TelaLoginControl();
         telaLogin.chamarTelaLoginAction();
 
