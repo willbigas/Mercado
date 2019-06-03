@@ -2,8 +2,8 @@
 <!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="categorias" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4eedbb89-b4f6-4469-9ab6-f642a1688cf7">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="clientes"/>
 	<property name="com.jaspersoft.studio.report.description" value="Relatório de Categorias ativas"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="categorias"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true"/>
@@ -60,8 +60,7 @@
 		</queryString>
 	</subDataset>
 	<queryString language="SQL">
-		<![CDATA[SELECT *
-FROM CATEGORIAS WHERE ATIVO = TRUE]]>
+		<![CDATA[select * from  mercado.categorias where ativo = true]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">
 		<property name="com.jaspersoft.studio.field.label" value="id"/>
@@ -76,7 +75,7 @@ FROM CATEGORIAS WHERE ATIVO = TRUE]]>
 		<property name="com.jaspersoft.studio.field.tree.path" value="categorias"/>
 	</field>
 	<title>
-		<band height="196" splitType="Stretch">
+		<band height="140" splitType="Stretch">
 			<line>
 				<reportElement x="-1" y="100" width="556" height="1" uuid="806ce5df-1219-4876-ae0c-ca7405b1f246">
 					<property name="local_mesure_unitheight" value="pixel"/>
@@ -136,9 +135,9 @@ Rua Zezinho do Zé, 222, Palhoça]]></text>
 		</band>
 	</title>
 	<columnHeader>
-		<band height="42">
+		<band height="30">
 			<staticText>
-				<reportElement style="Column header" positionType="Float" x="1" y="-30" width="39" height="20" forecolor="#000000" uuid="dc8d01dd-06ca-40f0-a02b-b938945b29de">
+				<reportElement style="Column header" positionType="Float" x="1" y="0" width="39" height="20" forecolor="#000000" uuid="dc8d01dd-06ca-40f0-a02b-b938945b29de">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="49d41fbb-4ffb-48cf-9b23-3038e9e2e1e1"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -147,7 +146,7 @@ Rua Zezinho do Zé, 222, Palhoça]]></text>
 				<text><![CDATA[ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" positionType="Float" x="40" y="-30" width="210" height="20" forecolor="#000000" uuid="3382406d-4ee9-454f-aa78-2eadbb625d9a">
+				<reportElement style="Column header" positionType="Float" x="40" y="0" width="210" height="20" forecolor="#000000" uuid="3382406d-4ee9-454f-aa78-2eadbb625d9a">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c0f5c0bb-409f-4a19-9e2d-d4b5c14819a6"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -155,20 +154,21 @@ Rua Zezinho do Zé, 222, Palhoça]]></text>
 				</textElement>
 				<text><![CDATA[Nome da Categoria]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="1" y="0" width="39" height="20" uuid="98b3267b-6619-47c1-92cb-20956d89477f"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="40" y="0" width="210" height="20" uuid="66ea46ef-82a5-4e57-94b9-a773e8f4444c"/>
-				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
-			</textField>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20"/>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="40" height="20" uuid="b9233057-1c7d-4619-a52a-1edf6330fb69"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="40" y="0" width="210" height="20" uuid="a53e9831-ae13-4d58-96f1-49471bae44ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<pageFooter>
 		<band height="65">
