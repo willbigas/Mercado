@@ -4,7 +4,6 @@ import br.com.mercado.dao.EntradaDao;
 import br.com.mercado.dao.FornecedorDao;
 import br.com.mercado.dao.ItemEntradaDao;
 import br.com.mercado.dao.ProdutoDao;
-import br.com.mercado.model.Despesa;
 import br.com.mercado.model.Entrada;
 import br.com.mercado.model.Fornecedor;
 import br.com.mercado.model.ItemEntrada;

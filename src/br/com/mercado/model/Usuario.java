@@ -104,7 +104,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Funcionario{" + "id=" + id + ", nome=" + nome + ", pis=" + pis + ", salario=" + salario + ", telefone=" + telefone + ", senha=" + senha + ", email=" + email + ", tipoUsuario=" + tipoUsuario + ", endereco=" + endereco + ", ativo=" + ativo + '}';
+        return nome;
     }
 
 }
