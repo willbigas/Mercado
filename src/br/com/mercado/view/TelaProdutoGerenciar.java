@@ -32,6 +32,7 @@ public class TelaProdutoGerenciar extends javax.swing.JInternalFrame {
         telaProdutoGerenciarControl = control;
         InterfaceJanela.alteraIconePrincipaldoJInternalFrame(this, "br/com/Mercado/img/produto_32x32.png");
         tfQuantidade.setEnabled(false);
+        InterfaceJanela.centralizarInternalFrame(this);
 
     }
 

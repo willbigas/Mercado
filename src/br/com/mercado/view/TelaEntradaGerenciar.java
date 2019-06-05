@@ -2,6 +2,7 @@ package br.com.mercado.view;
 
 import br.com.mercado.model.Fornecedor;
 import br.com.mercado.control.TelaEntradaGerenciarControl;
+import br.com.mercado.uteis.InterfaceJanela;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -24,6 +25,7 @@ public class TelaEntradaGerenciar extends javax.swing.JInternalFrame {
     public TelaEntradaGerenciar(TelaEntradaGerenciarControl control) {
         initComponents();
         entradaGerenciarControl = control;
+        InterfaceJanela.centralizarInternalFrame(this);
     }
 
     /**

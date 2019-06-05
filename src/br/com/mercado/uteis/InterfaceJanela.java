@@ -5,6 +5,8 @@
  */
 package br.com.mercado.uteis;
 
+import br.com.mercado.view.TelaPrincipal;
+import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
@@ -21,7 +23,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Will
  */
 public class InterfaceJanela {
-    
+
     /**
      * Muda o visual das janelas para Interface que o Sistema executar por
      * Padrão. Se o sistema operacional for windows , a aplicação executará em
@@ -88,10 +90,17 @@ public class InterfaceJanela {
         Image imagemTitulo = Toolkit.getDefaultToolkit().getImage(url);
         jframe.setIconImage(imagemTitulo);
     }
-    
-    public static void alteraIconePrincipaldoJInternalFrame (JInternalFrame internalFrame , String enderecoArq) {
-         ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource(enderecoArq));
+
+    public static void alteraIconePrincipaldoJInternalFrame(JInternalFrame internalFrame, String enderecoArq) {
+        ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource(enderecoArq));
         internalFrame.setFrameIcon(icon);
     }
-      
+
+    public static void centralizarInternalFrame(JInternalFrame frame) {
+        Dimension desktopSize = TelaPrincipal.desktopPane.getSize();
+        Dimension jInternalFrameSize = frame.getSize();
+        frame.setLocation((desktopSize.width - jInternalFrameSize.width) / 2,
+                (desktopSize.height - jInternalFrameSize.height) / 2);
+    }
+
 }

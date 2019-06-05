@@ -2,6 +2,7 @@ package br.com.mercado.view;
 
 import br.com.mercado.model.TipoUsuario;
 import br.com.mercado.control.TelaUsuarioGerenciarControl;
+import br.com.mercado.uteis.InterfaceJanela;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -25,6 +26,7 @@ public class TelaUsuarioGerenciar extends javax.swing.JInternalFrame {
     public TelaUsuarioGerenciar(TelaUsuarioGerenciarControl control) {
         initComponents();
         usuarioGerenciarControl = control;
+        InterfaceJanela.centralizarInternalFrame(this);
     }
 
     /**

@@ -6,6 +6,7 @@
 package br.com.mercado.view;
 
 import br.com.mercado.control.TelaDespesaGerenciarControl;
+import br.com.mercado.uteis.InterfaceJanela;
 
 /**
  *
@@ -24,6 +25,7 @@ public class TelaDespesaGerenciar extends javax.swing.JInternalFrame {
     public TelaDespesaGerenciar(TelaDespesaGerenciarControl control) {
         initComponents();
         despesaGerenciarControl = control;
+        InterfaceJanela.centralizarInternalFrame(this);
     }
 
     /**

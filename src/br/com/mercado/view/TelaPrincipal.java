@@ -50,22 +50,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuItemDespesa = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuItemRelatorioClientes = new javax.swing.JMenuItem();
+        menuItemRelatorioFornecedores = new javax.swing.JMenuItem();
+        menuItemRelatorioProdutos = new javax.swing.JMenuItem();
         menuItemRelatorioCategorias = new javax.swing.JMenuItem();
+        menuItemRelatorioReceitas = new javax.swing.JMenuItem();
+        menuItemRelatorioDespesas = new javax.swing.JMenuItem();
         menuSobre = new javax.swing.JMenu();
         menuItemAjuda = new javax.swing.JMenuItem();
         menuItemSobre = new javax.swing.JMenuItem();
+        menuConfiguracao = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        desktopPane.setBackground(new java.awt.Color(204, 204, 204));
         desktopPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        desktopPane.setForeground(new java.awt.Color(204, 204, 204));
+        desktopPane.setForeground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout desktopPaneLayout = new javax.swing.GroupLayout(desktopPane);
         desktopPane.setLayout(desktopPaneLayout);
         desktopPaneLayout.setHorizontalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 829, Short.MAX_VALUE)
+            .addGap(0, 848, Short.MAX_VALUE)
         );
         desktopPaneLayout.setVerticalGroup(
             desktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,6 +112,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/produto_32x32.png"))); // NOI18N
         menuProdutos.setText("Produtos");
 
+        menuItemGerenciarProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
         menuItemGerenciarProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/gerenciar_32x32.png"))); // NOI18N
         menuItemGerenciarProduto.setText("Gerenciar Produtos");
         menuItemGerenciarProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -123,6 +131,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuProdutos.add(menuItemGerenciarCategoria);
 
+        menuItemEntradaProduto.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_MASK));
         menuItemEntradaProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/down_32x32.png"))); // NOI18N
         menuItemEntradaProduto.setText("Entrada de Produtos");
         menuItemEntradaProduto.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +171,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuUsuario.add(menuItemGerenciarFuncionario);
 
+        menuItemGerenciarTipoUsuario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.CTRL_MASK));
         menuItemGerenciarTipoUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/cardUser_32x32.png"))); // NOI18N
         menuItemGerenciarTipoUsuario.setText("Tipo de Usuário");
         menuItemGerenciarTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -210,6 +220,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(menuItemRelatorioClientes);
 
+        menuItemRelatorioFornecedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/truck_32x32.png"))); // NOI18N
+        menuItemRelatorioFornecedores.setText("Fornecedores");
+        menuItemRelatorioFornecedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRelatorioFornecedoresActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemRelatorioFornecedores);
+
+        menuItemRelatorioProdutos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/produto_32x32.png"))); // NOI18N
+        menuItemRelatorioProdutos.setText("Produtos");
+        menuItemRelatorioProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRelatorioProdutosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemRelatorioProdutos);
+
         menuItemRelatorioCategorias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/categoria_32x32.png"))); // NOI18N
         menuItemRelatorioCategorias.setText("Categorias");
         menuItemRelatorioCategorias.addActionListener(new java.awt.event.ActionListener() {
@@ -218,6 +246,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu1.add(menuItemRelatorioCategorias);
+
+        menuItemRelatorioReceitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/receita_32x32.png"))); // NOI18N
+        menuItemRelatorioReceitas.setText("Receitas");
+        menuItemRelatorioReceitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRelatorioReceitasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemRelatorioReceitas);
+
+        menuItemRelatorioDespesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/despesa_32x32.png"))); // NOI18N
+        menuItemRelatorioDespesas.setText("Despesas");
+        menuItemRelatorioDespesas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRelatorioDespesasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuItemRelatorioDespesas);
 
         jMenuBar1.add(jMenu1);
 
@@ -241,6 +287,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(menuSobre);
 
+        menuConfiguracao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/settings_32x32.png"))); // NOI18N
+        menuConfiguracao.setText("Configurações");
+        menuConfiguracao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                menuConfiguracaoMouseReleased(evt);
+            }
+        });
+        menuConfiguracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConfiguracaoActionPerformed(evt);
+            }
+        });
+
+        jMenuItem1.setText("Parametros");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuConfiguracao.add(jMenuItem1);
+
+        jMenuBar1.add(menuConfiguracao);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -248,7 +317,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(desktopPane, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,6 +392,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Relatorio.chamarRelatorio(src);
     }//GEN-LAST:event_menuItemRelatorioCategoriasActionPerformed
 
+    private void menuItemRelatorioReceitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioReceitasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemRelatorioReceitasActionPerformed
+
+    private void menuItemRelatorioDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioDespesasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemRelatorioDespesasActionPerformed
+
+    private void menuItemRelatorioFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioFornecedoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemRelatorioFornecedoresActionPerformed
+
+    private void menuItemRelatorioProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioProdutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuItemRelatorioProdutosActionPerformed
+
+    private void menuConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConfiguracaoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_menuConfiguracaoActionPerformed
+
+    private void menuConfiguracaoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuConfiguracaoMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuConfiguracaoMouseReleased
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        telaPrincipalControl.chamarTelaConfiguracaoGerenciarAction();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -363,7 +462,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menuClientes;
+    private javax.swing.JMenu menuConfiguracao;
     private javax.swing.JMenu menuFinanceiro;
     private javax.swing.JMenu menuFornecedores;
     private javax.swing.JMenuItem menuItemAjuda;
@@ -378,6 +479,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemReceita;
     private javax.swing.JMenuItem menuItemRelatorioCategorias;
     private javax.swing.JMenuItem menuItemRelatorioClientes;
+    private javax.swing.JMenuItem menuItemRelatorioDespesas;
+    private javax.swing.JMenuItem menuItemRelatorioFornecedores;
+    private javax.swing.JMenuItem menuItemRelatorioProdutos;
+    private javax.swing.JMenuItem menuItemRelatorioReceitas;
     private javax.swing.JMenuItem menuItemSobre;
     private javax.swing.JMenuItem menuItemVenda;
     private javax.swing.JMenu menuProdutos;

@@ -33,6 +33,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
         initComponents();
         clienteGerenciarControl = control;
         InterfaceJanela.alteraIconePrincipaldoJInternalFrame(this, "br/com/Mercado/img/clientes_32x32.png");
+        InterfaceJanela.centralizarInternalFrame(this);
     }
 
     /**

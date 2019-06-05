@@ -2,6 +2,7 @@ package br.com.mercado.view;
 
 import br.com.mercado.control.TelaVendaControl;
 import br.com.mercado.model.Usuario;
+import br.com.mercado.uteis.InterfaceJanela;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -24,7 +25,8 @@ public class TelaVenda extends javax.swing.JInternalFrame {
     public TelaVenda(TelaVendaControl control) {
         initComponents();
         vendaControl = control;
-        
+        InterfaceJanela.centralizarInternalFrame(this);
+
     }
 
     /**
@@ -302,8 +304,6 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         this.cbCliente = cbCliente;
     }
 
-   
-
     public JTable getTblVenda() {
         return tblVenda;
     }
@@ -351,8 +351,5 @@ public class TelaVenda extends javax.swing.JInternalFrame {
     public void setTfValor(JTextField tfValor) {
         this.tfValor = tfValor;
     }
-    
-    
-
 
 }

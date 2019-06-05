@@ -7,6 +7,7 @@ package br.com.mercado.view;
 
 import br.com.mercado.control.TelaCategoriaGerenciarControl;
 import br.com.mercado.factory.Conexao;
+import br.com.mercado.uteis.InterfaceJanela;
 import br.com.mercado.uteis.Relatorio;
 import java.sql.Connection;
 import javax.swing.JCheckBox;
@@ -35,6 +36,7 @@ public class TelaCategoriaGerenciar extends javax.swing.JInternalFrame {
     public TelaCategoriaGerenciar(TelaCategoriaGerenciarControl control) {
         initComponents();
         categoriaGerenciarControl = control;
+        InterfaceJanela.centralizarInternalFrame(this);
     }
 
     /**

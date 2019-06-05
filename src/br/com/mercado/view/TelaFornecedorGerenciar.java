@@ -6,6 +6,7 @@
 package br.com.mercado.view;
 
 import br.com.mercado.control.TelaFornecedorGerenciarControl;
+import br.com.mercado.uteis.InterfaceJanela;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -29,6 +30,7 @@ public class TelaFornecedorGerenciar extends javax.swing.JInternalFrame {
     public TelaFornecedorGerenciar(TelaFornecedorGerenciarControl control) {
         initComponents();
         fornecedorGerenciarControl = control;
+        InterfaceJanela.centralizarInternalFrame(this);
     }
 
     /**
@@ -376,7 +378,7 @@ public class TelaFornecedorGerenciar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btGravarActionPerformed
 
     private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
-            fornecedorGerenciarControl.carregarFornecedorAction();
+        fornecedorGerenciarControl.carregarFornecedorAction();
     }//GEN-LAST:event_btVisualizarActionPerformed
 
     private void btDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDesativarActionPerformed

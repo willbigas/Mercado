@@ -5,17 +5,27 @@
  */
 package br.com.mercado.view;
 
+import br.com.mercado.control.TelaConfiguracaoGerenciarControl;
+import br.com.mercado.uteis.InterfaceJanela;
+
 /**
  *
  * @author William
  */
 public class TelaConfiguracaoGerenciar extends javax.swing.JInternalFrame {
+    
+    TelaConfiguracaoGerenciarControl configuracaoGerenciarControl;
 
     /**
      * Creates new form TelaConfiguracaoGerenciar
      */
     public TelaConfiguracaoGerenciar() {
         initComponents();
+    }
+    public TelaConfiguracaoGerenciar(TelaConfiguracaoGerenciarControl control) {
+        initComponents();
+        configuracaoGerenciarControl = control;
+        InterfaceJanela.centralizarInternalFrame(this);
     }
 
     /**
@@ -31,6 +41,9 @@ public class TelaConfiguracaoGerenciar extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setText("Parametros de Configuração");
