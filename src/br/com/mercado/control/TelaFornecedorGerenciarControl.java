@@ -125,7 +125,7 @@ public class TelaFornecedorGerenciarControl {
         try {
             buscadorDeCep.buscar(telaFornecedorGerenciar.getTfCep().getText());
             Endereco endereco = new Endereco();
-//            endereco.setCep(Integer.valueOf(buscadorDeCep.getCep()));
+            endereco.setEstado(buscadorDeCep.getUf());
             endereco.setBairro(buscadorDeCep.getBairro());
             endereco.setCidade(buscadorDeCep.getCidade());
             endereco.setRua(buscadorDeCep.getLogradouro());
@@ -136,6 +136,7 @@ public class TelaFornecedorGerenciarControl {
             telaFornecedorGerenciar.getTfBairro().setText(endereco.getBairro());
             telaFornecedorGerenciar.getTfCidade().setText(endereco.getCidade());
             telaFornecedorGerenciar.getTfComplemento().setText(endereco.getComplemento());
+            telaFornecedorGerenciar.getCbEstado().getModel().setSelectedItem(endereco.getEstado());
             telaFornecedorGerenciar.getTfRua().setText(endereco.getRua());
             telaFornecedorGerenciar.getTfCep().setText(telaFornecedorGerenciar.getTfCep().getText());
         } catch (BuscaCepException buscaCepException) {
@@ -186,7 +187,7 @@ public class TelaFornecedorGerenciarControl {
         }
     }
 
-    public void carregarFornecedorAction(){
+    public void carregarFornecedorAction() {
         fornecedor = tableModelFornecedor.pegaObjeto(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
         telaFornecedorGerenciar.getTfNome().setText(fornecedor.getNome());
         telaFornecedorGerenciar.getTfTelefone().setText(fornecedor.getTelefone());

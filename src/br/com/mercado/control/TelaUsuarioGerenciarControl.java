@@ -136,7 +136,7 @@ public class TelaUsuarioGerenciarControl {
         try {
             buscadorDeCep.buscar(telaUsuarioGerenciar.getTfCep().getText());
             Endereco endereco = new Endereco();
-//            endereco.setCep(Integer.valueOf(buscadorDeCep.getCep()));
+            endereco.setEstado(buscadorDeCep.getUf());
             endereco.setBairro(buscadorDeCep.getBairro());
             endereco.setCidade(buscadorDeCep.getCidade());
             endereco.setRua(buscadorDeCep.getLogradouro());
@@ -147,6 +147,7 @@ public class TelaUsuarioGerenciarControl {
             telaUsuarioGerenciar.getTfBairro().setText(endereco.getBairro());
             telaUsuarioGerenciar.getTfCidade().setText(endereco.getCidade());
             telaUsuarioGerenciar.getTfComplemento().setText(endereco.getComplemento());
+            telaUsuarioGerenciar.getCbEstado().getModel().setSelectedItem(endereco.getEstado());
             telaUsuarioGerenciar.getTfRua().setText(endereco.getRua());
             telaUsuarioGerenciar.getTfCep().setText(telaUsuarioGerenciar.getTfCep().getText());
         } catch (BuscaCepException buscaCepException) {
