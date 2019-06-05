@@ -27,6 +27,7 @@ public class TelaVendaReceita extends javax.swing.JDialog {
     }
     public TelaVendaReceita(JInternalFrame parent, boolean modal , TelaVendaControl control) {
         initComponents();
+        this.setLocationRelativeTo(parent);
         this.setModal(modal);
         telaVendaControl = control;
     }

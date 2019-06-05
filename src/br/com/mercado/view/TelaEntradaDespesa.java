@@ -26,6 +26,7 @@ public class TelaEntradaDespesa extends javax.swing.JDialog {
     }
     public TelaEntradaDespesa(JInternalFrame parent, boolean modal , TelaEntradaGerenciarControl control) {
         initComponents();
+        this.setLocationRelativeTo(parent);
         this.setModal(modal);
         entradaGerenciarControl = control;
     }
