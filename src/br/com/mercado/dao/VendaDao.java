@@ -29,7 +29,7 @@ public class VendaDao extends Dao implements DaoI<Venda> {
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setTimestamp(1, Timestamp.valueOf(venda.getDataVenda()));
             stmt.setDouble(2, venda.getCliente().getId());
-            stmt.setInt(3, venda.getFuncionario().getId());
+            stmt.setInt(3, venda.getUsuario().getId());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {
                 res = stmt.getGeneratedKeys();
@@ -51,7 +51,7 @@ public class VendaDao extends Dao implements DaoI<Venda> {
             PreparedStatement stmt = conexao.prepareStatement(queryUpdate);
             stmt.setTimestamp(1, Timestamp.valueOf(venda.getDataVenda()));
             stmt.setInt(2, venda.getCliente().getId());
-            stmt.setInt(3, venda.getFuncionario().getId());
+            stmt.setInt(3, venda.getUsuario().getId());
             stmt.setInt(4, venda.getId());
 
             return stmt.executeUpdate() > 0;

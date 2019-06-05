@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.mercado.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
@@ -16,7 +12,8 @@ public class Venda {
     private Integer id;
     private LocalDateTime dataVenda;
     private Cliente cliente;
-    private Usuario funcionario;
+    private Usuario usuario;
+    private List<ItemVenda> itemVendas;
 
     public Integer getId() {
         return id;
@@ -42,17 +39,26 @@ public class Venda {
         this.cliente = cliente;
     }
 
-    public Usuario getFuncionario() {
-        return funcionario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setFuncionario(Usuario funcionario) {
-        this.funcionario = funcionario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
+
+    public List<ItemVenda> getItemVendas() {
+        return itemVendas;
+    }
+
+    public void setItemVendas(List<ItemVenda> itemVendas) {
+        this.itemVendas = itemVendas;
+    }
+    
 
     @Override
     public String toString() {
-        return "Venda{" + "id=" + id + ", dataVenda=" + dataVenda + ", cliente=" + cliente + ", funcionario=" + funcionario + '}';
+        return "Venda{" + "id=" + id + ", dataVenda=" + dataVenda + ", cliente=" + cliente + ", funcionario=" + usuario + '}';
     }
 
 }

@@ -1,10 +1,8 @@
 package br.com.mercado.model.tablemodel;
 
-import br.com.mercado.model.Venda;
 import br.com.mercado.interfaces.AcoesTableModel;
-import java.time.LocalDateTime;
+import br.com.mercado.model.ItemVenda;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -12,22 +10,22 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author william.mauro
  */
-public class VendaTableModel extends AbstractTableModel implements AcoesTableModel<Venda> {
+public class ItemVendaTableModel extends AbstractTableModel implements AcoesTableModel<ItemVenda> {
 
-    private static final int CODIGO = 0;
-    private static final int CLIENTE = 1;
-    private static final int FUNCIONARIO = 2;
-    private static final int DATA_VENDA = 3;
+    private static final int EAN13 = 0;
+    private static final int NOME_PRODUTO = 1;
+    private static final int QUANTIDADE = 2;
+    private static final int VALOR_PRODUTO = 3;
 
-    private List<Venda> linhas;
-    private String[] COLUNAS = {"Código", "Cliente", "Funcionário", "DataVenda"};
+    private List<ItemVenda> linhas;
+    private String[] COLUNAS = {"Código", "Nome Produto", "Quantidade", "Valor Produto"};
 
-    public VendaTableModel() {
+    public ItemVendaTableModel() {
         linhas = new ArrayList<>();
     }
 
-    public VendaTableModel(List<Venda> listVendas) {
-        linhas = new ArrayList<>(listVendas);
+    public ItemVendaTableModel(List<ItemVenda> listItemVendas) {
+        linhas = new ArrayList<>(listItemVendas);
     }
 
     @Override
@@ -48,14 +46,14 @@ public class VendaTableModel extends AbstractTableModel implements AcoesTableMod
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
-            case CODIGO:
+            case EAN13:
                 return Integer.class;
-            case CLIENTE:
+            case NOME_PRODUTO:
                 return String.class;
-            case FUNCIONARIO:
-                return String.class;
-            case DATA_VENDA:
-                return Date.class;
+            case QUANTIDADE:
+                return Integer.class;
+            case VALOR_PRODUTO:
+                return Double.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -63,16 +61,16 @@ public class VendaTableModel extends AbstractTableModel implements AcoesTableMod
 
     @Override
     public Object getValueAt(int linha, int coluna) {
-        Venda venda = linhas.get(linha);
+        ItemVenda itemVenda = linhas.get(linha);
         switch (coluna) {
-            case CODIGO:
-                return venda.getId();
-            case CLIENTE:
-                return venda.getCliente().getNome();
-            case FUNCIONARIO:
-                return venda.getFuncionario().getNome();
-            case DATA_VENDA:
-                return venda.getDataVenda();
+            case EAN13:
+                return itemVenda.getId();
+            case NOME_PRODUTO:
+                return itemVenda.getProduto().getNome();
+            case QUANTIDADE:
+                return itemVenda.getQuantidade();
+            case VALOR_PRODUTO:
+                return itemVenda.getValorProduto();
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -80,19 +78,19 @@ public class VendaTableModel extends AbstractTableModel implements AcoesTableMod
 
     @Override
     public void setValueAt(Object valor, int linha, int coluna) {
-        Venda venda = linhas.get(linha);
+        ItemVenda itemVenda = linhas.get(linha);
         switch (coluna) {
-            case CODIGO:
-                venda.setId(Integer.valueOf((String) valor));
+            case EAN13:
+                itemVenda.setId(Integer.valueOf((String) valor));
                 break;
-            case CLIENTE:
-                venda.getCliente().setNome((String) valor);
+            case NOME_PRODUTO:
+                itemVenda.getProduto().setNome((String) valor);
                 break;
-            case FUNCIONARIO:
-                venda.getFuncionario().setNome((String) valor);
+            case QUANTIDADE:
+                itemVenda.setQuantidade((Integer) valor);
                 break;
-            case DATA_VENDA:
-                venda.setDataVenda((LocalDateTime) valor);
+            case VALOR_PRODUTO:
+                itemVenda.setValorProduto((Double) valor);
                 break;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
@@ -103,22 +101,22 @@ public class VendaTableModel extends AbstractTableModel implements AcoesTableMod
     }
 
     @Override
-    public Venda pegaObjeto(int indiceLinha) {
+    public ItemVenda pegaObjeto(int indiceLinha) {
         return linhas.get(indiceLinha);
     }
 
     @Override
-    public void adicionar(Venda venda) {
-        linhas.add(venda);
+    public void adicionar(ItemVenda itemVenda) {
+        linhas.add(itemVenda);
         int ultimoIndice = getRowCount() - 1; // linhas -1
         fireTableRowsInserted(ultimoIndice, ultimoIndice); // atualiza insert
     }
 
     @Override
-    public void adicionar(List<Venda> vendas) {
+    public void adicionar(List<ItemVenda> itemVenda) {
         int indice = getRowCount();
-        linhas.addAll(vendas);
-        fireTableRowsInserted(indice, indice + vendas.size());
+        linhas.addAll(itemVenda);
+        fireTableRowsInserted(indice, indice + itemVenda.size());
         fireTableDataChanged();
     }
 
@@ -136,8 +134,8 @@ public class VendaTableModel extends AbstractTableModel implements AcoesTableMod
         }
     }
     @Override
-    public void atualizar(int indiceLinha, Venda venda) {
-        linhas.set(indiceLinha, venda);
+    public void atualizar(int indiceLinha, ItemVenda itemVenda) {
+        linhas.set(indiceLinha, itemVenda);
         fireTableRowsUpdated(indiceLinha, indiceLinha); // atualiza delete
     }
 

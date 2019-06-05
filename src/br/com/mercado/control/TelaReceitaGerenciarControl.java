@@ -5,8 +5,14 @@
  */
 package br.com.mercado.control;
 
+import br.com.mercado.dao.ReceitaDao;
+import br.com.mercado.model.Receita;
+import br.com.mercado.uteis.Mensagem;
+import br.com.mercado.uteis.Texto;
 import br.com.mercado.view.TelaPrincipal;
 import br.com.mercado.view.TelaReceitaGerenciar;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  *
@@ -16,8 +22,11 @@ public class TelaReceitaGerenciarControl {
     
     
     TelaReceitaGerenciar telaReceitaGerenciar;
+    ReceitaDao receitaDao;
+    Receita receita;
 
     public TelaReceitaGerenciarControl() {
+        receitaDao = new ReceitaDao();
     }
     
     
@@ -33,6 +42,24 @@ public class TelaReceitaGerenciarControl {
                 TelaPrincipal.desktopPane.add(telaReceitaGerenciar);
                 telaReceitaGerenciar.setVisible(true);
             }
+        }
+    }
+    
+    
+    public void criarReceita(Integer codVenda, Date dataVencimento , Double valorTotal) {
+        receita = new Receita();
+        receita.setDataCadastro(LocalDateTime.now());
+        receita.setDataPagamento(null);
+        receita.setDataVencimento(dataVencimento);
+        receita.setValorRecebido(null);
+        receita.setValorTotal(valorTotal);
+        receita.setCodVenda(codVenda);
+        
+        int inserido = receitaDao.inserir(receita);
+        if (inserido != 0) {
+            Mensagem.info(Texto.SUCESSO_CADASTRAR);
+        } else {
+            Mensagem.erro(Texto.ERRO_CADASTRAR);
         }
     }
 }

@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +33,18 @@ public class ReceitaDao extends Dao implements DaoI<Receita> {
             PreparedStatement stmt;
             stmt = conexao.prepareStatement(queryInsert, PreparedStatement.RETURN_GENERATED_KEYS);
             stmt.setTimestamp(1, Timestamp.valueOf(receita.getDataCadastro()));
-            stmt.setTimestamp(2, Timestamp.valueOf(receita.getDataPagamento()));
+            if (receita.getDataPagamento() == null) {
+                stmt.setNull(2, Types.TIMESTAMP);
+            } else {
+                stmt.setTimestamp(2, Timestamp.valueOf(receita.getDataPagamento()));
+            }
             stmt.setDate(3, new Date(receita.getDataVencimento().getTime()));
             stmt.setDouble(4, receita.getValorTotal());
-            stmt.setDouble(5, receita.getValorRecebido());
+            if (receita.getValorRecebido() == null) {
+                stmt.setNull(5, Types.DOUBLE);
+            } else {
+                stmt.setDouble(5, receita.getValorRecebido());
+            }
             stmt.setInt(6, receita.getCodVenda());
             ResultSet res;
             if (stmt.executeUpdate() > 0) {

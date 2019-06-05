@@ -9,7 +9,7 @@ import br.com.mercado.model.Fornecedor;
 import br.com.mercado.model.ItemEntrada;
 import br.com.mercado.model.Produto;
 import br.com.mercado.model.tablemodel.EntradaProdutoTableModel;
-import br.com.mercado.model.tablemodel.EntradaTableModel;
+import br.com.mercado.model.tablemodel.ItemEntradaTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
 import br.com.mercado.uteis.UtilDate;
@@ -32,7 +32,7 @@ public class TelaEntradaGerenciarControl {
     private TelaEntradaGerenciar telaEntradaGerenciar = null;
     private TelaEntradaDespesa telaEntradaDespesa;
     private EntradaProdutoTableModel entradaProdutoTableModel;
-    private EntradaTableModel entradaTableModel;
+    private ItemEntradaTableModel itemEntradaTableModel;
     private List<Fornecedor> listFornecedores;
     private List<ItemEntrada> listItemEntradas;
     private FornecedorDao fornecedorDao;
@@ -49,7 +49,7 @@ public class TelaEntradaGerenciarControl {
         produtoDao = new ProdutoDao();
         itemEntradaDao = new ItemEntradaDao();
         entradaProdutoTableModel = new EntradaProdutoTableModel();
-        entradaTableModel = new EntradaTableModel();
+        itemEntradaTableModel = new ItemEntradaTableModel();
         listItemEntradas = new ArrayList<>();
     }
 
@@ -70,7 +70,7 @@ public class TelaEntradaGerenciarControl {
         telaEntradaGerenciar.getTblProduto().setModel(entradaProdutoTableModel);
         entradaProdutoTableModel.limpar();
         entradaProdutoTableModel.adicionar(produtoDao.pesquisar());
-        telaEntradaGerenciar.getTblEntrada().setModel(entradaTableModel);
+        telaEntradaGerenciar.getTblEntrada().setModel(itemEntradaTableModel);
     }
 
     private void carregarFornecedoresNaCombo() {
@@ -91,7 +91,7 @@ public class TelaEntradaGerenciarControl {
         itemEntrada.setValorProduto(Double.valueOf(telaEntradaGerenciar.getTfValor().getText()));
         itemEntrada.setProduto(entradaProdutoTableModel.pegaObjeto(telaEntradaGerenciar.getTblProduto().getSelectedRow()));
         listItemEntradas.add(itemEntrada);
-        entradaTableModel.adicionar(itemEntrada);
+        itemEntradaTableModel.adicionar(itemEntrada);
 
         itemEntrada = null;
     }
@@ -102,9 +102,9 @@ public class TelaEntradaGerenciarControl {
             return;
         }
 
-        itemEntrada = entradaTableModel.pegaObjeto(telaEntradaGerenciar.getTblEntrada().getSelectedRow());
+        itemEntrada = itemEntradaTableModel.pegaObjeto(telaEntradaGerenciar.getTblEntrada().getSelectedRow());
         listItemEntradas.remove(itemEntrada);
-        entradaTableModel.remover(telaEntradaGerenciar.getTblEntrada().getSelectedRow());
+        itemEntradaTableModel.remover(telaEntradaGerenciar.getTblEntrada().getSelectedRow());
         Mensagem.info(Texto.SUCESSO_REMOVER);
         itemEntrada = null;
 

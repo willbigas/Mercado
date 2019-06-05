@@ -42,7 +42,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         cbUsuario = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVenda = new javax.swing.JTable();
-        btRemoverProduto = new javax.swing.JButton();
+        btRemoverItemVenda = new javax.swing.JButton();
         btGravarVenda = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -50,9 +50,13 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblProduto = new javax.swing.JTable();
-        btAdicionarItemEntrada = new javax.swing.JButton();
+        brAdicionarItemVenda = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        tfQuantidade = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        tfValor = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -78,11 +82,16 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tblVenda);
 
-        btRemoverProduto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/remover_24x24.png"))); // NOI18N
-        btRemoverProduto.setToolTipText("Remover produto da lista...");
-        btRemoverProduto.setBorder(null);
-        btRemoverProduto.setBorderPainted(false);
-        btRemoverProduto.setContentAreaFilled(false);
+        btRemoverItemVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/remover_24x24.png"))); // NOI18N
+        btRemoverItemVenda.setToolTipText("Remover produto da lista...");
+        btRemoverItemVenda.setBorder(null);
+        btRemoverItemVenda.setBorderPainted(false);
+        btRemoverItemVenda.setContentAreaFilled(false);
+        btRemoverItemVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoverItemVendaActionPerformed(evt);
+            }
+        });
 
         btGravarVenda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btGravarVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/save_32x32.png"))); // NOI18N
@@ -91,6 +100,11 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         btGravarVenda.setBorder(null);
         btGravarVenda.setBorderPainted(false);
         btGravarVenda.setContentAreaFilled(false);
+        btGravarVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btGravarVendaActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
@@ -106,7 +120,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(141, 141, 141))
+                .addGap(197, 197, 197))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +128,7 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         );
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel5.setText("Buscar Produtos:");
+        jLabel5.setText("Buscar:");
 
         tblProduto.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tblProduto.setModel(new javax.swing.table.DefaultTableModel(
@@ -130,15 +144,19 @@ public class TelaVenda extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(tblProduto);
 
-        btAdicionarItemEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/add_32x32.png"))); // NOI18N
-        btAdicionarItemEntrada.setBorder(null);
-        btAdicionarItemEntrada.setBorderPainted(false);
-        btAdicionarItemEntrada.setContentAreaFilled(false);
-        btAdicionarItemEntrada.addActionListener(new java.awt.event.ActionListener() {
+        brAdicionarItemVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/add_32x32.png"))); // NOI18N
+        brAdicionarItemVenda.setBorder(null);
+        brAdicionarItemVenda.setBorderPainted(false);
+        brAdicionarItemVenda.setContentAreaFilled(false);
+        brAdicionarItemVenda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAdicionarItemEntradaActionPerformed(evt);
+                brAdicionarItemVendaActionPerformed(evt);
             }
         });
+
+        jLabel2.setText("QTD:");
+
+        jLabel6.setText("VALOR:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,37 +164,46 @@ public class TelaVenda extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btRemoverProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(407, 407, 407)
-                            .addComponent(btAdicionarItemEntrada)
-                            .addGap(14, 14, 14))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(14, 14, 14)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel5)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(tfPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cbUsuario, 0, 208, Short.MAX_VALUE)
-                                        .addComponent(cbCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
-                .addContainerGap(244, Short.MAX_VALUE))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbUsuario, 0, 208, Short.MAX_VALUE)
+                            .addComponent(cbCliente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jSeparator2)
+            .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btGravarVenda)
-                .addGap(14, 14, 14))
-            .addComponent(jScrollPane1)
-            .addComponent(jScrollPane2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btGravarVenda)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btRemoverItemVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(tfQuantidade)
+                    .addComponent(tfValor, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(brAdicionarItemVenda)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,45 +219,68 @@ public class TelaVenda extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4))
                 .addGap(7, 7, 7)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(tfPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(tfPesquisaProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(btAdicionarItemEntrada))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(btRemoverProduto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btGravarVenda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(tfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(20, 20, 20)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(2, 2, 2)
+                        .addComponent(btRemoverItemVenda)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btGravarVenda))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(brAdicionarItemVenda)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btAdicionarItemEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarItemEntradaActionPerformed
+    private void brAdicionarItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brAdicionarItemVendaActionPerformed
+        vendaControl.adicionarItemVendaAction();
+    }//GEN-LAST:event_brAdicionarItemVendaActionPerformed
 
-    }//GEN-LAST:event_btAdicionarItemEntradaActionPerformed
+    private void btRemoverItemVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverItemVendaActionPerformed
+        // TODO add your handling code here:
+        vendaControl.removerItemVendaAction();
+    }//GEN-LAST:event_btRemoverItemVendaActionPerformed
+
+    private void btGravarVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarVendaActionPerformed
+        // TODO add your handling code here:
+        vendaControl.chamarDialogVendaReceitaAction();
+    }//GEN-LAST:event_btGravarVendaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAdicionarItemEntrada;
+    private javax.swing.JButton brAdicionarItemVenda;
     private javax.swing.JButton btGravarVenda;
-    private javax.swing.JButton btRemoverProduto;
+    private javax.swing.JButton btRemoverItemVenda;
     private javax.swing.JComboBox cbCliente;
     private javax.swing.JComboBox<Usuario> cbUsuario;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -239,6 +289,8 @@ public class TelaVenda extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblProduto;
     private javax.swing.JTable tblVenda;
     private javax.swing.JTextField tfPesquisaProduto;
+    private javax.swing.JTextField tfQuantidade;
+    private javax.swing.JTextField tfValor;
     // End of variables declaration//GEN-END:variables
 
     public JComboBox getCbCliente() {
@@ -281,6 +333,22 @@ public class TelaVenda extends javax.swing.JInternalFrame {
 
     public void setTfPesquisaProduto(JTextField tfPesquisaProduto) {
         this.tfPesquisaProduto = tfPesquisaProduto;
+    }
+
+    public JTextField getTfQuantidade() {
+        return tfQuantidade;
+    }
+
+    public void setTfQuantidade(JTextField tfQuantidade) {
+        this.tfQuantidade = tfQuantidade;
+    }
+
+    public JTextField getTfValor() {
+        return tfValor;
+    }
+
+    public void setTfValor(JTextField tfValor) {
+        this.tfValor = tfValor;
     }
     
     

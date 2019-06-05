@@ -13,7 +13,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author william.mauro
  */
-public class EntradaTableModel extends AbstractTableModel implements AcoesTableModel<ItemEntrada> {
+public class ItemEntradaTableModel extends AbstractTableModel implements AcoesTableModel<ItemEntrada> {
 
     private static final int EAN13 = 0;
     private static final int NOME_PRODUTO = 1;
@@ -24,11 +24,11 @@ public class EntradaTableModel extends AbstractTableModel implements AcoesTableM
     private List<ItemEntrada> linhas;
     private String[] COLUNAS = {"Ean13", "Produto", "Quantidade", "Valor Unitário", "Numero Lote"};
 
-    public EntradaTableModel() {
+    public ItemEntradaTableModel() {
         linhas = new ArrayList<>();
     }
 
-    public EntradaTableModel(List<ItemEntrada> listItemEntradas) {
+    public ItemEntradaTableModel(List<ItemEntrada> listItemEntradas) {
         linhas = new ArrayList<>(listItemEntradas);
     }
 

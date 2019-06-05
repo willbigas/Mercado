@@ -86,6 +86,17 @@ PRIMARY KEY (id),
 foreign key(fk_cliente) references clientes(id),
 foreign key(fk_usuario) references usuarios(id));
 
+
+CREATE TABLE itemVenda(
+id INT(11) not null auto_increment,
+valorProduto decimal(10,2),
+quantidade int(11),
+fk_venda int NOT NULL,
+fk_produto int NOT NULL,
+PRIMARY KEY (id),
+foreign key(fk_venda) references vendas(id),
+foreign key(fk_produto) references produtos(id));
+
 CREATE TABLE entradas(
 id INT(11) not null auto_increment,
 dataEntrada datetime NOT NULL,

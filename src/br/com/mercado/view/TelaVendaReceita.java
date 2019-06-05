@@ -6,6 +6,7 @@
 package br.com.mercado.view;
 
 import br.com.mercado.control.TelaEntradaGerenciarControl;
+import br.com.mercado.control.TelaVendaControl;
 import javax.swing.JInternalFrame;
 import javax.swing.JTextField;
 
@@ -13,21 +14,21 @@ import javax.swing.JTextField;
  *
  * @author Will
  */
-public class TelaEntradaDespesa extends javax.swing.JDialog {
+public class TelaVendaReceita extends javax.swing.JDialog {
     
-    TelaEntradaGerenciarControl entradaGerenciarControl;
+    TelaVendaControl telaVendaControl;
 
     /**
      * Creates new form TelaEntradaDespesa
      */
-    public TelaEntradaDespesa(java.awt.Frame parent, boolean modal) {
+    public TelaVendaReceita(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    public TelaEntradaDespesa(JInternalFrame parent, boolean modal , TelaEntradaGerenciarControl control) {
+    public TelaVendaReceita(JInternalFrame parent, boolean modal , TelaVendaControl control) {
         initComponents();
         this.setModal(modal);
-        entradaGerenciarControl = control;
+        telaVendaControl = control;
     }
 
     /**
@@ -49,7 +50,7 @@ public class TelaEntradaDespesa extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setText("Gerar Despesa");
+        jLabel1.setText("Gerar Receita");
 
         jLabel2.setText("Data  Vencimento");
 
@@ -109,7 +110,7 @@ public class TelaEntradaDespesa extends javax.swing.JDialog {
 
     private void btGerarDespesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGerarDespesaActionPerformed
         // TODO add your handling code here:
-        entradaGerenciarControl.adicionarEntradaAction();
+        telaVendaControl.adicionarVendaAction();
     }//GEN-LAST:event_btGerarDespesaActionPerformed
 
     /**
@@ -129,20 +130,21 @@ public class TelaEntradaDespesa extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaEntradaDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaEntradaDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaEntradaDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaEntradaDespesa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaVendaReceita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TelaEntradaDespesa dialog = new TelaEntradaDespesa(new javax.swing.JFrame(), true);
+                TelaVendaReceita dialog = new TelaVendaReceita(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -171,13 +173,15 @@ public class TelaEntradaDespesa extends javax.swing.JDialog {
         this.tfDataVencimento = tfDataVencimento;
     }
 
-    public JTextField getTfValorPagamento() {
+    public JTextField getTfValorRecebimento() {
         return tfValorRecebimento;
     }
 
-    public void setTfValorPagamento(JTextField tfValorPagamento) {
-        this.tfValorRecebimento = tfValorPagamento;
+    public void setTfValorRecebimento(JTextField tfValorRecebimento) {
+        this.tfValorRecebimento = tfValorRecebimento;
     }
+
+  
 
 
 }
