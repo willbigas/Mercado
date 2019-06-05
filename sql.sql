@@ -123,7 +123,7 @@ dataCadastro datetime NOT NULL,
 dataPagamento datetime,
 dataVencimento date NOT NULL,
 valorTotal decimal(10,2) NOT NULL,
-valorRecebido decimal(10,2) NOT NULL,
+valorRecebido decimal(10,2),
 codVenda int(9),
 PRIMARY KEY (id));
 

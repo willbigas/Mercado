@@ -1,8 +1,5 @@
 
 import br.com.mercado.control.TelaLoginControl;
-import br.com.mercado.uteis.InterfaceJanela;
-import br.com.mercado.uteis.Mensagem;
-import br.com.mercado.uteis.Texto;
 
 /**
  *
