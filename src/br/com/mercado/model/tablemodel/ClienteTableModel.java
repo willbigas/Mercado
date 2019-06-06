@@ -20,7 +20,7 @@ public class ClienteTableModel extends AbstractTableModel implements AcoesTableM
     private static final int ATIVO = 5;
 
     private List<Cliente> linhas;
-    private String[] COLUNAS = {"Código", "Nome", "Telefone", "Email", "Endereco", "Ativo"};
+    private String[] COLUNAS = {"Código", "Nome", "Telefone", "Email", "Cidade", "Ativo"};
 
     public ClienteTableModel() {
         linhas = new ArrayList<>();
@@ -49,13 +49,13 @@ public class ClienteTableModel extends AbstractTableModel implements AcoesTableM
     public Class<?> getColumnClass(int columnIndex) {
         switch (columnIndex) {
             case CODIGO:
-                return Integer.class;
+                return String.class;
             case NOME:
                 return String.class;
             case TELEFONE:
                 return String.class;
             case EMAIL:
-                return Integer.class;
+                return String.class;
             case ENDERECO:
                 return String.class;
             case ATIVO:

@@ -12,12 +12,15 @@ import br.com.mercado.model.tablemodel.ClienteTableModel;
 import br.com.mercado.uteis.Enderecos;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.UtilTable;
 import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaClienteGerenciar;
 import br.com.mercado.view.TelaPrincipal;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -53,14 +56,23 @@ public class TelaClienteGerenciarControl {
             }
         }
         telaClienteGerenciar.getTblCliente().setModel(clienteTableModel);
+        redimensionarTela();
         carregarEstadosNaComboBox();
         clienteTableModel.limpar();
         clienteTableModel.adicionar(clienteDao.pesquisar());
     }
 
+    private void redimensionarTela() {
+        UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 0, 50);
+        UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 1, 350);
+        UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 2, 100);
+        UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 3, 225);
+        UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 4, 150);
+        UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 5, 50);
+    }
+
     private void carregarEstadosNaComboBox() {
         telaClienteGerenciar.getCbEstado().setModel(new DefaultComboBoxModel<>(Enderecos.ESTADOS_BRASILEIROS));
-
     }
 
     private void cadastrarCliente() {
