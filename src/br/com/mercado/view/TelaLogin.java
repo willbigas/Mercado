@@ -1,6 +1,7 @@
 package br.com.mercado.view;
 
 import br.com.mercado.control.TelaLoginControl;
+import br.com.mercado.uteis.InterfaceJanela;
 import br.com.mercado.uteis.Visual;
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -26,6 +27,7 @@ public class TelaLogin extends javax.swing.JFrame {
     public TelaLogin(TelaLoginControl control) {
         initComponents();
         loginControl = control;
+        lblRecuperarSenha.setText("<html><u>" + lblRecuperarSenha.getText() + " </u></html>");
     }
 
     /**
@@ -42,7 +44,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         tfLogin = new javax.swing.JTextField();
         btEntrar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        lblRecuperarSenha = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         tfSenha = new javax.swing.JPasswordField();
 
@@ -74,7 +76,13 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Esqueceu sua senha?");
+        lblRecuperarSenha.setText("Esqueceu sua senha?");
+        lblRecuperarSenha.setToolTipText("Clique para ser direcionado ao email de contato para recuperação de senha");
+        lblRecuperarSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                lblRecuperarSenhaMouseReleased(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/basket_64x64.png"))); // NOI18N
 
@@ -90,7 +98,7 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addComponent(btEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
+                                    .addComponent(lblRecuperarSenha)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
@@ -131,7 +139,7 @@ public class TelaLogin extends javax.swing.JFrame {
                     .addComponent(btEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(9, 9, 9)
-                        .addComponent(jLabel4)))
+                        .addComponent(lblRecuperarSenha)))
                 .addGap(29, 29, 29))
         );
 
@@ -143,6 +151,10 @@ public class TelaLogin extends javax.swing.JFrame {
         loginControl.acessarTelaPrincipalAction();
 
     }//GEN-LAST:event_btEntrarActionPerformed
+
+    private void lblRecuperarSenhaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRecuperarSenhaMouseReleased
+        loginControl.abrirLink("mailto:suporte@empresa.com.br");
+    }//GEN-LAST:event_lblRecuperarSenhaMouseReleased
 
     /**
      * @param args the command line arguments
@@ -184,8 +196,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblRecuperarSenha;
     private javax.swing.JTextField tfLogin;
     private javax.swing.JPasswordField tfSenha;
     // End of variables declaration//GEN-END:variables

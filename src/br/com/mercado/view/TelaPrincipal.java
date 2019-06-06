@@ -295,11 +295,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuSobre.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
 
         menuItemAjuda.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemAjuda.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         menuItemAjuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/ajuda_32x32.png"))); // NOI18N
         menuItemAjuda.setText("Ajuda");
         menuSobre.add(menuItemAjuda);
 
         menuItemSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        menuItemSobre.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         menuItemSobre.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/developer_32x32.png"))); // NOI18N
         menuItemSobre.setText("Sobre");
         menuItemSobre.addActionListener(new java.awt.event.ActionListener() {
@@ -326,6 +328,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
 
         jMenuItem1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/settings_config_32x32.png"))); // NOI18N
         jMenuItem1.setText("Parametros");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,12 +412,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         URL jasperFile = getClass().getResource("/br/com/mercado/reports/clientes.jasper");
         Relatorio.chamarRelatorio(jasperFile.getPath());
-
     }//GEN-LAST:event_menuItemRelatorioClientesActionPerformed
 
     private void menuItemRelatorioCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioCategoriasActionPerformed
         // TODO add your handling code here:
-        URL jasperFile = getClass().getResource("/br/com/mercado/reports/clientes.jasper");
+        URL jasperFile = getClass().getResource("/br/com/mercado/reports/categorias.jasper");
         Relatorio.chamarRelatorio(jasperFile.getPath());
     }//GEN-LAST:event_menuItemRelatorioCategoriasActionPerformed
 
