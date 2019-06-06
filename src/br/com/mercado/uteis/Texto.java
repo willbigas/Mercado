@@ -65,5 +65,21 @@ public class Texto {
             + "por favor contate o desenvolvedor.";
     
     public static final String ERRO_COVERTER_CAMPO_DATA = "Atenção, Erro ao converter o campo para data";
+    
+    
+    // Mensagens de Bean Categoria 
+    
+    public static final String CATEGORIA_NULL = "Para criar uma categoria, preencha todos os campos obrigatórios";
+    
+    
+    public static final String CATEGORIA_NOME = "O campo [Nome] não pode conter ser vazio ou conter somente espaços";
+    
+    public static final String CATEGORIA_NOME_TAMANHO = "O campo [Nome] deve ter entre 5 e 50 caracteres";
+    
+    
+    public static final String CATEGORIA_ATIVO_NULO = "O campo [Ativo] não pode ser nulo";
+    
+    
+    
 
 }

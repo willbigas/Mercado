@@ -47,10 +47,6 @@ public class TelaCategoriaGerenciarControl {
     }
 
     private void cadastrarCategoria() {
-//        if (validarCampos()) {
-//            Mensagem.erro(Texto.VAZIO_CAMPOS);
-//            return;
-//        }
 
         categoria = new Categoria();
         categoria.setId(Integer.MAX_VALUE);

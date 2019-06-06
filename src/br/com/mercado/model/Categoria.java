@@ -1,9 +1,9 @@
 package br.com.mercado.model;
 
+import br.com.mercado.uteis.Texto;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
@@ -11,14 +11,12 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class Categoria {
 
-    @NotNull(message = "Para criar uma categoria, preencha os campos obrigatórios")
+    @NotNull(message = Texto.CATEGORIA_NULL)
     private Integer id;
-    @NotEmpty(message = "O campo Categoria não pode estar vazio")
-    @NotNull(message = "O campo Categoria não pode ser nulo")
-    @NotBlank(message = "O campo categoria não poder somente espaços..")
-    @Size(min = 5, max = 255, message = "O campo Nome deve ter entre 5 e 255 caracteres")
+    @NotBlank(message = Texto.CATEGORIA_NOME)
+    @Size(min = 5, max = 50, message = Texto.CATEGORIA_NOME_TAMANHO)
     private String nome;
-    @NotNull(message = "O campo de seleção Ativo deve estar preenchido")
+    @NotNull(message = Texto.CATEGORIA_ATIVO_NULO)
     private Boolean ativo;
 
     public Integer getId() {

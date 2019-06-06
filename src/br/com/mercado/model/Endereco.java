@@ -5,6 +5,9 @@
  */
 package br.com.mercado.model;
 
+import javax.validation.constraints.Digits;
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  *
  * @author ADJ-PC
@@ -12,12 +15,19 @@ package br.com.mercado.model;
 public class Endereco {
 
     private Integer id;
+    @Digits(integer = 10, fraction = 0)
     private Integer cep;
+    @NotBlank
     private String estado;
+    @NotBlank
     private String cidade;
+    @NotBlank
     private String bairro;
+    @NotBlank
     private String rua;
+    @NotBlank
     private String complemento;
+    @NotBlank
     private String numero;
 
     public Integer getId() {
