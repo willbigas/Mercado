@@ -2,6 +2,7 @@ package br.com.mercado.view;
 
 import br.com.mercado.control.TelaPrincipalControl;
 import br.com.mercado.uteis.Relatorio;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -324,6 +325,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jMenuItem1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jMenuItem1.setText("Parametros");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,36 +407,44 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void menuItemRelatorioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioClientesActionPerformed
         // TODO add your handling code here:
-        String src = "C:\\Users\\william.mauro\\Documents\\GitHub\\Mercado\\reports\\MyReports\\clientes.jasper";
-        Relatorio.chamarRelatorio(src);
-     
+        URL jasperFile = getClass().getResource("/br/com/mercado/reports/MyReports/clientes.jasper");
+        Relatorio.chamarRelatorio(jasperFile.getPath());
+
     }//GEN-LAST:event_menuItemRelatorioClientesActionPerformed
 
     private void menuItemRelatorioCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioCategoriasActionPerformed
         // TODO add your handling code here:
-        String src = "C:\\Users\\william.mauro\\Documents\\GitHub\\Mercado\\reports\\MyReports\\categorias.jasper";
-        Relatorio.chamarRelatorio(src);
+        URL jasperFile = getClass().getResource("/br/com/mercado/reports/MyReports/clientes.jasper");
+        Relatorio.chamarRelatorio(jasperFile.getPath());
     }//GEN-LAST:event_menuItemRelatorioCategoriasActionPerformed
 
     private void menuItemRelatorioReceitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioReceitasActionPerformed
         // TODO add your handling code here:
+        URL jasperFile = getClass().getResource("/br/com/mercado/reports/MyReports/receitas.jasper");
+        Relatorio.chamarRelatorio(jasperFile.getPath());
     }//GEN-LAST:event_menuItemRelatorioReceitasActionPerformed
 
     private void menuItemRelatorioDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioDespesasActionPerformed
         // TODO add your handling code here:
+        URL jasperFile = getClass().getResource("/br/com/mercado/reports/MyReports/despesas.jasper");
+        Relatorio.chamarRelatorio(jasperFile.getPath());
     }//GEN-LAST:event_menuItemRelatorioDespesasActionPerformed
 
     private void menuItemRelatorioFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioFornecedoresActionPerformed
         // TODO add your handling code here:
+        URL jasperFile = getClass().getResource("/br/com/mercado/reports/MyReports/fornecedores.jasper");
+        Relatorio.chamarRelatorio(jasperFile.getPath());
     }//GEN-LAST:event_menuItemRelatorioFornecedoresActionPerformed
 
     private void menuItemRelatorioProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioProdutosActionPerformed
         // TODO add your handling code here:
+        URL jasperFile = getClass().getResource("/br/com/mercado/reports/MyReports/produtos.jasper");
+        Relatorio.chamarRelatorio(jasperFile.getPath());
     }//GEN-LAST:event_menuItemRelatorioProdutosActionPerformed
 
     private void menuConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConfiguracaoActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_menuConfiguracaoActionPerformed
 
     private void menuConfiguracaoMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuConfiguracaoMouseReleased

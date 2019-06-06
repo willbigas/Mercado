@@ -59,7 +59,9 @@ public class TelaPrincipalCaixa extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/clientes_32x32.png"))); // NOI18N
         jMenu1.setText("Clientes");
+        jMenu1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
 
+        menuItemVenda.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         menuItemVenda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/venda_32x32.png"))); // NOI18N
         menuItemVenda.setText("Venda");
         menuItemVenda.addActionListener(new java.awt.event.ActionListener() {
@@ -73,11 +75,14 @@ public class TelaPrincipalCaixa extends javax.swing.JFrame {
 
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/info_32x32.png"))); // NOI18N
         jMenu7.setText("Sobre");
+        jMenu7.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
 
+        jMenuItem1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/ajuda_32x32.png"))); // NOI18N
         jMenuItem1.setText("Ajuda");
         jMenu7.add(jMenuItem1);
 
+        jMenuItem2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/developer_32x32.png"))); // NOI18N
         jMenuItem2.setText("Sobre");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
