@@ -7,6 +7,10 @@ package br.com.mercado.model;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -15,13 +19,20 @@ import java.util.Date;
 public class Despesa {
 
     private Integer id;
+    @NotNull
     private LocalDateTime dataCadastro;
     private LocalDateTime dataPagamento;
+    @NotNull
     private Date dataVencimento;
+
     private Double valorPago;
+    @DecimalMin("0.00")
+    @DecimalMax("999999999.00")
     private Double valorPagoRestante;
     private Boolean pago;
+    @NotNull
     private Integer codEntrada;
+    @Valid
     private TipoDespesa tipoDespesa;
 
     public Integer getId() {

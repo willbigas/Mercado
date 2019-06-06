@@ -58,7 +58,7 @@ public class TelaCategoriaGerenciarControl {
         }
 
         if (Validacao.validaEntidade(categoria) != null) {
-            JOptionPane.showMessageDialog(null, Validacao.validaEntidade(categoria));
+            Mensagem.info(Validacao.validaEntidade(categoria));
             categoria = null;
             return;
         }
@@ -86,19 +86,15 @@ public class TelaCategoriaGerenciarControl {
     }
 
     private void alterarCategoria() {
-//        if (validarCampos()) {
-//            Mensagem.erro(Texto.VAZIO_CAMPOS);
-//            return;
-//        }
         categoria.setNome(telaCategoriaGerenciar.getTfNome().getText());
         if (telaCategoriaGerenciar.getCheckAtivo().isSelected()) {
             categoria.setAtivo(true);
         } else {
             categoria.setAtivo(false);
         }
-        
+
         if (Validacao.validaEntidade(categoria) != null) {
-            JOptionPane.showMessageDialog(null, Validacao.validaEntidade(categoria));
+            Mensagem.info(Validacao.validaEntidade(categoria));
             categoria = null;
             return;
         }

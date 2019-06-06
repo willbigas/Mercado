@@ -5,6 +5,10 @@
  */
 package br.com.mercado.model;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  *
  * @author william.mauro
@@ -12,8 +16,11 @@ package br.com.mercado.model;
 public class TipoUsuario {
 
     private Integer id;
+    @NotBlank
     private String nome;
+    @NotNull
     private Boolean ativo;
+    @Digits(integer = 1, fraction = 0)
     private Integer tipoPermissao;
 
     public Integer getId() {

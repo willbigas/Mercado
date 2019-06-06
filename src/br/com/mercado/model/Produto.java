@@ -1,5 +1,12 @@
 package br.com.mercado.model;
 
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  *
  * @author William
@@ -7,12 +14,20 @@ package br.com.mercado.model;
 public class Produto {
 
     private Integer id;
+    @NotBlank
     private String nome;
+    @Digits(integer = 10, fraction = 0)
     private Integer codBarras;
+    @DecimalMin("0.00")
+    @DecimalMax("999999999.00")
     private Double valor;
+    @Digits(integer = 10, fraction = 0)
     private Integer quantidade;
+    @Valid
     private Categoria categoria;
+    @Valid
     private Fornecedor fornecedor;
+    @NotNull
     private Boolean ativo;
 
     public Integer getId() {

@@ -15,6 +15,7 @@ import br.com.mercado.model.tablemodel.VendaProdutoTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
 import br.com.mercado.uteis.UtilDate;
+import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaPrincipal;
 import br.com.mercado.view.TelaVenda;
 import br.com.mercado.view.TelaVendaReceita;
@@ -46,7 +47,6 @@ public class TelaVendaControl {
     ItemVendaTableModel itemVendaTableModel;
     ItemVenda itemVenda;
     Venda venda;
-    
 
     public TelaVendaControl() {
         clienteDao = new ClienteDao();
@@ -94,9 +94,8 @@ public class TelaVendaControl {
         DefaultComboBoxModel<Usuario> model = new DefaultComboBoxModel(listUsuarios.toArray());
         telaVenda.getCbUsuario().setModel(model);
     }
-    
-    
-    public void adicionarItemVendaAction () {
+
+    public void adicionarItemVendaAction() {
         itemVenda = new ItemVenda();
         itemVenda.setId(1);
         itemVenda.setQuantidade(Integer.valueOf(telaVenda.getTfQuantidade().getText()));
@@ -106,7 +105,7 @@ public class TelaVendaControl {
         itemVendaTableModel.adicionar(itemVenda);
         itemVenda = null;
     }
-    
+
     public void removerItemVendaAction() {
         int retorno = Mensagem.confirmacao(Texto.PERGUNTA_REMOVER_ITEM_VENDA);
         if (retorno == JOptionPane.NO_OPTION) {
@@ -118,18 +117,24 @@ public class TelaVendaControl {
         Mensagem.info(Texto.SUCESSO_REMOVER);
         itemVenda = null;
     }
-    
-     public void chamarDialogVendaReceitaAction() {
+
+    public void chamarDialogVendaReceitaAction() {
         telaVendaReceita = new TelaVendaReceita(telaVenda, true, this);
         telaVendaReceita.setVisible(true);
     }
-    
-    
-     public void adicionarVendaAction() {
+
+    public void adicionarVendaAction() {
         venda = new Venda();
         venda.setDataVenda(LocalDateTime.now());
         venda.setCliente((Cliente) telaVenda.getCbCliente().getSelectedItem());
         venda.setUsuario((Usuario) telaVenda.getCbUsuario().getSelectedItem());
+        
+        if (Validacao.validaEntidade(venda) != null) {
+            Mensagem.info(Validacao.validaEntidade(venda));
+            venda = null;
+            return;
+        }
+
         Integer idVendaInserida = vendaDao.inserir(venda);
 
         if (idVendaInserida == 0) {
@@ -144,7 +149,8 @@ public class TelaVendaControl {
 
             Produto produtoDoItemVenda = produtoDao.pesquisar(umItemVendaDaTabela.getProduto().getId());
 
-            produtoDoItemVenda.setQuantidade(umItemVendaDaTabela.getQuantidade());
+            produtoDoItemVenda.setQuantidade(produtoDoItemVenda.getQuantidade() - umItemVendaDaTabela.getQuantidade());
+            produtoDao.alterar(produtoDoItemVenda);
             produtoDoItemVenda.setValor(umItemVendaDaTabela.getValorProduto());
 
             umItemVendaDaTabela.setProduto(produtoDoItemVenda);

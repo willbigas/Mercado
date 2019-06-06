@@ -1,5 +1,8 @@
 package br.com.mercado.model;
 
+import javax.validation.Valid;
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  *
  * @author William
@@ -7,8 +10,11 @@ package br.com.mercado.model;
 public class Fornecedor {
 
     private Integer id;
+    @NotBlank
     private String nome;
+    @NotBlank
     private String telefone;
+    @Valid
     private Endereco Endereco;
     private Boolean ativo;
 

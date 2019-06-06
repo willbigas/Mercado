@@ -66,6 +66,8 @@ public class Texto {
     
     public static final String ERRO_COVERTER_CAMPO_DATA = "Atenção, Erro ao converter o campo para data";
     
+     public static final String ERRO_COVERTER_CAMPO_CEP = "Atenção, o campo de [CEP] deve conter 8 digitos Ex:[00000000]";
+    
     
     // Mensagens de Bean Categoria 
     

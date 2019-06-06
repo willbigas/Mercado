@@ -5,6 +5,8 @@
  */
 package br.com.mercado.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  *
  * @author william.mauro
@@ -12,6 +14,7 @@ package br.com.mercado.model;
 public class TipoDespesa {
 
     private Integer id;
+    @NotBlank
     private String nome;
 
     public Integer getId() {

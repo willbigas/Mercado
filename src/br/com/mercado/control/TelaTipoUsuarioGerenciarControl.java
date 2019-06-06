@@ -6,6 +6,7 @@ import br.com.mercado.model.TipoUsuario;
 import br.com.mercado.model.tablemodel.TipoUsuarioTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaPrincipal;
 import br.com.mercado.view.TelaTipoUsuarioGerenciar;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class TelaTipoUsuarioGerenciarControl {
     TipoUsuario tipoUsuario;
     TipoPermissao tipoPermissaoSelecionado;
     Integer linhaSelecionada;
-    
+
     private static final int ADMIN = 1;
     private static final int CAIXA = 2;
 
@@ -85,6 +86,13 @@ public class TelaTipoUsuarioGerenciarControl {
         }
         tipoPermissaoSelecionado = (TipoPermissao) telaTipoUsuarioGerenciar.getCbPermissao().getSelectedItem();
         tipoUsuario.setTipoPermissao(tipoPermissaoSelecionado.getId());
+
+        if (Validacao.validaEntidade(tipoUsuario) != null) {
+            Mensagem.info(Validacao.validaEntidade(tipoUsuario));
+            tipoUsuario = null;
+            return;
+        }
+
         int idInserido = tipoUsuarioDao.inserir(tipoUsuario);
         if (idInserido == 0) {
             Mensagem.erro(Texto.ERRO_CADASTRAR);
@@ -109,6 +117,13 @@ public class TelaTipoUsuarioGerenciarControl {
         }
         tipoPermissaoSelecionado = (TipoPermissao) telaTipoUsuarioGerenciar.getCbPermissao().getSelectedItem();
         tipoUsuario.setTipoPermissao(tipoPermissaoSelecionado.getId());
+
+        if (Validacao.validaEntidade(tipoUsuario) != null) {
+            Mensagem.info(Validacao.validaEntidade(tipoUsuario));
+            tipoUsuario = null;
+            return;
+        }
+
         boolean alterado = tipoUsuarioDao.alterar(tipoUsuario);
         linhaSelecionada = telaTipoUsuarioGerenciar.getTblTipoUsuario().getSelectedRow();
         if (alterado == false) {
@@ -122,7 +137,7 @@ public class TelaTipoUsuarioGerenciarControl {
         }
         tipoUsuario = null;
     }
-    
+
     public void desativarTipoUsuarioAction() {
         int retorno = Mensagem.confirmacao(Texto.PERGUNTA_DESATIVAR);
 
@@ -142,15 +157,15 @@ public class TelaTipoUsuarioGerenciarControl {
         }
         tipoUsuario = null;
     }
-    
+
     public void carregarTipoUsuarioAction() {
         tipoUsuario = tipoUsuarioTableModel.pegaObjeto(telaTipoUsuarioGerenciar.getTblTipoUsuario().getSelectedRow());
         telaTipoUsuarioGerenciar.getTfNome().setText(tipoUsuario.getNome());
         if (tipoUsuario.getTipoPermissao() == ADMIN) {
-             telaTipoUsuarioGerenciar.getCbPermissao().getModel().setSelectedItem(listTipoPermissao.get(ADMIN - 1));
+            telaTipoUsuarioGerenciar.getCbPermissao().getModel().setSelectedItem(listTipoPermissao.get(ADMIN - 1));
         }
         if (tipoUsuario.getTipoPermissao() == CAIXA) {
-               telaTipoUsuarioGerenciar.getCbPermissao().getModel().setSelectedItem(listTipoPermissao.get(CAIXA - 1));
+            telaTipoUsuarioGerenciar.getCbPermissao().getModel().setSelectedItem(listTipoPermissao.get(CAIXA - 1));
         }
         if (tipoUsuario.getAtivo() == true) {
             telaTipoUsuarioGerenciar.getCheckAtivo().setSelected(true);
@@ -159,22 +174,22 @@ public class TelaTipoUsuarioGerenciarControl {
             telaTipoUsuarioGerenciar.getCheckAtivo().setSelected(false);
         }
     }
-    
+
     public void gravarTipoUsuarioAction() {
         if (tipoUsuario == null) {
-           inserirTipoUsuario();
+            inserirTipoUsuario();
         } else {
             alterarTipoUsuario();
         }
     }
-    
-    private void limparCamposTipoUsuario(){
+
+    private void limparCamposTipoUsuario() {
         telaTipoUsuarioGerenciar.getTfNome().setText("");
         telaTipoUsuarioGerenciar.getCheckAtivo().setSelected(false);
-        telaTipoUsuarioGerenciar.getCbPermissao().getModel().setSelectedItem(listTipoPermissao.get(ADMIN -1));
+        telaTipoUsuarioGerenciar.getCbPermissao().getModel().setSelectedItem(listTipoPermissao.get(ADMIN - 1));
         telaTipoUsuarioGerenciar.getTblTipoUsuario().clearSelection();
         telaTipoUsuarioGerenciar.getTfNome().requestFocus();
-        
+
     }
 
 }

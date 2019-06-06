@@ -9,6 +9,7 @@ import br.com.mercado.model.Produto;
 import br.com.mercado.model.tablemodel.ProdutoTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaPrincipal;
 import br.com.mercado.view.TelaProdutoGerenciar;
 import java.util.List;
@@ -73,11 +74,6 @@ public class TelaProdutoGerenciarControl {
     }
 
     private void cadastrarProduto() {
-        if (validarCampos()) {
-            Mensagem.erro(Texto.VAZIO_CAMPOS);
-            return;
-        }
-
         produto = new Produto();
         produto.setCodBarras(Integer.valueOf(telaProdutoGerenciar.getTfCodigoBarras().getText()));
         produto.setNome(telaProdutoGerenciar.getTfNome().getText());
@@ -90,6 +86,13 @@ public class TelaProdutoGerenciarControl {
             produto.setAtivo(true);
         } else {
             produto.setAtivo(false);
+        }
+        
+        
+        if (Validacao.validaEntidade(produto) != null) {
+            Mensagem.info(Validacao.validaEntidade(produto));
+            produto = null;
+            return;
         }
 
         Integer idInserido = produtoDao.inserir(produto);
@@ -105,12 +108,7 @@ public class TelaProdutoGerenciarControl {
     }
 
     private void alterarProduto() {
-        if (validarCampos()) {
-            Mensagem.erro(Texto.VAZIO_CAMPOS);
-            return;
-        }
         produto = produtoTableModel.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
-
         produto.setCodBarras(Integer.valueOf(telaProdutoGerenciar.getTfCodigoBarras().getText()));
         produto.setNome(telaProdutoGerenciar.getTfNome().getText());
         produto.setQuantidade(Integer.valueOf(telaProdutoGerenciar.getTfQuantidade().getText()));
@@ -119,6 +117,14 @@ public class TelaProdutoGerenciarControl {
         produto.setFornecedor((Fornecedor) telaProdutoGerenciar.getCbFornecedor().getSelectedItem());
 
         linhaSelecionada = telaProdutoGerenciar.getTblProduto().getSelectedRow();
+        
+        if (Validacao.validaEntidade(produto) != null) {
+            Mensagem.info(Validacao.validaEntidade(produto));
+            produto = null;
+            return;
+        }
+        
+        
         boolean alterado = produtoDao.alterar(produto);
 
         if (alterado) {
@@ -141,7 +147,6 @@ public class TelaProdutoGerenciarControl {
 
     public void carregarProdutoAction() {
         produto = produtoTableModel.pegaObjeto(telaProdutoGerenciar.getTblProduto().getSelectedRow());
-
         telaProdutoGerenciar.getTfNome().setText(produto.getNome());
         telaProdutoGerenciar.getTfCodigoBarras().setText(String.valueOf(produto.getCodBarras()));
         telaProdutoGerenciar.getTfQuantidade().setText(String.valueOf(produto.getQuantidade()));
@@ -198,14 +203,5 @@ public class TelaProdutoGerenciarControl {
         telaProdutoGerenciar.getCheckAtivo().setSelected(false);
         telaProdutoGerenciar.getTblProduto().clearSelection();
         telaProdutoGerenciar.getTfNome().requestFocus();
-    }
-
-    private boolean validarCampos() {
-        if (telaProdutoGerenciar.getTfNome().getText().isEmpty() || telaProdutoGerenciar.getTfCodigoBarras().getText().isEmpty()
-                || telaProdutoGerenciar.getTfValor().getText().isEmpty()) {
-            telaProdutoGerenciar.getTfNome().requestFocus();
-            return true;
-        }
-        return false;
     }
 }

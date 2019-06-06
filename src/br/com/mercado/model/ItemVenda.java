@@ -1,5 +1,10 @@
 package br.com.mercado.model;
 
+import javax.validation.Valid;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Digits;
+
 /**
  *
  * @author William
@@ -7,9 +12,14 @@ package br.com.mercado.model;
 public class ItemVenda {
     
     private Integer id;
+    @Digits(integer = 10, fraction = 0)
     private Integer quantidade;
+    @DecimalMin(value = "0.00")
+    @DecimalMax("999999999.00")
     private Double valorProduto;
+    @Valid
     private Produto produto;
+    @Valid
     private Venda venda;
 
     public Integer getId() {

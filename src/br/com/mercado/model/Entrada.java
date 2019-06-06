@@ -7,6 +7,8 @@ package br.com.mercado.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -15,8 +17,11 @@ import java.util.List;
 public class Entrada {
 
     private Integer id;
+    @NotNull
     private LocalDateTime dataEntrada;
+    @Valid
     private Fornecedor fornecedor;
+    @Valid
     private List<ItemEntrada> itensEntrada;
 
     public Integer getId() {

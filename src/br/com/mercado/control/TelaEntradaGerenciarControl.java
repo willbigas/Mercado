@@ -13,6 +13,7 @@ import br.com.mercado.model.tablemodel.ItemEntradaTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
 import br.com.mercado.uteis.UtilDate;
+import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaEntradaDespesa;
 import br.com.mercado.view.TelaEntradaGerenciar;
 import br.com.mercado.view.TelaPrincipal;
@@ -93,6 +94,12 @@ public class TelaEntradaGerenciarControl {
         listItemEntradas.add(itemEntrada);
         itemEntradaTableModel.adicionar(itemEntrada);
 
+        if (Validacao.validaEntidade(itemEntrada) != null) {
+            Mensagem.info(Validacao.validaEntidade(itemEntrada));
+            itemEntrada = null;
+            return;
+        }
+
         itemEntrada = null;
     }
 
@@ -131,6 +138,12 @@ public class TelaEntradaGerenciarControl {
         entrada = new Entrada();
         entrada.setDataEntrada(LocalDateTime.now());
         entrada.setFornecedor((Fornecedor) telaEntradaGerenciar.getCbFornecedor().getSelectedItem());
+        
+           if (Validacao.validaEntidade(entrada) != null) {
+            Mensagem.info(Validacao.validaEntidade(entrada));
+            entrada = null;
+            return;
+        }
         Integer idEntradaInserida = entradaDao.inserir(entrada);
 
         if (idEntradaInserida == 0) {

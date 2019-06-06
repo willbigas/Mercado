@@ -36,8 +36,7 @@ public class TelaPrincipalCaixa extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Menu Inicial");
-        setResizable(false);
+        setTitle("Tela Principal");
 
         desktopPane.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         desktopPane.setForeground(new java.awt.Color(204, 204, 204));

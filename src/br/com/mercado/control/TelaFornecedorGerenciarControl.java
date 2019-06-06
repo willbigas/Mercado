@@ -12,6 +12,7 @@ import br.com.mercado.model.Fornecedor;
 import br.com.mercado.model.tablemodel.FornecedorTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaFornecedorGerenciar;
 import br.com.mercado.view.TelaPrincipal;
 import java.util.List;
@@ -27,14 +28,14 @@ public class TelaFornecedorGerenciarControl {
     TelaFornecedorGerenciar telaFornecedorGerenciar;
     Fornecedor fornecedor;
     FornecedorDao fornecedorDao;
-    FornecedorTableModel tableModelFornecedor;
+    FornecedorTableModel fornecedorTableModel;
     EnderecoDao enderecoDao;
     Integer linhaSelecionada;
 
     public TelaFornecedorGerenciarControl() {
         fornecedorDao = new FornecedorDao();
         enderecoDao = new EnderecoDao();
-        tableModelFornecedor = new FornecedorTableModel();
+        fornecedorTableModel = new FornecedorTableModel();
     }
 
     public void carregarEstadosNaComboBox() {
@@ -55,23 +56,57 @@ public class TelaFornecedorGerenciarControl {
                 telaFornecedorGerenciar.setVisible(true);
             }
         }
-        telaFornecedorGerenciar.getTblFornecedor().setModel(tableModelFornecedor);
+        telaFornecedorGerenciar.getTblFornecedor().setModel(fornecedorTableModel);
         carregarEstadosNaComboBox();
-        tableModelFornecedor.limpar();
-        tableModelFornecedor.adicionar(fornecedorDao.pesquisar());
+        fornecedorTableModel.limpar();
+        fornecedorTableModel.adicionar(fornecedorDao.pesquisar());
     }
 
     private void cadastrarFornecedor() {
-        if (validarCampos()) {
-            Mensagem.erro(Texto.VAZIO_CAMPOS);
+        fornecedor = new Fornecedor();
+        fornecedor.setNome(telaFornecedorGerenciar.getTfNome().getText());
+        fornecedor.setTelefone(telaFornecedorGerenciar.getTfTelefone().getText());
+
+        Endereco endereco = new Endereco();
+        endereco.setBairro(telaFornecedorGerenciar.getTfBairro().getText());
+
+        try {
+            endereco.setCep(Integer.valueOf(telaFornecedorGerenciar.getTfCep().getText()));
+
+        } catch (NumberFormatException numberFormatException) {
+            Mensagem.info(Texto.ERRO_COVERTER_CAMPO_CEP);
+            fornecedor = null;
+            endereco = null;
             return;
         }
-        fornecedor = new Fornecedor();
-        adicionarFornecedorAction();
+
+        endereco.setCidade(telaFornecedorGerenciar.getTfCidade().getText());
+        endereco.setComplemento(telaFornecedorGerenciar.getTfComplemento().getText());
+        endereco.setEstado((String) telaFornecedorGerenciar.getCbEstado().getSelectedItem());
+        endereco.setNumero(telaFornecedorGerenciar.getTfNumero().getText());
+        endereco.setRua(telaFornecedorGerenciar.getTfRua().getText());
+        Integer idEndereco = enderecoDao.inserir(endereco);
+        endereco.setId(idEndereco);
+
+        fornecedor.setEndereco(endereco);
+
+        if (telaFornecedorGerenciar.getCheckAtivo().isSelected()) {
+            fornecedor.setAtivo(true);
+        } else {
+            fornecedor.setAtivo(false);
+        }
+
+        if (Validacao.validaEntidade(fornecedor) != null) {
+            Mensagem.info(Validacao.validaEntidade(fornecedor));
+            fornecedor = null;
+            endereco = null;
+            return;
+        }
+
         Integer idInserido = fornecedorDao.inserir(fornecedor);
         if (idInserido != 0) {
             fornecedor.setId(idInserido);
-            tableModelFornecedor.adicionar(fornecedor);
+            fornecedorTableModel.adicionar(fornecedor);
             limparCampos();
             Mensagem.info(Texto.SUCESSO_CADASTRAR);
         } else {
@@ -81,26 +116,10 @@ public class TelaFornecedorGerenciarControl {
     }
 
     private void alterarFornecedor() {
-        if (validarCampos()) {
-            Mensagem.erro(Texto.VAZIO_CAMPOS);
-            return;
-        }
-        adicionarFornecedorAction();
-        boolean alterado = fornecedorDao.alterar(fornecedor);
-        linhaSelecionada = telaFornecedorGerenciar.getTblFornecedor().getSelectedRow();
-        if (alterado) {
-            tableModelFornecedor.atualizar(linhaSelecionada, fornecedor);
-            Mensagem.info(Texto.SUCESSO_EDITAR);
-            limparCampos();
-        } else {
-            Mensagem.erro(Texto.ERRO_EDITAR);
-        }
-        fornecedor = null;
-    }
-
-    private void adicionarFornecedorAction() throws NumberFormatException {
+        fornecedor = fornecedorTableModel.pegaObjeto(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
         fornecedor.setNome(telaFornecedorGerenciar.getTfNome().getText());
         fornecedor.setTelefone(telaFornecedorGerenciar.getTfTelefone().getText());
+
         Endereco endereco = new Endereco();
         endereco.setBairro(telaFornecedorGerenciar.getTfBairro().getText());
         endereco.setCep(Integer.valueOf(telaFornecedorGerenciar.getTfCep().getText()));
@@ -109,14 +128,31 @@ public class TelaFornecedorGerenciarControl {
         endereco.setEstado((String) telaFornecedorGerenciar.getCbEstado().getSelectedItem());
         endereco.setNumero(telaFornecedorGerenciar.getTfNumero().getText());
         endereco.setRua(telaFornecedorGerenciar.getTfRua().getText());
-        Integer idEndereco = enderecoDao.inserir(endereco);
-        endereco.setId(idEndereco);
-        fornecedor.setEndereco(endereco);
-        if (telaFornecedorGerenciar.getCheckAtivo().isSelected()) {
-            fornecedor.setAtivo(true);
-        } else {
-            fornecedor.setAtivo(false);
+        boolean enderecoAlterado = enderecoDao.alterar(endereco);
+        if (!enderecoAlterado) {
+            Mensagem.erro(Texto.ERRO_EDITAR);
+            endereco = null;
+            fornecedor = null;
+            return;
         }
+
+        if (Validacao.validaEntidade(fornecedor) != null) {
+            Mensagem.info(Validacao.validaEntidade(fornecedor));
+            fornecedor = null;
+            endereco = null;
+            return;
+        }
+
+        boolean alterado = fornecedorDao.alterar(fornecedor);
+        linhaSelecionada = telaFornecedorGerenciar.getTblFornecedor().getSelectedRow();
+        if (alterado) {
+            fornecedorTableModel.atualizar(linhaSelecionada, fornecedor);
+            Mensagem.info(Texto.SUCESSO_EDITAR);
+            limparCampos();
+        } else {
+            Mensagem.erro(Texto.ERRO_EDITAR);
+        }
+        fornecedor = null;
     }
 
     public void buscarCepAction() {
@@ -130,7 +166,6 @@ public class TelaFornecedorGerenciarControl {
             endereco.setCidade(buscadorDeCep.getCidade());
             endereco.setRua(buscadorDeCep.getLogradouro());
             endereco.setComplemento(buscadorDeCep.getComplemento());
-            System.out.println("Endereco encontrado" + endereco);
 
             // mostra na tela o cep pesquisado
             telaFornecedorGerenciar.getTfBairro().setText(endereco.getBairro());
@@ -163,10 +198,10 @@ public class TelaFornecedorGerenciarControl {
             return;
         }
         if (retorno == JOptionPane.YES_OPTION) {
-            fornecedor = tableModelFornecedor.pegaObjeto(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
+            fornecedor = fornecedorTableModel.pegaObjeto(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
             boolean deletado = fornecedorDao.desativar(fornecedor.getId());
             if (deletado) {
-                tableModelFornecedor.remover(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
+                fornecedorTableModel.remover(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
                 telaFornecedorGerenciar.getTblFornecedor().clearSelection();
                 Mensagem.info(Texto.SUCESSO_DESATIVAR);
             } else {
@@ -179,16 +214,16 @@ public class TelaFornecedorGerenciarControl {
     public void pesquisarFornecedorAction() {
         List<Fornecedor> fornecedoresPesquisados = fornecedorDao.pesquisar(telaFornecedorGerenciar.getTfPesquisar().getText());
         if (fornecedoresPesquisados == null) {
-            tableModelFornecedor.limpar();
+            fornecedorTableModel.limpar();
             fornecedoresPesquisados = fornecedorDao.pesquisar();
         } else {
-            tableModelFornecedor.limpar();
-            tableModelFornecedor.adicionar(fornecedoresPesquisados);
+            fornecedorTableModel.limpar();
+            fornecedorTableModel.adicionar(fornecedoresPesquisados);
         }
     }
 
     public void carregarFornecedorAction() {
-        fornecedor = tableModelFornecedor.pegaObjeto(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
+        fornecedor = fornecedorTableModel.pegaObjeto(telaFornecedorGerenciar.getTblFornecedor().getSelectedRow());
         telaFornecedorGerenciar.getTfNome().setText(fornecedor.getNome());
         telaFornecedorGerenciar.getTfTelefone().setText(fornecedor.getTelefone());
 
@@ -221,20 +256,5 @@ public class TelaFornecedorGerenciarControl {
         telaFornecedorGerenciar.getTfRua().setText("");
         telaFornecedorGerenciar.getCheckAtivo().setSelected(false);
         telaFornecedorGerenciar.getTfNome().requestFocus();
-    }
-
-    private boolean validarCampos() {
-        if (telaFornecedorGerenciar.getTfNome().getText().isEmpty()
-                || telaFornecedorGerenciar.getTfBairro().getText().isEmpty()
-                || telaFornecedorGerenciar.getTfCep().getText().isEmpty()
-                || telaFornecedorGerenciar.getTfCidade().getText().isEmpty()
-                || telaFornecedorGerenciar.getTfNumero().getText().isEmpty()
-                || telaFornecedorGerenciar.getTfNumero().getText().isEmpty()
-                || telaFornecedorGerenciar.getTfTelefone().getText().isEmpty()
-                || telaFornecedorGerenciar.getTfRua().getText().isEmpty()) {
-            telaFornecedorGerenciar.getTfNome().requestFocus();
-            return true;
-        }
-        return false;
     }
 }

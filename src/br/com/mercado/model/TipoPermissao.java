@@ -5,6 +5,8 @@
  */
 package br.com.mercado.model;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  *
  * @author ADJ-PC
@@ -12,6 +14,7 @@ package br.com.mercado.model;
 public class TipoPermissao {
 
     private Integer id;
+    @NotBlank
     private String nome;
 
     public Integer getId() {

@@ -11,10 +11,12 @@ import br.com.mercado.model.Despesa;
 import br.com.mercado.model.TipoDespesa;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaDespesaGerenciar;
 import br.com.mercado.view.TelaPrincipal;
 import java.time.LocalDateTime;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,7 +50,7 @@ public class TelaDespesaGerenciarControl {
         }
     }
 
-    public void criarDespesa(Integer codEntrada, Date dataVencimento , Double valorRestante) {
+    public void criarDespesa(Integer codEntrada, Date dataVencimento, Double valorRestante) {
         despesa = new Despesa();
         despesa.setDataCadastro(LocalDateTime.now());
         despesa.setDataPagamento(null);
@@ -56,14 +58,20 @@ public class TelaDespesaGerenciarControl {
         despesa.setValorPago(null);
         despesa.setPago(false);
         despesa.setValorPagoRestante(valorRestante);
-        
+
         if (codEntrada != null) {
             despesa.setTipoDespesa(tipoDespesaDao.pesquisar(1)); // retorna o tipo Fornecedor
             despesa.setCodEntrada(codEntrada);
         }
-        
+
         if (codEntrada == null) {
             despesa.setTipoDespesa(tipoDespesaDao.pesquisar(2)); // retorna o tipo Funcionario
+        }
+
+        if (Validacao.validaEntidade(despesa) != null) {
+            Mensagem.info(Validacao.validaEntidade(despesa));
+            despesa = null;
+            return;
         }
         
         int inserido = despesaDao.inserir(despesa);

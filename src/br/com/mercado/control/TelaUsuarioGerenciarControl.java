@@ -14,6 +14,7 @@ import br.com.mercado.model.tablemodel.UsuarioTableModel;
 import br.com.mercado.uteis.Enderecos;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaPrincipal;
 import br.com.mercado.view.TelaUsuarioGerenciar;
 import java.util.List;
@@ -31,7 +32,7 @@ public class TelaUsuarioGerenciarControl {
     TipoUsuarioDao tipoUsuarioDao;
     UsuarioDao funcionarioDao;
     UsuarioTableModel tableModelFuncionarios;
-    Usuario funcionario;
+    Usuario usuario;
     EnderecoDao enderecoDao;
     Integer linhaSelecionada;
     Endereco endereco;
@@ -73,43 +74,55 @@ public class TelaUsuarioGerenciarControl {
     }
 
     private void inserirFuncionario() {
-        funcionario = new Usuario();
+        usuario = new Usuario();
         criarFuncionario();
-        Integer idInserido = funcionarioDao.inserir(funcionario);
+
+        if (Validacao.validaEntidade(usuario) != null) {
+            Mensagem.info(Validacao.validaEntidade(usuario));
+            usuario = null;
+            endereco = null;
+            return;
+        }
+        Integer idInserido = funcionarioDao.inserir(usuario);
         if (idInserido != 0) {
-            funcionario.setId(idInserido);
-            tableModelFuncionarios.adicionar(funcionario);
+            usuario.setId(idInserido);
+            tableModelFuncionarios.adicionar(usuario);
             limparCampos();
             Mensagem.info(Texto.SUCESSO_CADASTRAR);
         } else {
             Mensagem.info(Texto.ERRO_CADASTRAR);
         }
-        funcionario = null;
+        usuario = null;
     }
 
     private void alterarFuncionario() {
         criarFuncionario();
-        boolean alterado = funcionarioDao.alterar(funcionario);
+        if (Validacao.validaEntidade(usuario) != null) {
+            Mensagem.info(Validacao.validaEntidade(usuario));
+            usuario = null;
+            return;
+        }
+        boolean alterado = funcionarioDao.alterar(usuario);
         linhaSelecionada = telaUsuarioGerenciar.getTblFuncionario().getSelectedRow();
         if (alterado) {
-            tableModelFuncionarios.atualizar(linhaSelecionada, funcionario);
+            tableModelFuncionarios.atualizar(linhaSelecionada, usuario);
             Mensagem.info(Texto.SUCESSO_EDITAR);
             limparCampos();
         } else {
             Mensagem.erro(Texto.ERRO_EDITAR);
         }
-        funcionario = null;
+        usuario = null;
         endereco = null;
     }
 
-    private void criarFuncionario() throws NumberFormatException {
-        funcionario.setNome(telaUsuarioGerenciar.getTfNome().getText());
-        funcionario.setTelefone(telaUsuarioGerenciar.getTfTelefone().getText());
-        funcionario.setEmail(telaUsuarioGerenciar.getTfEmail().getText());
-        funcionario.setPis(Integer.valueOf(telaUsuarioGerenciar.getTfPis().getText()));
-        funcionario.setSalario(Double.valueOf(telaUsuarioGerenciar.getTfSalario().getText()));
-        funcionario.setSenha(telaUsuarioGerenciar.getTfSenha().getText());
-        funcionario.setTipoUsuario((TipoUsuario) telaUsuarioGerenciar.getCbTipoUsuario().getSelectedItem());
+    private void criarFuncionario() {
+        usuario.setNome(telaUsuarioGerenciar.getTfNome().getText());
+        usuario.setTelefone(telaUsuarioGerenciar.getTfTelefone().getText());
+        usuario.setEmail(telaUsuarioGerenciar.getTfEmail().getText());
+        usuario.setPis(Integer.valueOf(telaUsuarioGerenciar.getTfPis().getText()));
+        usuario.setSalario(Double.valueOf(telaUsuarioGerenciar.getTfSalario().getText()));
+        usuario.setSenha(telaUsuarioGerenciar.getTfSenha().getText());
+        usuario.setTipoUsuario((TipoUsuario) telaUsuarioGerenciar.getCbTipoUsuario().getSelectedItem());
 
         // modifica os atributos baseado no que o usuario modificar.
         endereco.setBairro(telaUsuarioGerenciar.getTfBairro().getText());
@@ -121,12 +134,12 @@ public class TelaUsuarioGerenciarControl {
         endereco.setRua(telaUsuarioGerenciar.getTfRua().getText());
         Integer idEndereco = enderecoDao.inserir(endereco);
         endereco.setId(idEndereco);
-        funcionario.setEndereco(endereco);
+        usuario.setEndereco(endereco);
 
         if (telaUsuarioGerenciar.getCheckAtivo().isSelected()) {
-            funcionario.setAtivo(true);
+            usuario.setAtivo(true);
         } else {
-            funcionario.setAtivo(false);
+            usuario.setAtivo(false);
         }
     }
 
@@ -160,7 +173,7 @@ public class TelaUsuarioGerenciarControl {
     }
 
     public void gravarFuncionarioAction() {
-        if (funcionario == null) {
+        if (usuario == null) {
             inserirFuncionario();
         } else {
             alterarFuncionario();
@@ -174,8 +187,8 @@ public class TelaUsuarioGerenciarControl {
             return;
         }
         if (retorno == JOptionPane.YES_OPTION) {
-            funcionario = tableModelFuncionarios.pegaObjeto(telaUsuarioGerenciar.getTblFuncionario().getSelectedRow());
-            boolean deletado = funcionarioDao.desativar(funcionario.getId());
+            usuario = tableModelFuncionarios.pegaObjeto(telaUsuarioGerenciar.getTblFuncionario().getSelectedRow());
+            boolean deletado = funcionarioDao.desativar(usuario.getId());
             if (deletado) {
                 tableModelFuncionarios.remover(telaUsuarioGerenciar.getTblFuncionario().getSelectedRow());
                 telaUsuarioGerenciar.getTblFuncionario().clearSelection();
@@ -184,27 +197,27 @@ public class TelaUsuarioGerenciarControl {
                 Mensagem.erro(Texto.ERRO_DESATIVAR);
             }
         }
-        funcionario = null;
+        usuario = null;
     }
 
     public void carregarFuncionariosAction() {
-        funcionario = tableModelFuncionarios.pegaObjeto(telaUsuarioGerenciar.getTblFuncionario().getSelectedRow());
-        telaUsuarioGerenciar.getTfNome().setText(funcionario.getNome());
-        telaUsuarioGerenciar.getTfTelefone().setText(funcionario.getTelefone());
-        telaUsuarioGerenciar.getTfEmail().setText(funcionario.getEmail());
-        telaUsuarioGerenciar.getTfPis().setText(String.valueOf(funcionario.getPis()));
-        telaUsuarioGerenciar.getTfSalario().setText(String.valueOf(funcionario.getSalario()));
-        telaUsuarioGerenciar.getTfSenha().setText(funcionario.getSenha());
+        usuario = tableModelFuncionarios.pegaObjeto(telaUsuarioGerenciar.getTblFuncionario().getSelectedRow());
+        telaUsuarioGerenciar.getTfNome().setText(usuario.getNome());
+        telaUsuarioGerenciar.getTfTelefone().setText(usuario.getTelefone());
+        telaUsuarioGerenciar.getTfEmail().setText(usuario.getEmail());
+        telaUsuarioGerenciar.getTfPis().setText(String.valueOf(usuario.getPis()));
+        telaUsuarioGerenciar.getTfSalario().setText(String.valueOf(usuario.getSalario()));
+        telaUsuarioGerenciar.getTfSenha().setText(usuario.getSenha());
 
-        telaUsuarioGerenciar.getTfBairro().setText(funcionario.getEndereco().getBairro());
-        telaUsuarioGerenciar.getTfCidade().setText(funcionario.getEndereco().getCidade());
-        telaUsuarioGerenciar.getTfComplemento().setText(funcionario.getEndereco().getComplemento());
-        telaUsuarioGerenciar.getCbEstado().getModel().setSelectedItem(funcionario.getEndereco().getEstado());
-        telaUsuarioGerenciar.getTfNumero().setText(funcionario.getEndereco().getNumero());
-        telaUsuarioGerenciar.getTfRua().setText(funcionario.getEndereco().getRua());
-        telaUsuarioGerenciar.getTfCep().setText(String.valueOf(funcionario.getEndereco().getCep()));
+        telaUsuarioGerenciar.getTfBairro().setText(usuario.getEndereco().getBairro());
+        telaUsuarioGerenciar.getTfCidade().setText(usuario.getEndereco().getCidade());
+        telaUsuarioGerenciar.getTfComplemento().setText(usuario.getEndereco().getComplemento());
+        telaUsuarioGerenciar.getCbEstado().getModel().setSelectedItem(usuario.getEndereco().getEstado());
+        telaUsuarioGerenciar.getTfNumero().setText(usuario.getEndereco().getNumero());
+        telaUsuarioGerenciar.getTfRua().setText(usuario.getEndereco().getRua());
+        telaUsuarioGerenciar.getTfCep().setText(String.valueOf(usuario.getEndereco().getCep()));
 
-        if (funcionario.getAtivo() == true) {
+        if (usuario.getAtivo() == true) {
             telaUsuarioGerenciar.getCheckAtivo().setSelected(true);
         } else {
             telaUsuarioGerenciar.getCheckAtivo().setSelected(false);

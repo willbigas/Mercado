@@ -2,6 +2,8 @@ package br.com.mercado.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -10,9 +12,13 @@ import java.util.List;
 public class Venda {
 
     private Integer id;
+    @NotNull
     private LocalDateTime dataVenda;
+    @Valid
     private Cliente cliente;
+    @Valid
     private Usuario usuario;
+    @Valid
     private List<ItemVenda> itemVendas;
 
     public Integer getId() {
