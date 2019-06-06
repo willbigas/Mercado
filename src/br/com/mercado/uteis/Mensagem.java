@@ -1,5 +1,8 @@
 package br.com.mercado.uteis;
 
+import static com.sun.javafx.tk.Toolkit.getToolkit;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -8,12 +11,14 @@ import javax.swing.JOptionPane;
  */
 public class Mensagem {
 
+
     /**
      * Mensagem de Informação do Swing
      *
      * @param texto
      */
     public static void info(String texto) {
+
         JOptionPane.showMessageDialog(null, texto, "Informação!", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -50,7 +55,7 @@ public class Mensagem {
      * @param texto
      */
     public static void simples(String texto) {
-        JOptionPane.showMessageDialog(null, texto, "Mensagem!", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, texto, "Informação!", JOptionPane.PLAIN_MESSAGE);
     }
 
     /**

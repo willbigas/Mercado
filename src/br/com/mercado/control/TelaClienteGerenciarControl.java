@@ -12,6 +12,7 @@ import br.com.mercado.model.tablemodel.ClienteTableModel;
 import br.com.mercado.uteis.Enderecos;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaClienteGerenciar;
 import br.com.mercado.view.TelaPrincipal;
 import java.util.List;
@@ -75,6 +76,12 @@ public class TelaClienteGerenciarControl {
             cliente.setAtivo(false);
         }
 
+        if (Validacao.validaEntidade(cliente) != null) {
+            Mensagem.info(Validacao.validaEntidade(cliente));
+            cliente = null;
+            return;
+        }
+
         enderecoCliente = new Endereco();
         enderecoCliente.setBairro(telaClienteGerenciar.getTfBairro().getText());
         enderecoCliente.setCep(Integer.valueOf(telaClienteGerenciar.getTfCep().getText()));
@@ -83,7 +90,15 @@ public class TelaClienteGerenciarControl {
         enderecoCliente.setEstado((String) telaClienteGerenciar.getCbEstado().getSelectedItem());
         enderecoCliente.setNumero(telaClienteGerenciar.getTfNumero().getText());
         enderecoCliente.setRua(telaClienteGerenciar.getTfRua().getText());
+
+        if (Validacao.validaEntidade(enderecoCliente) != null) {
+            Mensagem.info(Validacao.validaEntidade(enderecoCliente));
+            enderecoCliente = null;
+            return;
+        }
+
         Integer idEndereco = enderecoDao.inserir(enderecoCliente);
+
         enderecoCliente.setId(idEndereco);
         cliente.setEndereco(enderecoCliente);
         Integer idInserido = clienteDao.inserir(cliente);
@@ -100,10 +115,6 @@ public class TelaClienteGerenciarControl {
     }
 
     private void alterarCliente() {
-        if (validarCampos()) {
-            Mensagem.erro(Texto.VAZIO_CAMPOS);
-            return;
-        }
 
         cliente.setNome(telaClienteGerenciar.getTfNome().getText());
         cliente.setEmail(telaClienteGerenciar.getTfEmail().getText());
@@ -114,6 +125,13 @@ public class TelaClienteGerenciarControl {
         if (!telaClienteGerenciar.getCheckAtivo().isSelected()) {
             cliente.setAtivo(false);
         }
+
+        if (Validacao.validaEntidade(cliente) != null) {
+            Mensagem.info(Validacao.validaEntidade(cliente));
+            cliente = null;
+            return;
+        }
+
         enderecoCliente = new Endereco();
         enderecoCliente.setBairro(telaClienteGerenciar.getTfBairro().getText());
         enderecoCliente.setCep(Integer.valueOf(telaClienteGerenciar.getTfCep().getText()));
@@ -144,7 +162,7 @@ public class TelaClienteGerenciarControl {
             alterarCliente();
         }
     }
-    
+
     public void desativarClienteAction() {
         int retorno = Mensagem.confirmacao(Texto.PERGUNTA_DESATIVAR);
         if (retorno == JOptionPane.NO_OPTION) {
@@ -153,18 +171,18 @@ public class TelaClienteGerenciarControl {
         if (retorno == JOptionPane.CLOSED_OPTION) {
             return;
         }
-            cliente = clienteTableModel.pegaObjeto(telaClienteGerenciar.getTblCliente().getSelectedRow());
-            boolean deletado = clienteDao.desativar(cliente);
-            if (deletado) {
-                clienteTableModel.remover(telaClienteGerenciar.getTblCliente().getSelectedRow());
-                telaClienteGerenciar.getTblCliente().clearSelection();
-                Mensagem.info(Texto.SUCESSO_DESATIVAR);
-            } else {
-                Mensagem.erro(Texto.ERRO_DESATIVAR);
-            }
+        cliente = clienteTableModel.pegaObjeto(telaClienteGerenciar.getTblCliente().getSelectedRow());
+        boolean deletado = clienteDao.desativar(cliente);
+        if (deletado) {
+            clienteTableModel.remover(telaClienteGerenciar.getTblCliente().getSelectedRow());
+            telaClienteGerenciar.getTblCliente().clearSelection();
+            Mensagem.info(Texto.SUCESSO_DESATIVAR);
+        } else {
+            Mensagem.erro(Texto.ERRO_DESATIVAR);
+        }
         cliente = null;
     }
-    
+
     public void pesquisarClienteAction() {
         List<Cliente> fornecedoresPesquisados = clienteDao.pesquisar(telaClienteGerenciar.getTfPesquisa().getText());
         if (fornecedoresPesquisados == null) {
@@ -175,7 +193,6 @@ public class TelaClienteGerenciarControl {
             clienteTableModel.adicionar(fornecedoresPesquisados);
         }
     }
-    
 
     public void carregarClienteAction() {
         cliente = clienteTableModel.pegaObjeto(telaClienteGerenciar.getTblCliente().getSelectedRow());
