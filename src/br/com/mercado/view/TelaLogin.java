@@ -4,6 +4,7 @@ import br.com.mercado.control.TelaLoginControl;
 import br.com.mercado.uteis.InterfaceJanela;
 import br.com.mercado.uteis.Visual;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -86,6 +87,12 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/basket_64x64.png"))); // NOI18N
 
+        tfSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfSenhaKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,6 +162,12 @@ public class TelaLogin extends javax.swing.JFrame {
     private void lblRecuperarSenhaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRecuperarSenhaMouseReleased
         loginControl.abrirLink("mailto:suporte@empresa.com.br");
     }//GEN-LAST:event_lblRecuperarSenhaMouseReleased
+
+    private void tfSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfSenhaKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            loginControl.acessarTelaPrincipalAction();
+        }
+    }//GEN-LAST:event_tfSenhaKeyPressed
 
     /**
      * @param args the command line arguments
