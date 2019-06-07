@@ -6,6 +6,8 @@
 package br.com.mercado.uteis;
 
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  *
@@ -21,16 +23,34 @@ public class UtilTable {
      * @param largura
      */
     public static void redimensionar(JTable tableModel, Integer coluna, Integer largura) {
-        autoResizeOff(tableModel);
+        autoRedimensionamentoDesligado(tableModel);
         tableModel.getColumnModel().getColumn(coluna).setPreferredWidth(largura);
     }
 
     /**
-     * Desligando o auto resize
+     * Desligando o auto redimensionamento
      *
      * @param tableModel
      */
-    public static void autoResizeOff(JTable tableModel) {
+    public static void autoRedimensionamentoDesligado(JTable tableModel) {
         tableModel.setAutoResizeMode(tableModel.AUTO_RESIZE_OFF);
+    }
+
+    /**
+     * Centralizar o cabecalho da tabela
+     *
+     * @param tableModel
+     */
+    public static void centralizarCabecalho(JTable tableModel) {
+        ((DefaultTableCellRenderer) tableModel.getTableHeader().getDefaultRenderer()).setHorizontalAlignment(SwingConstants.CENTER);
+    }
+
+    /**
+     * Limpar linha selecionada na tabela
+     *
+     * @param tableModel
+     */
+    public static void limparSelecaoDaTabela(JTable tableModel) {
+        tableModel.getSelectionModel().clearSelection();
     }
 }
