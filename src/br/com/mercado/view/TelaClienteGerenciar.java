@@ -3,6 +3,7 @@ package br.com.mercado.view;
 import br.com.mercado.control.TelaClienteGerenciarControl;
 import br.com.mercado.uteis.InterfaceJanela;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -39,7 +40,6 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel5 = new javax.swing.JLabel();
         tfPesquisa = new javax.swing.JTextField();
@@ -172,6 +172,15 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tblCliente);
 
         tfCep.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfCep.setToolTipText("Busca Automatica");
+        tfCep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfCepKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfCepKeyReleased(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setText("CEP:");
@@ -264,10 +273,6 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel8)))
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(checkAtivo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
@@ -328,9 +333,11 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                                 .addComponent(btBuscar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btVisualizar)
-                                .addGap(264, 264, 264)
+                                .addGap(133, 133, 133)
                                 .addComponent(btDesativar)
-                                .addGap(35, 35, 35)
+                                .addGap(45, 45, 45)
+                                .addComponent(checkAtivo)
+                                .addGap(52, 52, 52)
                                 .addComponent(btGravar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 932, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap())))
@@ -339,7 +346,7 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,9 +378,9 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                             .addComponent(jLabel11)
                             .addComponent(tfComplemento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
-                            .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -386,63 +393,64 @@ public class TelaClienteGerenciar extends javax.swing.JInternalFrame {
                                 .addGap(12, 12, 12)
                                 .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(16, 16, 16)
-                                .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(4, 4, 4)
-                                .addComponent(checkAtivo)))
-                        .addGap(18, 18, 18)))
+                                .addComponent(tfTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel5))
-                            .addComponent(btBuscar)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btGravar)
-                                .addComponent(btDesativar)
-                                .addComponent(btVisualizar))))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel5))
+                    .addComponent(btBuscar)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btGravar)
+                        .addComponent(btDesativar)
+                        .addComponent(btVisualizar)
+                        .addComponent(checkAtivo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
+                        .addGap(2, 2, 2)
                         .addComponent(tfPesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void pesquisarCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarCepActionPerformed
-        // TODO add your handling code here:
         clienteGerenciarControl.buscarCepAction();
     }//GEN-LAST:event_pesquisarCepActionPerformed
 
     private void btGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGravarActionPerformed
-        // TODO add your handling code here:
         clienteGerenciarControl.gravarClienteAction();
     }//GEN-LAST:event_btGravarActionPerformed
 
     private void btVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVisualizarActionPerformed
-        // TODO add your handling code here:
         clienteGerenciarControl.carregarClienteAction();
     }//GEN-LAST:event_btVisualizarActionPerformed
 
     private void btDesativarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDesativarActionPerformed
-        // TODO add your handling code here:
         clienteGerenciarControl.desativarClienteAction();
     }//GEN-LAST:event_btDesativarActionPerformed
 
     private void tfPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisaKeyReleased
-        // TODO add your handling code here:
         clienteGerenciarControl.pesquisarClienteAction();
     }//GEN-LAST:event_tfPesquisaKeyReleased
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        // TODO add your handling code here:
         clienteGerenciarControl.pesquisarClienteAction();
     }//GEN-LAST:event_btBuscarActionPerformed
+
+    private void tfCepKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCepKeyReleased
+       // clienteGerenciarControl.buscarCepAction();
+    }//GEN-LAST:event_tfCepKeyReleased
+
+    private void tfCepKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCepKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            clienteGerenciarControl.buscarCepAction();
+        }
+    }//GEN-LAST:event_tfCepKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

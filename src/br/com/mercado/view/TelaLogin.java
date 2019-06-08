@@ -65,6 +65,11 @@ public class TelaLogin extends javax.swing.JFrame {
 
         tfLogin.setColumns(12);
         tfLogin.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfLoginKeyPressed(evt);
+            }
+        });
 
         btEntrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/mercado/img/entrar_32x32.png"))); // NOI18N
         btEntrar.setToolTipText("Entrar...");
@@ -168,6 +173,12 @@ public class TelaLogin extends javax.swing.JFrame {
             loginControl.acessarTelaPrincipalAction();
         }
     }//GEN-LAST:event_tfSenhaKeyPressed
+
+    private void tfLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLoginKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            this.tfSenha.requestFocus();
+        }
+    }//GEN-LAST:event_tfLoginKeyPressed
 
     /**
      * @param args the command line arguments

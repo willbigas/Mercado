@@ -23,17 +23,8 @@ public class UtilTable {
      * @param largura
      */
     public static void redimensionar(JTable tableModel, Integer coluna, Integer largura) {
-        autoRedimensionamentoDesligado(tableModel);
-        tableModel.getColumnModel().getColumn(coluna).setPreferredWidth(largura);
-    }
-
-    /**
-     * Desligando o auto redimensionamento
-     *
-     * @param tableModel
-     */
-    public static void autoRedimensionamentoDesligado(JTable tableModel) {
         tableModel.setAutoResizeMode(tableModel.AUTO_RESIZE_OFF);
+        tableModel.getColumnModel().getColumn(coluna).setPreferredWidth(largura);
     }
 
     /**
