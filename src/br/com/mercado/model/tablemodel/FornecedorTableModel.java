@@ -20,11 +20,11 @@ public class FornecedorTableModel extends AbstractTableModel implements AcoesTab
     private static final int CODIGO = 0;
     private static final int NOME = 1;
     private static final int TELEFONE = 2;
-    private static final int ENDERECO = 3;
+    private static final int CIDADE = 3;
     private static final int ATIVO = 4;
 
     private List<Fornecedor> linhas;
-    private String[] COLUNAS = {"Código", "Nome", "Telefone","Endereco", "Ativo"};
+    private String[] COLUNAS = {"Código", "Nome", "Telefone","Cidade", "Ativo"};
 
     public FornecedorTableModel() {
         linhas = new ArrayList<>();
@@ -58,7 +58,7 @@ public class FornecedorTableModel extends AbstractTableModel implements AcoesTab
                 return String.class;
             case TELEFONE:
                 return String.class;
-            case ENDERECO:
+            case CIDADE:
                 return String.class;
             case ATIVO:
                 return String.class;
@@ -77,7 +77,7 @@ public class FornecedorTableModel extends AbstractTableModel implements AcoesTab
                 return fornecedor.getNome();
             case TELEFONE:
                 return fornecedor.getTelefone();
-            case ENDERECO:
+            case CIDADE:
                 return fornecedor.getEndereco().getCidade();
             case ATIVO:
                 if (fornecedor.getAtivo() == true) {
@@ -103,7 +103,7 @@ public class FornecedorTableModel extends AbstractTableModel implements AcoesTab
             case TELEFONE:
                 fornecedor.setTelefone((String) valor);
                 break;
-            case ENDERECO:
+            case CIDADE:
                 fornecedor.getEndereco().setCidade((String) valor);
                 break;
             case ATIVO:
