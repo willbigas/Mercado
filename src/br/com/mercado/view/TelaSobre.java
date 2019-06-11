@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.mercado.view;
 
 import br.com.mercado.control.TelaSobreControl;
@@ -14,10 +9,7 @@ import br.com.mercado.control.TelaSobreControl;
 public class TelaSobre extends javax.swing.JFrame {
     
     TelaSobreControl telaSobreControl;
-
-    /**
-     * Creates new form TelaSobre
-     */
+    
     public TelaSobre() {
         initComponents();
     }

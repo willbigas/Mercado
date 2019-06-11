@@ -5,6 +5,7 @@ import br.com.mercado.model.Categoria;
 import br.com.mercado.model.tablemodel.CategoriaTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.UtilTable;
 import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaCategoriaGerenciar;
 import br.com.mercado.view.TelaPrincipal;
@@ -44,6 +45,21 @@ public class TelaCategoriaGerenciarControl {
             }
         }
         telaCategoriaGerenciar.getTblCategoria().setModel(categoriaTableModel);
+        redimensionarTabelaProduto();
+        centralizarCabecalhoEConteudoTabelaProduto();
+    }
+
+    public void redimensionarTabelaProduto() {
+        UtilTable.redimensionar(telaCategoriaGerenciar.getTblCategoria(), 0, 90);
+        UtilTable.redimensionar(telaCategoriaGerenciar.getTblCategoria(), 1, 280);
+        UtilTable.redimensionar(telaCategoriaGerenciar.getTblCategoria(), 2, 90);
+    }
+
+    public void centralizarCabecalhoEConteudoTabelaProduto() {
+        UtilTable.centralizarCabecalho(telaCategoriaGerenciar.getTblCategoria());
+        UtilTable.centralizarConteudo(telaCategoriaGerenciar.getTblCategoria(), 0);
+        UtilTable.centralizarConteudo(telaCategoriaGerenciar.getTblCategoria(), 1);
+        UtilTable.centralizarConteudo(telaCategoriaGerenciar.getTblCategoria(), 2);
     }
 
     private void cadastrarCategoria() {

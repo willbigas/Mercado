@@ -18,10 +18,6 @@ import br.com.mercado.view.TelaPrincipal;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -66,7 +62,7 @@ public class TelaClienteGerenciarControl {
     private void redimensionarTela() {
         UtilTable.centralizarCabecalho(telaClienteGerenciar.getTblCliente());
         UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 0, 50);
-        UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 1, 350);
+        UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 1, 355);
         UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 2, 100);
         UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 3, 225);
         UtilTable.redimensionar(telaClienteGerenciar.getTblCliente(), 4, 150);

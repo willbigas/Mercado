@@ -2,6 +2,7 @@ package br.com.mercado.model.tablemodel;
 
 import br.com.mercado.interfaces.AcoesTableModel;
 import br.com.mercado.model.ItemVenda;
+import br.com.mercado.uteis.UtilDecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -53,7 +54,7 @@ public class ItemVendaTableModel extends AbstractTableModel implements AcoesTabl
             case QUANTIDADE:
                 return Integer.class;
             case VALOR_PRODUTO:
-                return Double.class;
+                return String.class;
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }
@@ -70,7 +71,7 @@ public class ItemVendaTableModel extends AbstractTableModel implements AcoesTabl
             case QUANTIDADE:
                 return itemVenda.getQuantidade();
             case VALOR_PRODUTO:
-                return itemVenda.getValorProduto();
+                return UtilDecimalFormat.decimalFormatR$(itemVenda.getValorProduto());
             default:
                 throw new IndexOutOfBoundsException("columnIndex out of bounds");
         }

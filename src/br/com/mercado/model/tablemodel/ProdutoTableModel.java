@@ -3,6 +3,7 @@ package br.com.mercado.model.tablemodel;
 
 import br.com.mercado.model.Produto;
 import br.com.mercado.interfaces.AcoesTableModel;
+import br.com.mercado.uteis.UtilDecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -59,7 +60,7 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
             case QUANTIDADE:
                 return Integer.class;
             case VALOR:
-                return Double.class;
+                return String.class;
             case CATEGORIA:
                 return String.class;
             case ATIVO:
@@ -82,7 +83,7 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
             case QUANTIDADE:
                 return produto.getQuantidade();
             case VALOR:
-                return produto.getValor();
+                return UtilDecimalFormat.decimalFormatR$(produto.getValor());
             case CATEGORIA:
                 return produto.getCategoria().getNome();
             case ATIVO:

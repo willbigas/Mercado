@@ -3,6 +3,7 @@ package br.com.mercado.model.tablemodel;
 import br.com.mercado.model.Entrada;
 import br.com.mercado.interfaces.AcoesTableModel;
 import br.com.mercado.model.ItemEntrada;
+import br.com.mercado.uteis.UtilDecimalFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,7 +58,7 @@ public class ItemEntradaTableModel extends AbstractTableModel implements AcoesTa
             case QUANTIDADE:
                 return Integer.class;
             case VALOR_PRODUTO:
-                return Double.class;
+                return String.class;
             case NUMERO_LOTE:
                 return Integer.class;
             default:
@@ -76,7 +77,7 @@ public class ItemEntradaTableModel extends AbstractTableModel implements AcoesTa
             case QUANTIDADE:
                 return itemEntrada.getQuantidade();
             case VALOR_PRODUTO:
-                return itemEntrada.getValorProduto();
+                return UtilDecimalFormat.decimalFormatR$(itemEntrada.getValorProduto());
             case NUMERO_LOTE:
                 return itemEntrada.getNumeroLote();
             default:

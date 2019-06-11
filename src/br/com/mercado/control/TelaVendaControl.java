@@ -86,7 +86,9 @@ public class TelaVendaControl {
         vendaProdutoTableModel.adicionar(produtoDao.pesquisar());
         telaVenda.getTblVenda().setModel(itemVendaTableModel);
         redimensionarTabelaProduto();
+        redimensionarTabelaItemVenda();
         centralizarCabecalhoEConteudoTabelaProduto();
+        centralizarCabecalhoEConteudoTabelaItemVenda();
 
     }
 
@@ -97,6 +99,14 @@ public class TelaVendaControl {
         UtilTable.redimensionar(telaVenda.getTblProduto(), 2, 90);
         UtilTable.redimensionar(telaVenda.getTblProduto(), 3, 95);
     }
+    
+     public void redimensionarTabelaItemVenda() {
+
+        UtilTable.redimensionar(telaVenda.getTblVenda(), 0, 90);
+        UtilTable.redimensionar(telaVenda.getTblVenda(), 1, 280);
+        UtilTable.redimensionar(telaVenda.getTblVenda(), 2, 90);
+        UtilTable.redimensionar(telaVenda.getTblVenda(), 3, 113);
+    }
 
     public void centralizarCabecalhoEConteudoTabelaProduto() {
         UtilTable.centralizarCabecalho(telaVenda.getTblProduto());
@@ -104,8 +114,17 @@ public class TelaVendaControl {
         UtilTable.centralizarConteudo(telaVenda.getTblProduto(), 1);
         UtilTable.centralizarConteudo(telaVenda.getTblProduto(), 2);
         UtilTable.centralizarConteudo(telaVenda.getTblProduto(), 3);
+        UtilTable.centralizarConteudo(telaVenda.getTblProduto(), 4);
     }
-
+    
+    public void centralizarCabecalhoEConteudoTabelaItemVenda() {
+        UtilTable.centralizarCabecalho(telaVenda.getTblVenda());
+        UtilTable.centralizarConteudo(telaVenda.getTblVenda(), 0);
+        UtilTable.centralizarConteudo(telaVenda.getTblVenda(), 1);
+        UtilTable.centralizarConteudo(telaVenda.getTblVenda(), 2);
+        UtilTable.centralizarConteudo(telaVenda.getTblVenda(), 3);
+    }
+    
     private void carregarClientesNaCombo() {
         listClientes = clienteDao.pesquisar();
         DefaultComboBoxModel<Cliente> model = new DefaultComboBoxModel(listClientes.toArray());
@@ -184,8 +203,6 @@ public class TelaVendaControl {
 
             Date dataVencimento = UtilDate.data(telaVendaReceita.getTfDataVencimento().getText());
             Double valorTotalRecebimento = Double.valueOf(telaVendaReceita.getTfValorRecebimento().getText());
-            System.out.println("Data de Vencimento " + dataVencimento);
-            System.out.println("Valor total para recebimento" + valorTotalRecebimento);
 
             receitaGerenciarControl = new TelaReceitaGerenciarControl();
             receitaGerenciarControl.criarReceita(idVendaInserida, dataVencimento, valorTotalRecebimento);
