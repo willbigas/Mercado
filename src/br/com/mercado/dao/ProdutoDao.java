@@ -112,7 +112,7 @@ public class ProdutoDao extends Dao implements DaoI<Produto> {
 
     @Override
     public List<Produto> pesquisar(String termo) {
-        String querySelectComTermo = "SELECT * FROM PRODUTOS WHERE (NOME like ?, CODIGOBARRAS like ?)";
+        String querySelectComTermo = "SELECT * FROM PRODUTOS WHERE (NOME like ? or CODIGOBARRAS like ?)";
         try {
             PreparedStatement stmt = conexao.prepareStatement(querySelectComTermo);
             stmt.setString(1, "%" + termo + "%");

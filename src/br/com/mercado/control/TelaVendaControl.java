@@ -15,6 +15,7 @@ import br.com.mercado.model.tablemodel.VendaProdutoTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
 import br.com.mercado.uteis.UtilDate;
+import br.com.mercado.uteis.UtilTable;
 import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaPrincipal;
 import br.com.mercado.view.TelaVenda;
@@ -47,6 +48,7 @@ public class TelaVendaControl {
     ItemVendaTableModel itemVendaTableModel;
     ItemVenda itemVenda;
     Venda venda;
+    Produto produto;
 
     public TelaVendaControl() {
         clienteDao = new ClienteDao();
@@ -81,7 +83,10 @@ public class TelaVendaControl {
         vendaProdutoTableModel.limpar();
         vendaProdutoTableModel.adicionar(produtoDao.pesquisar());
         telaVenda.getTblVenda().setModel(itemVendaTableModel);
+        UtilTable.centralizarCabecalho(telaVenda.getTblProduto());
     }
+    
+    
 
     private void carregarClientesNaCombo() {
         listClientes = clienteDao.pesquisar();
@@ -173,6 +178,23 @@ public class TelaVendaControl {
         }
         JOptionPane.showMessageDialog(null, "Itens gravados com sucesso");
         venda.setItemVendas(listItemVendas);
+    }
+    
+      public void pesquisarProdutoAction() {
+        List<Produto> produtosPesquisados = produtoDao.pesquisar(telaVenda.getTfPesquisaProduto().getText());
+        if (produtosPesquisados == null) {
+            vendaProdutoTableModel.limpar();
+            produtosPesquisados = produtoDao.pesquisar();
+        } else {
+            vendaProdutoTableModel.limpar();
+            vendaProdutoTableModel.adicionar(produtosPesquisados);
+        }
+    }
+    
+    public void carregaProdutoSelecionadoAction(int row) {
+      produto =  vendaProdutoTableModel.pegaObjeto(row);
+      telaVenda.getTfQuantidade().setText(String.valueOf(produto.getQuantidade()));
+      telaVenda.getTfValor().setText(String.valueOf(produto.getValor()));
     }
 
 }

@@ -2,13 +2,7 @@ package br.com.mercado.view;
 
 import br.com.mercado.control.TelaPrincipalControl;
 import br.com.mercado.uteis.Relatorio;
-import java.awt.Image;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.HashMap;
-import javax.swing.ImageIcon;
 
 /**
  *

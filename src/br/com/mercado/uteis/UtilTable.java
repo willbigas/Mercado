@@ -5,6 +5,7 @@
  */
 package br.com.mercado.uteis;
 
+import java.awt.Point;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -43,5 +44,16 @@ public class UtilTable {
      */
     public static void limparSelecaoDaTabela(JTable tableModel) {
         tableModel.getSelectionModel().clearSelection();
+    }
+
+    public static int pegaLinhaComDoubleClick(java.awt.event.MouseEvent evt) {
+        JTable table = (JTable) evt.getSource();
+        Point point = evt.getPoint();
+        int row = table.rowAtPoint(point);
+        if (evt.getClickCount() == 2 && table.getSelectedRow() != -1) {
+            return row;
+        } else {
+            return -1;
+        }
     }
 }
