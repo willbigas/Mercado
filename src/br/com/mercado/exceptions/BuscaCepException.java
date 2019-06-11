@@ -1,4 +1,4 @@
-package br.com.mercado.api.buscacep.exceptions;
+package br.com.mercado.exceptions;
 
 /**
  * Classe para registrar uma exceção de CEP

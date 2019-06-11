@@ -3,6 +3,7 @@ package br.com.mercado.uteis;
 import br.com.mercado.factory.Conexao;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;

@@ -1,4 +1,4 @@
-package br.com.mercado.api.buscacep.model;
+package br.com.mercado.model;
 
 public class Cep {
 

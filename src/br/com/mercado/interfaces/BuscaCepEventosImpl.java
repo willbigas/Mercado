@@ -1,6 +1,6 @@
-package br.com.mercado.api.buscacep.interfaces;
+package br.com.mercado.interfaces;
 
-import br.com.mercado.api.buscacep.control.BuscaCep;
+import br.com.mercado.control.BuscaCepControl;
 import javax.swing.JOptionPane;
 
 /**
@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 public class BuscaCepEventosImpl implements BuscaCepEventos {
 
     @Override
-    public void sucessoAoEncontrar(BuscaCep buscaCep) {
+    public void sucessoAoEncontrar(BuscaCepControl buscaCep) {
         JOptionPane.showMessageDialog(null, "Cep " + buscaCep.getCep() + " Encontrado");
     }
 

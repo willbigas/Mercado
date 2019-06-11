@@ -1,9 +1,8 @@
 package br.com.mercado.control;
 
-import br.com.mercado.api.buscacep.control.BuscaCep;
-import br.com.mercado.api.buscacep.exceptions.BuscaCepException;
-import br.com.mercado.api.buscacep.interfaces.BuscaCepEventos;
-import br.com.mercado.api.buscacep.interfaces.BuscaCepEventosImpl;
+import br.com.mercado.exceptions.BuscaCepException;
+import br.com.mercado.interfaces.BuscaCepEventos;
+import br.com.mercado.interfaces.BuscaCepEventosImpl;
 import br.com.mercado.dao.ClienteDao;
 import br.com.mercado.dao.EnderecoDao;
 import br.com.mercado.model.Cliente;
@@ -230,7 +229,7 @@ public class TelaClienteGerenciarControl {
     
     public void buscarCepAction() {
         BuscaCepEventos buscaCepEvents = new BuscaCepEventosImpl();
-        BuscaCep buscadorDeCep = new BuscaCep();
+        BuscaCepControl buscadorDeCep = new BuscaCepControl();
         try {
             buscadorDeCep.buscar(telaClienteGerenciar.getTfCep().getText());
             Endereco endereco = new Endereco();

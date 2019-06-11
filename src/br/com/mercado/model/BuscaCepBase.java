@@ -1,6 +1,6 @@
-package br.com.mercado.api.buscacep.model;
+package br.com.mercado.model;
 
-import br.com.mercado.api.buscacep.exceptions.BuscaCepException;
+import br.com.mercado.exceptions.BuscaCepException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -12,7 +12,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
-import br.com.mercado.api.buscacep.interfaces.BuscaCepEventos;
+import br.com.mercado.interfaces.BuscaCepEventos;
 
 public abstract class BuscaCepBase {
     protected List<Cep> listCeps;

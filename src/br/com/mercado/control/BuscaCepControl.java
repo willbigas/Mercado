@@ -1,17 +1,17 @@
-package br.com.mercado.api.buscacep.control;
+package br.com.mercado.control;
 
-import br.com.mercado.api.buscacep.exceptions.BuscaCepException;
-import br.com.mercado.api.buscacep.model.BuscaCepBase;
-import br.com.mercado.api.buscacep.model.Cep;
+import br.com.mercado.exceptions.BuscaCepException;
+import br.com.mercado.model.BuscaCepBase;
+import br.com.mercado.model.Cep;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import br.com.mercado.api.buscacep.interfaces.BuscaCepEventos;
+import br.com.mercado.interfaces.BuscaCepEventos;
 
 /**
  * Classe java para obter um Cep no BuscaCep
  *
  */
-public class BuscaCep extends BuscaCepBase {
+public class BuscaCepControl extends BuscaCepBase {
 
     // constantes
     public static final double VIACEP_VERSAO = 0.33;
@@ -19,7 +19,7 @@ public class BuscaCep extends BuscaCepBase {
     /**
      * Constrói uma nova classe
      */
-    public BuscaCep() {
+    public BuscaCepControl() {
         super();
     }
 
@@ -28,7 +28,7 @@ public class BuscaCep extends BuscaCepBase {
      *
      * @param events eventos para a classe
      */
-    public BuscaCep(BuscaCepEventos events) {
+    public BuscaCepControl(BuscaCepEventos events) {
         super();
         this.eventos = events;
     }
@@ -39,7 +39,7 @@ public class BuscaCep extends BuscaCepBase {
      * @param events eventos para a classe
      * @param cep
      */
-    public BuscaCep(String cep, BuscaCepEventos events) throws BuscaCepException {
+    public BuscaCepControl(String cep, BuscaCepEventos events) throws BuscaCepException {
         super();
         this.eventos = events;
         this.buscar(cep);
@@ -50,7 +50,7 @@ public class BuscaCep extends BuscaCepBase {
      *
      * @param cep
      */
-    public BuscaCep(String cep) throws BuscaCepException {
+    public BuscaCepControl(String cep) throws BuscaCepException {
         super();
         this.buscar(cep);
     }
