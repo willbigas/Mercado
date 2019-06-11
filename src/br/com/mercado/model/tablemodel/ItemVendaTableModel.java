@@ -18,7 +18,7 @@ public class ItemVendaTableModel extends AbstractTableModel implements AcoesTabl
     private static final int VALOR_PRODUTO = 3;
 
     private List<ItemVenda> linhas;
-    private String[] COLUNAS = {"Código", "Nome Produto", "Quantidade", "Valor Produto"};
+    private String[] COLUNAS = {"CÓDIGO", "NOME", "QUANTIDADE", "VALOR"};
 
     public ItemVendaTableModel() {
         linhas = new ArrayList<>();

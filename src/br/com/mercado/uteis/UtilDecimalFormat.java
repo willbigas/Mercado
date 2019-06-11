@@ -11,4 +11,5 @@ package br.com.mercado.uteis;
  */
 public class UtilDecimalFormat {
     
+    
 }

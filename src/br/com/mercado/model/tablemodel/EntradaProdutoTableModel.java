@@ -19,7 +19,7 @@ public class EntradaProdutoTableModel extends AbstractTableModel implements Acoe
 
     private List<Produto> linhas;
     
-    private String[] COLUNAS = {"EAN13", "Nome", "Categoria"};
+    private String[] COLUNAS = {"EAN13", "NOME", "CATEGORIA"};
 
     public EntradaProdutoTableModel() {
         linhas = new ArrayList<>();

@@ -17,6 +17,7 @@ import br.com.mercado.uteis.Texto;
 import br.com.mercado.uteis.UtilDate;
 import br.com.mercado.uteis.UtilTable;
 import br.com.mercado.uteis.Validacao;
+import br.com.mercado.view.TelaClienteDialogPesquisar;
 import br.com.mercado.view.TelaPrincipal;
 import br.com.mercado.view.TelaVenda;
 import br.com.mercado.view.TelaVendaReceita;
@@ -35,6 +36,7 @@ public class TelaVendaControl {
 
     TelaVenda telaVenda;
     TelaVendaReceita telaVendaReceita;
+    TelaClienteDialogPesquisar telaClienteDialogPesquisar;
     TelaReceitaGerenciarControl receitaGerenciarControl;
     ClienteDao clienteDao;
     UsuarioDao usuarioDao;
@@ -83,10 +85,26 @@ public class TelaVendaControl {
         vendaProdutoTableModel.limpar();
         vendaProdutoTableModel.adicionar(produtoDao.pesquisar());
         telaVenda.getTblVenda().setModel(itemVendaTableModel);
-        UtilTable.centralizarCabecalho(telaVenda.getTblProduto());
+        redimensionarTabelaProduto();
+        centralizarCabecalhoEConteudoTabelaProduto();
+
     }
-    
-    
+
+    public void redimensionarTabelaProduto() {
+
+        UtilTable.redimensionar(telaVenda.getTblProduto(), 0, 90);
+        UtilTable.redimensionar(telaVenda.getTblProduto(), 1, 223);
+        UtilTable.redimensionar(telaVenda.getTblProduto(), 2, 90);
+        UtilTable.redimensionar(telaVenda.getTblProduto(), 3, 95);
+    }
+
+    public void centralizarCabecalhoEConteudoTabelaProduto() {
+        UtilTable.centralizarCabecalho(telaVenda.getTblProduto());
+        UtilTable.centralizarConteudo(telaVenda.getTblProduto(), 0);
+        UtilTable.centralizarConteudo(telaVenda.getTblProduto(), 1);
+        UtilTable.centralizarConteudo(telaVenda.getTblProduto(), 2);
+        UtilTable.centralizarConteudo(telaVenda.getTblProduto(), 3);
+    }
 
     private void carregarClientesNaCombo() {
         listClientes = clienteDao.pesquisar();
@@ -133,7 +151,7 @@ public class TelaVendaControl {
         venda.setDataVenda(LocalDateTime.now());
         venda.setCliente((Cliente) telaVenda.getCbCliente().getSelectedItem());
         venda.setUsuario((Usuario) telaVenda.getCbUsuario().getSelectedItem());
-        
+
         if (Validacao.validaEntidade(venda) != null) {
             Mensagem.info(Validacao.validaEntidade(venda));
             venda = null;
@@ -179,8 +197,8 @@ public class TelaVendaControl {
         JOptionPane.showMessageDialog(null, "Itens gravados com sucesso");
         venda.setItemVendas(listItemVendas);
     }
-    
-      public void pesquisarProdutoAction() {
+
+    public void pesquisarProdutoAction() {
         List<Produto> produtosPesquisados = produtoDao.pesquisar(telaVenda.getTfPesquisaProduto().getText());
         if (produtosPesquisados == null) {
             vendaProdutoTableModel.limpar();
@@ -190,11 +208,16 @@ public class TelaVendaControl {
             vendaProdutoTableModel.adicionar(produtosPesquisados);
         }
     }
-    
+
     public void carregaProdutoSelecionadoAction(int row) {
-      produto =  vendaProdutoTableModel.pegaObjeto(row);
-      telaVenda.getTfQuantidade().setText(String.valueOf(produto.getQuantidade()));
-      telaVenda.getTfValor().setText(String.valueOf(produto.getValor()));
+        produto = vendaProdutoTableModel.pegaObjeto(row);
+        telaVenda.getTfQuantidade().setText(String.valueOf(produto.getQuantidade()));
+        telaVenda.getTfValor().setText(String.valueOf(produto.getValor()));
+    }
+
+    public void chamarDialogClienteAction() {
+        telaClienteDialogPesquisar = new TelaClienteDialogPesquisar(telaVenda, true, this);
+        telaClienteDialogPesquisar.setVisible(true);
     }
 
 }

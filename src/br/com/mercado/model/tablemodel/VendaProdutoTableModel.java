@@ -19,7 +19,7 @@ public class VendaProdutoTableModel extends AbstractTableModel implements AcoesT
     private static final int CATEGORIA = 4;
 
     private List<Produto> linhas;
-    private String[] COLUNAS = {"Ean13", "Nome", "Quantidade", "Valor", "Categoria"};
+    private String[] COLUNAS = {"EAN13", "NOME", "QUANTIDADE", "VALOR", "CATEGORIA"};
 
     public VendaProdutoTableModel() {
         linhas = new ArrayList<>();

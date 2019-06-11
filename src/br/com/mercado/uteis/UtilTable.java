@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.mercado.uteis;
 
 import java.awt.Point;
@@ -13,8 +8,51 @@ import javax.swing.table.DefaultTableCellRenderer;
 /**
  *
  * @author agostinho.junior
+ * @author william.mauro
  */
 public class UtilTable {
+
+    private static DefaultTableCellRenderer centralizado = new DefaultTableCellRenderer();
+    private static DefaultTableCellRenderer esquerda = new DefaultTableCellRenderer();
+    private static DefaultTableCellRenderer direita = new DefaultTableCellRenderer();
+
+    public static void criandoAlinhamentosDaJtable() {
+        centralizado.setHorizontalAlignment(SwingConstants.CENTER);
+        esquerda.setHorizontalAlignment(SwingConstants.LEFT);
+        direita.setHorizontalAlignment(SwingConstants.RIGHT);
+    }
+
+    /**
+     * Centraliza o conteudo da tabela
+     *
+     * @param tableModel
+     * @param coluna
+     */
+    public static void centralizarConteudo(JTable tableModel, Integer coluna) {
+        criandoAlinhamentosDaJtable();
+        tableModel.getColumnModel().getColumn(coluna).setCellRenderer(centralizado);
+    }
+    
+     /**
+     * Alinha o conteudo da tabela a direita
+     *
+     * @param tableModel
+     * @param coluna
+     */
+    public static void alinharConteudoADireita(JTable tableModel, Integer coluna) {
+        criandoAlinhamentosDaJtable();
+        tableModel.getColumnModel().getColumn(coluna).setCellRenderer(direita);
+    }
+     /**
+     * Alinha o conteudo da tabela a esquerda
+     *
+     * @param tableModel
+     * @param coluna
+     */
+    public static void alinharConteudoAEsquerda(JTable tableModel, Integer coluna) {
+        criandoAlinhamentosDaJtable();
+        tableModel.getColumnModel().getColumn(coluna).setCellRenderer(esquerda);
+    }
 
     /**
      * Redefinir largura da tabela
