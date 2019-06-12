@@ -29,10 +29,10 @@ public class Relatorio {
         
     }
     
-     public static void chamarRelatorio(InputStream enderecoArq) {
+     public static void chamarRelatorio(InputStream enderecoArq, HashMap parametros) {
         JasperPrint jasperPrint = null;
         try {
-            jasperPrint = JasperFillManager.fillReport(enderecoArq, null, con);
+            jasperPrint = JasperFillManager.fillReport(enderecoArq, parametros, con);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao gerar relatório /n " + e);
             

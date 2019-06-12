@@ -1,8 +1,10 @@
 package br.com.mercado.view;
 
+import br.com.mercado.control.TelaCategoriaRelatorioControl;
 import br.com.mercado.control.TelaPrincipalControl;
 import br.com.mercado.uteis.Relatorio;
 import java.io.InputStream;
+import java.util.HashMap;
 
 /**
  *
@@ -408,37 +410,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void menuItemRelatorioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioClientesActionPerformed
         // TODO add your handling code here:
         InputStream jasperFile = getClass().getResourceAsStream("/reports/clientes.jasper");
-        Relatorio.chamarRelatorio(jasperFile);
+        Relatorio.chamarRelatorio(jasperFile , null);
     }//GEN-LAST:event_menuItemRelatorioClientesActionPerformed
 
     private void menuItemRelatorioCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioCategoriasActionPerformed
         // TODO add your handling code here:
-        InputStream jasperFile = getClass().getResourceAsStream("/reports/categorias.jasper");
-        Relatorio.chamarRelatorio(jasperFile);
+        telaPrincipalControl.chamarTelaCategoriaRelatorioAction();
     }//GEN-LAST:event_menuItemRelatorioCategoriasActionPerformed
 
     private void menuItemRelatorioReceitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioReceitasActionPerformed
         // TODO add your handling code here:
         InputStream jasperFile = getClass().getResourceAsStream("/reports/receitas.jasper");
-        Relatorio.chamarRelatorio(jasperFile);
+        Relatorio.chamarRelatorio(jasperFile, null);
     }//GEN-LAST:event_menuItemRelatorioReceitasActionPerformed
 
     private void menuItemRelatorioDespesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioDespesasActionPerformed
         // TODO add your handling code here:
         InputStream jasperFile = getClass().getResourceAsStream("/reports/despesas.jasper");
-        Relatorio.chamarRelatorio(jasperFile);
+        Relatorio.chamarRelatorio(jasperFile, null);
     }//GEN-LAST:event_menuItemRelatorioDespesasActionPerformed
 
     private void menuItemRelatorioFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioFornecedoresActionPerformed
         // TODO add your handling code here:
         InputStream jasperFile = getClass().getResourceAsStream("/reports/fornecedores.jasper");
-        Relatorio.chamarRelatorio(jasperFile);
+        Relatorio.chamarRelatorio(jasperFile, null);
     }//GEN-LAST:event_menuItemRelatorioFornecedoresActionPerformed
 
     private void menuItemRelatorioProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRelatorioProdutosActionPerformed
         // TODO add your handling code here:
         InputStream jasperFile = getClass().getResourceAsStream("/reports/produtos.jasper");
-        Relatorio.chamarRelatorio(jasperFile);
+        Relatorio.chamarRelatorio(jasperFile, null);
     }//GEN-LAST:event_menuItemRelatorioProdutosActionPerformed
 
     private void menuConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConfiguracaoActionPerformed

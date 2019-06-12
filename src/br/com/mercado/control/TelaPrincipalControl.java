@@ -20,6 +20,7 @@ public class TelaPrincipalControl {
     private TelaTipoUsuarioGerenciarControl telaTipoUsuarioGerenciarControl = null;
     private TelaReceitaGerenciarControl telaReceitaGerenciarControl = null;
     private TelaDespesaGerenciarControl telaDespesaGerenciarControl = null;
+    private TelaCategoriaRelatorioControl telaCategoriaRelatorioControl = null;
     private TelaVendaControl telaVendaControl = null;
     private TelaSobreControl telaSobreControl = null;
     private TelaConfiguracaoGerenciarControl telaConfiguracaoGerenciarControl = null;
@@ -112,6 +113,14 @@ public class TelaPrincipalControl {
         } else {
             telaDespesaGerenciarControl = new TelaDespesaGerenciarControl();
             telaDespesaGerenciarControl.chamarTelaDespesaGerenciar();
+        }
+    }
+    public void chamarTelaCategoriaRelatorioAction() {
+        if (telaCategoriaRelatorioControl != null) {
+            telaCategoriaRelatorioControl.chamarTelaCategoriaRelatorio();
+        } else {
+            telaCategoriaRelatorioControl = new TelaCategoriaRelatorioControl();
+            telaCategoriaRelatorioControl.chamarTelaCategoriaRelatorio();
         }
     }
 
