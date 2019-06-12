@@ -9,6 +9,7 @@ import br.com.mercado.model.Produto;
 import br.com.mercado.model.tablemodel.ProdutoTableModel;
 import br.com.mercado.uteis.Mensagem;
 import br.com.mercado.uteis.Texto;
+import br.com.mercado.uteis.UtilTable;
 import br.com.mercado.uteis.Validacao;
 import br.com.mercado.view.TelaPrincipal;
 import br.com.mercado.view.TelaProdutoGerenciar;
@@ -59,6 +60,29 @@ public class TelaProdutoGerenciarControl {
         produtoTableModel.limpar();
         produtoTableModel.adicionar(produtoDao.pesquisar());
         telaProdutoGerenciar.getTfNome().requestFocus();
+        redimensionarTabelaDeProdutos();
+        centralizarCabecalhoEConteudoTabelaProduto();
+    }
+
+    private void redimensionarTabelaDeProdutos() {
+        UtilTable.redimensionar(telaProdutoGerenciar.getTblProduto(), 0, 70);
+        UtilTable.redimensionar(telaProdutoGerenciar.getTblProduto(), 1, 280);
+        UtilTable.redimensionar(telaProdutoGerenciar.getTblProduto(), 2, 100);
+        UtilTable.redimensionar(telaProdutoGerenciar.getTblProduto(), 3, 80);
+        UtilTable.redimensionar(telaProdutoGerenciar.getTblProduto(), 4, 80);
+        UtilTable.redimensionar(telaProdutoGerenciar.getTblProduto(), 5, 100);
+        UtilTable.redimensionar(telaProdutoGerenciar.getTblProduto(), 6, 66);
+    }
+
+    public void centralizarCabecalhoEConteudoTabelaProduto() {
+        UtilTable.centralizarCabecalho(telaProdutoGerenciar.getTblProduto());
+        UtilTable.centralizarConteudo(telaProdutoGerenciar.getTblProduto(), 0);
+        UtilTable.centralizarConteudo(telaProdutoGerenciar.getTblProduto(), 1);
+        UtilTable.centralizarConteudo(telaProdutoGerenciar.getTblProduto(), 2);
+        UtilTable.centralizarConteudo(telaProdutoGerenciar.getTblProduto(), 3);
+        UtilTable.centralizarConteudo(telaProdutoGerenciar.getTblProduto(), 4);
+        UtilTable.centralizarConteudo(telaProdutoGerenciar.getTblProduto(), 5);
+        UtilTable.centralizarConteudo(telaProdutoGerenciar.getTblProduto(), 6);
     }
 
     private void carregarFornecedoresNaCombo() {
@@ -87,8 +111,7 @@ public class TelaProdutoGerenciarControl {
         } else {
             produto.setAtivo(false);
         }
-        
-        
+
         if (Validacao.validaEntidade(produto) != null) {
             Mensagem.info(Validacao.validaEntidade(produto));
             produto = null;
@@ -117,14 +140,13 @@ public class TelaProdutoGerenciarControl {
         produto.setFornecedor((Fornecedor) telaProdutoGerenciar.getCbFornecedor().getSelectedItem());
 
         linhaSelecionada = telaProdutoGerenciar.getTblProduto().getSelectedRow();
-        
+
         if (Validacao.validaEntidade(produto) != null) {
             Mensagem.info(Validacao.validaEntidade(produto));
             produto = null;
             return;
         }
-        
-        
+
         boolean alterado = produtoDao.alterar(produto);
 
         if (alterado) {
@@ -159,6 +181,7 @@ public class TelaProdutoGerenciarControl {
         } else {
             telaProdutoGerenciar.getCheckAtivo().setSelected(false);
         }
+        telaProdutoGerenciar.getTpProduto().setSelectedIndex(1);
     }
 
     public void desativarProdutoAction() {
@@ -192,7 +215,7 @@ public class TelaProdutoGerenciarControl {
 
     }
 
-    private void limparCampos() {
+    public void limparCampos() {
         telaProdutoGerenciar.getTfNome().setText("");
         telaProdutoGerenciar.getTfPesquisar().setText("");
         telaProdutoGerenciar.getTfQuantidade().setText("");

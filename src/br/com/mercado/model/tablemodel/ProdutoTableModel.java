@@ -23,7 +23,7 @@ public class ProdutoTableModel extends AbstractTableModel implements AcoesTableM
     private static final int ATIVO = 6;
 
     private List<Produto> linhas;
-    private String[] COLUNAS = {"Código", "Nome", "Ean13", "Quantidade", "Valor", "Categoria", "Ativo"};
+    private String[] COLUNAS = {"CÓDIGO", "NOME", "EAN13", "QUANTIDADE", "VALOR", "CATEGORIA", "ATIVO"};
 
     public ProdutoTableModel() {
         linhas = new ArrayList<>();
